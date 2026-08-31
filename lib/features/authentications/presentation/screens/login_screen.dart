@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_colors.dart';
 import '../widgets/custom_text_field.dart';
+import '../screens/change_password.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   
@@ -99,7 +101,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ChangePasswordScreen(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'Forgot password?',
                       style: TextStyle(
@@ -172,24 +181,23 @@ class _LoginScreenState extends State<LoginScreen> {
               // أزارير التواصل الاجتماعي (جوجل وأبل)
               Row(
                 children: [
-                 Expanded(
-  child: OutlinedButton.icon(
-    onPressed: () {},
-    icon: const Icon(Icons.g_mobiledata, size: 28, color: AppColors.blackColor),
-    label: const Text(
-      'Google',
-      style: TextStyle(color: AppColors.blackColor),
-    ),
-    style: OutlinedButton.styleFrom(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      side: const BorderSide(color: AppColors.colorEADFD8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-    ),
-  ),
-),
-
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.g_mobiledata, size: 28, color: AppColors.blackColor),
+                      label: const Text(
+                        'Google',
+                        style: TextStyle(color: AppColors.blackColor),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        side: const BorderSide(color: AppColors.colorEADFD8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ),
+                  ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: OutlinedButton.icon(
