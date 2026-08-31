@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+ import 'package:flutter/cupertino.dart';
 import 'package:lune/products_view.dart';
 
 class NewArraival extends StatelessWidget{
@@ -28,6 +28,13 @@ class NewArraival extends StatelessWidget{
     );
   }
 }
+
+
+
+
+
+
+
 
 
 
