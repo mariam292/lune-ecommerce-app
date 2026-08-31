@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lune/app_colors.dart';
-import 'package:lune/AppFonts.dart';
+import 'package:lune/app_text_style.dart';
 import 'package:lune/bottom_nav_bar.dart';
 import 'package:lune/collections.dart';
 import 'package:lune/featured_picks.dart';
