@@ -1,0 +1,19 @@
+* [33m2b69fcd[m[33m ([m[1;31morigin/feature/auth-and-products[m[33m)[m update add product screen and custom text field
+* [33m5121394[m update add product screen and custom text field
+* [33mc525730[m Update main.dart to load LoginScreen
+*   [33m6b38937[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m Merge develop branch
+[32m|[m[33m\[m  
+[32m|[m *   [33mf6cfaf5[m Merge pull request #5 from mariam292/feature/text-styles
+[32m|[m [34m|[m[35m\[m  
+[32m|[m [34m|[m *   [33ma82e9b0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmariam[m[33m, [m[1;31morigin/mariam[m[33m, [m[1;31morigin/feature/text-styles[m[33m)[m Merge develop updates and add elevated button
+[32m|[m [34m|[m [36m|[m[34m\[m  
+[32m|[m [34m|[m [36m|[m[34m/[m  
+[32m|[m [34m|[m[34m/[m[36m|[m   
+* [34m|[m [36m|[m [33mc250215[m onbording done
+* [34m|[m [36m|[m [33m4975769[m onbording screen done
+[34m|[m[34m/[m [36m/[m  
+[34m|[m [36m|[m *   [33m25dfb40[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/Home_Screen&&About_Us[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #4 from raghadmohamed22/develop
+[34m|[m [36m|[m [1;32m|[m[34m\[m  
+[34m|[m [36m|[m[34m_[m[1;32m|[m[34m/[m  
+[34m|[m[34m/[m[36m|[m [1;32m|[m   
+* [36m|[m [1;32m|[m [33mfc00e1c[m added elevated button in core by raghad
