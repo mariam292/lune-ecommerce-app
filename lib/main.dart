@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'features/authentications/presentation/screens/login_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/privacy_screen.dart';
 
 void main() {
@@ -10,9 +11,10 @@ class LuneApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PrivacyScreen(),
+      home: LoginScreen(),
     );
   }
 }
+  
