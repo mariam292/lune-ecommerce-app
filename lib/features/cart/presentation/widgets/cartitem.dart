@@ -3,6 +3,7 @@ import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 
 
+
 class CartItem extends StatelessWidget {
   final String imagePath;
   final String productName;
