@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:lune/app_colors.dart';
-import 'package:lune/AppFonts.dart';
+import 'package:lune/app_text_style.dart';
 
 class CollectionView extends StatelessWidget
 {
@@ -34,4 +34,5 @@ Text(name,style:AppStyles.style12Medium.copyWith(color: AppColors.blackColor) ,)
 }
 
 
+ 
  
