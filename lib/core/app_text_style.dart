@@ -26,6 +26,10 @@ abstract class AppStyles {
     fontSize: 20,
     fontWeight: FontWeight.w400,
   );
+  static const TextStyle style26Regular = TextStyle(
+    fontSize: 26,
+    fontWeight: FontWeight.w400,
+  );
 
   // --- Size 32 ---
   static const TextStyle style32Bold = TextStyle(
