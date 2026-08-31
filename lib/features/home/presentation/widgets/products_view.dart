@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lune/app_colors.dart';
-import 'package:lune/AppFonts.dart';
+import 'package:lune/app_text_style.dart';
 
 class ProductsView extends StatelessWidget{
    ProductsView({super.key,required this.section_text,required this.onPressed,required this.products});
@@ -102,47 +102,16 @@ class ProductsView extends StatelessWidget{
        ],
         )
       
-      
-      
-      
-      
-      
-      
-      
-      
+   
       
          ],);
        }, ),
     ),
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
     ],
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
      );
   }
 }
