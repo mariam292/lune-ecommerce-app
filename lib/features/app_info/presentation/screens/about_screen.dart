@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/app_info/presentation/widgets/customappbar.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -10,24 +10,7 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backGroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.backGroundColor,
-        leading: IconButton(
-          icon: SvgPicture.asset("assets/icons/arrow_left.svg"),
-          onPressed: () {},
-        ),
-        centerTitle: true,
-        title: Text(
-          "LUNE",
-          style: AppStyles.style24Bold.copyWith(color: AppColors.primaryColor),
-        ),
-        actions: [
-          IconButton(
-            icon: SvgPicture.asset("assets/icons/cart_bag.svg"),
-            onPressed: () {},
-          ),
-        ],
-      ),
+      appBar:Customappbar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
         child: Column(

@@ -13,17 +13,8 @@ class ProfileHeaderCard extends StatelessWidget {
       height: 280,
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
-        border: Border.all(
-          color: AppColors.colorD1D5DB,
-        ),
+        border: Border.all(color: AppColors.colorD1D5DB),
         borderRadius: BorderRadius.circular(24),
-        boxShadow: const [
-          BoxShadow(
-            color: Color.fromRGBO(0, 0, 0, 0.03),
-            blurRadius: 20,
-            offset: Offset(0, 4),
-          ),
-        ],
       ),
       child: Stack(
         children: [
@@ -35,17 +26,7 @@ class ProfileHeaderCard extends StatelessWidget {
               height: 96,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors.whiteColor,
-                  width: 2,
-                ),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.05),
-                    blurRadius: 2,
-                    offset: Offset(0, 1),
-                  ),
-                ],
+                border: Border.all(color: AppColors.whiteColor, width: 2),
               ),
               child: ClipOval(
                 child: Image.asset(

@@ -9,12 +9,12 @@ class ProfileMenuItem extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
-    this.showArrow = true,
+    required this.suffixiconpath,
   });
 
   final String icon;
   final String title;
-  final bool showArrow;
+  final String suffixiconpath;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +28,7 @@ class ProfileMenuItem extends StatelessWidget {
             SizedBox(
               width: 24,
               height: 24,
-              child: SvgPicture.asset(
-                icon,
-                width: 24,
-                height: 24,
-              ),
+              child: SvgPicture.asset(icon, width: 24, height: 24),
             ),
 
             const SizedBox(width: 16),
@@ -41,18 +37,16 @@ class ProfileMenuItem extends StatelessWidget {
             Text(
               title,
               style: AppStyles.style16Regular.copyWith(
-                color:AppColors.blackColor,
+                color: AppColors.blackColor,
               ),
             ),
             Spacer(),
-           
+
             // Arrow
-            
-              SvgPicture.asset(
-                'assets/icons/vector_2.svg',
-                width: 18,
-                height: 18,
-              ),
+            InkWell(
+              onTap: () {},
+              child: SvgPicture.asset(suffixiconpath, width: 23, height: 23),
+            ),
           ],
         ),
       ),

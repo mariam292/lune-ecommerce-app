@@ -1,10 +1,11 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/profile_header_card.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/profile_menu_item.dart';
+import 'package:nti_final_project/features/profile/presentation/widgets/text_button_section.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -17,33 +18,15 @@ class ProfileScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
             Container(
               height: 68,
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: AppColors.colorD1D5DB,
-                        ),
-                      ),
-                      child: const Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 16,
-                        color: AppColors.color5A3036,
-                      ),
-                    ),
+                  InkWell(
+                    onTap: () {},
+                    child: SvgPicture.asset("assets/icons/back-circle.svg"),
                   ),
 
                   const SizedBox(width: 16),
@@ -61,27 +44,19 @@ class ProfileScreen extends StatelessWidget {
             // Profile Content
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(
-                  24,
-                  16,
-                  24,
-                  24,
-                ),
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
                 child: Column(
                   children: [
                     const ProfileHeaderCard(),
 
                     const SizedBox(height: 24),
 
-                    // Profile Settings
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.whiteColor,
                         borderRadius: BorderRadius.circular(24),
-                        border: Border.all(
-                          color: AppColors.colorD1D5DB,
-                        ),
+                        border: Border.all(color: AppColors.colorD1D5DB),
                       ),
                       clipBehavior: Clip.antiAlias,
                       child: const Column(
@@ -89,32 +64,43 @@ class ProfileScreen extends StatelessWidget {
                           ProfileMenuItem(
                             icon: 'assets/icons/dark_mode.svg',
                             title: 'Dark Mode',
-                            showArrow: false,
+                            suffixiconpath:
+                                'assets/icons/Toggle Switch_margin.svg',
                           ),
+                          Divider(),
 
                           ProfileMenuItem(
                             icon: 'assets/icons/change_password.svg',
                             title: 'Change Password',
+                            suffixiconpath: 'assets/icons/vector_2.svg',
                           ),
+                          Divider(),
 
                           ProfileMenuItem(
                             icon: 'assets/icons/privacy_policy.svg',
                             title: 'Privacy Policy',
+                            suffixiconpath: 'assets/icons/vector_2.svg',
                           ),
+                          Divider(),
 
                           ProfileMenuItem(
                             icon: 'assets/icons/language.svg',
                             title: 'Language',
+                            suffixiconpath: 'assets/icons/vector_2.svg',
                           ),
+                          Divider(),
 
                           ProfileMenuItem(
                             icon: 'assets/icons/about_us.svg',
                             title: 'About Us',
+                            suffixiconpath: 'assets/icons/vector_2.svg',
                           ),
+                          Divider(),
 
                           ProfileMenuItem(
                             icon: 'assets/icons/contact_us.svg',
                             title: 'Contact Us',
+                            suffixiconpath: 'assets/icons/vector_2.svg',
                           ),
                         ],
                       ),
@@ -129,32 +115,9 @@ class ProfileScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: AppColors.whiteColor,
                         borderRadius: BorderRadius.circular(24),
-                        border: Border.all(
-                          color: AppColors.colorD1D5DB,
-                        ),
+                        border: Border.all(color: AppColors.colorD1D5DB),
                       ),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.logout,
-                              size: 18,
-                              color: AppColors.color5A3036,
-                            ),
-
-                            const SizedBox(width: 8),
-
-                            Text(
-                              'Logout',
-                              style: AppStyles.style16Regular.copyWith(
-                                color: AppColors.color5A3036,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: TextButtonSection(),
                     ),
                   ],
                 ),
@@ -165,7 +128,6 @@ class ProfileScreen extends StatelessWidget {
       ),
 
       // Custom Bottom Navigation Bar
- 
     );
   }
 }

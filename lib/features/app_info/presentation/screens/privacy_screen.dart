@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/app_info/presentation/widgets/customappbar.dart';
 import 'package:nti_final_project/features/app_info/presentation/widgets/privacy_policy_item.dart';
 
 class PrivacyScreen extends StatelessWidget {
@@ -10,6 +10,7 @@ class PrivacyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: Customappbar(),
       backgroundColor: AppColors.backGroundColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(24, 45, 24, 92),
@@ -22,6 +23,7 @@ class PrivacyScreen extends StatelessWidget {
                 color: AppColors.primaryColor,
               ),
             ),
+            SizedBox(height: 10),
             Text(
               'Last Updated: October 26, 2023',
               style: AppStyles.style12Medium.copyWith(
@@ -38,7 +40,7 @@ class PrivacyScreen extends StatelessWidget {
                     SizedBox(height: 36),
                     Text(
                       'At LUNA, we value your privacy and are committed to protecting your personal data when you visit our website or interact with our brand.',
-                      style: AppStyles.style12SemiBold.copyWith(
+                      style: AppStyles.style16Medium.copyWith(
                         color: AppColors.blackColor,
                       ),
                     ),
