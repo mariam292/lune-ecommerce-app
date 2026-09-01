@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
+import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
 class ProductsView extends StatelessWidget {
   ProductsView({
@@ -50,15 +51,18 @@ class ProductsView extends StatelessWidget {
                   Expanded(
                     child: Stack(
                       children: [
-                        Container(
-                          width: double.infinity,
-                          height: 209,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-
-                            image: DecorationImage(
-                              image: AssetImage(products[index]["img"]),
-                              fit: BoxFit.cover,
+                        InkWell(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>Productdetailsscreen())),
+                          child: Container(
+                            width: double.infinity,
+                            height: 209,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                          
+                              image: DecorationImage(
+                                image: AssetImage(products[index]["img"]),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -103,7 +107,7 @@ class ProductsView extends StatelessWidget {
                               children: [
                                 Text(
                                   "\$${products[index]["price"]}",
-                                  style: AppStyles.style12Regular.copyWith(
+                                  style: AppStyles.style14Regular.copyWith(
                                     color: AppColors.color7A6E6B,
                                   ),
                                 ),

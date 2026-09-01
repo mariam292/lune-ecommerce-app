@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/showdelete.dart';
-
 
 class Addtocartsection extends StatelessWidget {
   const Addtocartsection({super.key});
@@ -75,7 +75,11 @@ class Addtocartsection extends StatelessWidget {
               btntextstyle: AppStyles.style14SemiBold.copyWith(
                 color: AppColors.whiteColor,
               ),
-              buttoncolor: AppColors.primaryColor, onpressed: () {  },
+              buttoncolor: AppColors.primaryColor,
+              onpressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Cartscreen()),
+              ),
             ),
           ),
         ],

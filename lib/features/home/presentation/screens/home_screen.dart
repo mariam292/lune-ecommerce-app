@@ -3,12 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
+import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/collections.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/featured_picks.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/new_arraival.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/product_search.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/seasonal_exclusive_offer.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:BottomNavBar() ,
+      bottomNavigationBar: BottomNavBar(),
       backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: Padding(
@@ -41,11 +41,12 @@ class HomeScreen extends StatelessWidget {
                     ),
 
                     IconButton(
-                      onPressed: () {},
-                      icon: SvgPicture.asset("assets/icons/cart_bag.svg"),
-                      style: IconButton.styleFrom(
-                        padding: EdgeInsets.all(0),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Cartscreen()),
                       ),
+                      icon: SvgPicture.asset("assets/icons/cart_bag.svg"),
+                      style: IconButton.styleFrom(padding: EdgeInsets.all(0)),
                     ),
                   ],
                 ),

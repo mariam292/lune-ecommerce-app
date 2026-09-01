@@ -9,12 +9,13 @@ class ProfileMenuItem extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
-    required this.suffixiconpath,
+    required this.suffixiconpath, required this.ontap,
   });
 
   final String icon;
   final String title;
   final String suffixiconpath;
+  final VoidCallback ontap;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class ProfileMenuItem extends StatelessWidget {
 
             // Arrow
             InkWell(
-              onTap: () {},
+              onTap:ontap,
               child: SvgPicture.asset(suffixiconpath, width: 23, height: 23),
             ),
           ],

@@ -5,6 +5,7 @@ import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
 
 import 'package:nti_final_project/features/home/presentation/widgets/collection_view.dart';
+import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
 class Collection extends StatelessWidget {
   Collection({super.key});
@@ -61,9 +62,19 @@ class Collection extends StatelessWidget {
             itemCount: collection.length,
 
             itemBuilder: (context, index) {
-              return CollectionView(
-                img: collection[index].img,
-                name: collection[index].name,
+              return InkWell(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Productdetailsscreen(),
+                  ),
+                ),
+                child: Container(
+                  child: CollectionView(
+                    img: collection[index].img,
+                    name: collection[index].name,
+                  ),
+                ),
               );
             },
           ),

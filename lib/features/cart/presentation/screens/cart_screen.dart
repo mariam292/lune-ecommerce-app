@@ -7,7 +7,6 @@ import 'package:nti_final_project/features/cart/presentation/widgets/cartitem.da
 import 'package:nti_final_project/features/cart/presentation/widgets/customsummaryitem.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/promocode.dart';
 
-
 class Cartscreen extends StatelessWidget {
   const Cartscreen({super.key});
 
@@ -18,7 +17,7 @@ class Cartscreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.backGroundColor,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pop(context),
           icon: SvgPicture.asset(
             "assets/icons/back-circle.svg",
             width: 50,
@@ -125,7 +124,8 @@ class Cartscreen extends StatelessWidget {
                   btntextstyle: AppStyles.style16SemiBold.copyWith(
                     color: AppColors.whiteColor,
                   ),
-                  buttoncolor: AppColors.primaryColor, onpressed: () {  },
+                  buttoncolor: AppColors.primaryColor,
+                  onpressed: () {},
                 ),
               ],
             ),

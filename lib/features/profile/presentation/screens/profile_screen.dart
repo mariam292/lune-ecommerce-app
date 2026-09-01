@@ -3,6 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/app_info/presentation/screens/about_screen.dart';
+import 'package:nti_final_project/features/app_info/presentation/screens/contact_screen.dart';
+import 'package:nti_final_project/features/app_info/presentation/screens/privacy_screen.dart';
+import 'package:nti_final_project/features/app_info/presentation/widgets/privacy_policy_item.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/change_password_screen.dart';
+import 'package:nti_final_project/features/product/presentation/screens/add_product_screen.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/profile_header_card.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/profile_menu_item.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/text_button_section.dart';
@@ -25,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () => Navigator.pop(context),
                     child: SvgPicture.asset("assets/icons/back-circle.svg"),
                   ),
 
@@ -59,13 +65,14 @@ class ProfileScreen extends StatelessWidget {
                         border: Border.all(color: AppColors.colorD1D5DB),
                       ),
                       clipBehavior: Clip.antiAlias,
-                      child: const Column(
+                      child: Column(
                         children: [
                           ProfileMenuItem(
                             icon: 'assets/icons/dark_mode.svg',
                             title: 'Dark Mode',
                             suffixiconpath:
                                 'assets/icons/Toggle Switch_margin.svg',
+                            ontap: () {},
                           ),
                           Divider(),
 
@@ -73,6 +80,12 @@ class ProfileScreen extends StatelessWidget {
                             icon: 'assets/icons/change_password.svg',
                             title: 'Change Password',
                             suffixiconpath: 'assets/icons/vector_2.svg',
+                            ontap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChangePasswordScreen(),
+                              ),
+                            ),
                           ),
                           Divider(),
 
@@ -80,6 +93,12 @@ class ProfileScreen extends StatelessWidget {
                             icon: 'assets/icons/privacy_policy.svg',
                             title: 'Privacy Policy',
                             suffixiconpath: 'assets/icons/vector_2.svg',
+                            ontap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PrivacyScreen(),
+                              ),
+                            ),
                           ),
                           Divider(),
 
@@ -87,6 +106,7 @@ class ProfileScreen extends StatelessWidget {
                             icon: 'assets/icons/language.svg',
                             title: 'Language',
                             suffixiconpath: 'assets/icons/vector_2.svg',
+                            ontap: () {},
                           ),
                           Divider(),
 
@@ -94,6 +114,12 @@ class ProfileScreen extends StatelessWidget {
                             icon: 'assets/icons/about_us.svg',
                             title: 'About Us',
                             suffixiconpath: 'assets/icons/vector_2.svg',
+                            ontap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AboutScreen(),
+                              ),
+                            ),
                           ),
                           Divider(),
 
@@ -101,6 +127,24 @@ class ProfileScreen extends StatelessWidget {
                             icon: 'assets/icons/contact_us.svg',
                             title: 'Contact Us',
                             suffixiconpath: 'assets/icons/vector_2.svg',
+                            ontap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ContactScreen(),
+                              ),
+                            ),
+                          ),
+                          Divider(),
+                          ProfileMenuItem(
+                            icon: 'assets/icons/carbon_add-alt.svg',
+                            title: 'Add New Product',
+                            suffixiconpath: 'assets/icons/vector_2.svg',
+                            ontap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddProductScreen(),
+                              ),
+                            ),
                           ),
                         ],
                       ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
+import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
+import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
+import 'package:nti_final_project/features/profile/presentation/screens/profile_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -27,38 +30,60 @@ class _BottomNavBarState extends State<BottomNavBar> {
       },
       items: [
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            "assets/icons/home (6).svg",
-            color: current_index == 0
-                ? AppColors.primaryColor
-                : AppColors.blackColor,
+          icon: IconButton(
+            icon: Icon(
+              Icons.home_filled,
+              color: current_index == 0
+                  ? AppColors.primaryColor
+                  : AppColors.blackColor,
+            ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            ),
           ),
           label: " ",
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            "assets/icons/grid.svg",
-            color: current_index == 1
-                ? AppColors.primaryColor
-                : AppColors.blackColor,
+          icon: IconButton(
+            icon: Icon(
+              Icons.grid_4x4_sharp,
+              color: current_index == 1
+                  ? AppColors.primaryColor
+                  : AppColors.blackColor,
+            ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CategoryScreen()),
+            ),
           ),
           label: "",
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            "assets/icons/Vector (1).svg",
-            color: current_index == 2
-                ? AppColors.primaryColor
-                : AppColors.blackColor,
+          icon: IconButton(
+            icon: Icon(
+              Icons.card_travel,
+              color: current_index == 2
+                  ? AppColors.primaryColor
+                  : AppColors.blackColor,
+            ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Cartscreen()),
+            ),
           ),
           label: " ",
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            "assets/icons/user.svg",
+          icon: IconButton(
+            icon: Icon(Icons.person),
             color: current_index == 3
                 ? AppColors.primaryColor
                 : AppColors.blackColor,
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
+            ),
           ),
           label: " ",
         ),
