@@ -1,5 +1,5 @@
  import 'package:flutter/cupertino.dart';
-import 'package:lune/products_view.dart';
+import 'package:nti_final_project/features/home/presentation/widgets/products_view.dart';
 
 class NewArraival extends StatelessWidget{
     NewArraival({super.key});

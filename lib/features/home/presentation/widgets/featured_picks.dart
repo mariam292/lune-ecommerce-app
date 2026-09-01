@@ -1,7 +1,6 @@
  import 'package:flutter/material.dart';
-import 'package:lune/app_colors.dart';
-import 'package:lune/app_text_style.dart';
-import 'package:lune/products_view.dart';
+import 'package:nti_final_project/features/home/presentation/widgets/products_view.dart';
+
 
 class FeaturedPicks extends StatelessWidget {
   FeaturedPicks({super.key});

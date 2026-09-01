@@ -1,8 +1,9 @@
   import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:lune/app_colors.dart';
-import 'package:lune/app_text_style.dart';
-import 'package:lune/collection_view.dart';
+import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/core/app_text_style.dart';
+
+import 'package:nti_final_project/features/home/presentation/widgets/collection_view.dart';
 
 class Collection extends StatelessWidget
 {

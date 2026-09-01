@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lune/app_colors.dart';
+import 'package:nti_final_project/core/app_colors.dart';
 
 
 class  BottomNavBar extends StatefulWidget {
