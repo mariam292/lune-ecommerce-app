@@ -4,6 +4,7 @@ import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
 
 
+
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
