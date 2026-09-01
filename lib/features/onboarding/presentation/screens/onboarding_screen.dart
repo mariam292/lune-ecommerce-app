@@ -3,8 +3,6 @@ import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
 
-
-
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
@@ -31,7 +29,6 @@ class OnboardingScreen extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Colors.transparent,
                         AppColors.backGroundColor.withValues(alpha: 0.1),
                         AppColors.backGroundColor.withValues(alpha: 0.8),
                         AppColors.backGroundColor,
@@ -68,7 +65,7 @@ class OnboardingScreen extends StatelessWidget {
                       color: AppColors.primaryColor,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Text(
                     "Explore curated collections of premium feminine accessories, designed for the modern muse.",
                     textAlign: TextAlign.center,
@@ -76,9 +73,8 @@ class OnboardingScreen extends StatelessWidget {
                       color: AppColors.color7A6E6B,
                     ),
                   ),
-                  const SizedBox(height: 36),
+                  SizedBox(height: 36),
 
-                  // زر Next
                   SizedBox(
                     width: double.infinity,
                     height: 54,

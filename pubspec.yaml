@@ -75,28 +75,28 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Instrument Serif
-      fonts:
-        - asset: assets/fonts/InstrumentSerif-Regular.ttf
-        # - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-    - family: play fair display
-      fonts:
-        - asset: assets/fonts/PlayfairDisplay-VariableFont_wght.ttf
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Light.ttf
-    - family: great vibes
-      fonts:
-        - asset: assets/fonts/GreatVibes-Regular.ttf
-    - family: inter
-      fonts:
-        - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
-    - family: Platypi
- 
-      fonts:
-        - asset: assets/fonts/Platypi-VariableFont_wght.ttf 
+  # fonts:
+  #   - family: Instrument Serif
+  #     fonts:
+  #       - asset: assets/fonts/InstrumentSerif-Regular.ttf
+  #       # - asset: fonts/Schyler-Italic.ttf
+  # #         style: italic
+  #   - family: play fair display
+  #     fonts:
+  #       - asset: assets/fonts/PlayfairDisplay-VariableFont_wght.ttf
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/Poppins-Light.ttf
+  #   - family: great vibes
+  #     fonts:
+  #       - asset: assets/fonts/GreatVibes-Regular.ttf
+  #   - family: inter
+  #     fonts:
+  #       - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
+  #   - family: Platypi
+
+  #     fonts:
+  #       - asset: assets/fonts/Platypi-VariableFont_wght.ttf 
 
 
   # see https://flutter.dev/to/font-from-package
