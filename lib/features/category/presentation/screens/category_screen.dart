@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../../core/app_colors.dart';
 import '../../../../core/app_text_style.dart';
 
@@ -6,38 +7,14 @@ class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
 
   final List<Map<String, String>> categories = const [
-    {
-      'name': 'Jewelry',
-      'image': 'assets/images/cat1.png',
-    },
-    {
-      'name': 'Bags',
-      'image': 'assets/images/cat2.png',
-    },
-    {
-      'name': 'Scarves',
-      'image': 'assets/images/cat3.png',
-    },
-    {
-      'name': 'Watches',
-      'image': 'assets/images/cat4.png',
-    },
-    {
-      'name': 'Sunglasses',
-      'image': 'assets/images/cat5.png',
-    },
-    {
-      'name': 'Hair Accessories',
-      'image': 'assets/images/cat6.png',
-    },
-    {
-      'name': 'Belts',
-      'image': 'assets/images/cat7.png',
-    },
-    {
-      'name': 'Fragrance',
-      'image': 'assets/images/cat8.png',
-    },
+    {'name': 'Jewelry', 'image': 'assets/images/cat1.png'},
+    {'name': 'Bags', 'image': 'assets/images/cat2.png'},
+    {'name': 'Scarves', 'image': 'assets/images/cat3.png'},
+    {'name': 'Watches', 'image': 'assets/images/cat4.png'},
+    {'name': 'Sunglasses', 'image': 'assets/images/cat5.png'},
+    {'name': 'Hair Accessories', 'image': 'assets/images/cat6.png'},
+    {'name': 'Belts', 'image': 'assets/images/cat7.png'},
+    {'name': 'Fragrance', 'image': 'assets/images/cat8.png'},
   ];
 
   @override
@@ -54,8 +31,7 @@ class CategoryScreen extends StatelessWidget {
                 child: GridView.builder(
                   padding: const EdgeInsets.only(bottom: 100),
                   itemCount: categories.length,
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 12,
@@ -81,24 +57,8 @@ class CategoryScreen extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
       child: Row(
         children: [
-          Container(
-            width: 32,
-            height: 32,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.whiteColor,
-            ),
-            child: IconButton(
-              padding: EdgeInsets.zero,
-              onPressed: () {},
-              icon: const Icon(
-                Icons.chevron_left,
-                size: 22,
-                color: AppColors.blackColor,
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
+         // IconButton(onPressed: ()=> Navigator.pop(), icon: SvgPicture.asset('assets/icons/back-circle.svg'),),
+           SizedBox(width: 8),
           Text(
             'Categories',
             style: AppStyles.style20Regular.copyWith(
@@ -130,10 +90,7 @@ class CategoryScreen extends StatelessWidget {
 }
 
 class _CategoryItem extends StatelessWidget {
-  const _CategoryItem({
-    required this.name,
-    required this.image,
-  });
+  const _CategoryItem({required this.name, required this.image});
 
   final String name;
   final String image;
@@ -148,10 +105,7 @@ class _CategoryItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: SizedBox(
               width: double.infinity,
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset(image, fit: BoxFit.cover),
             ),
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 
 class ProductsView extends StatelessWidget {
   ProductsView({
@@ -27,15 +28,6 @@ class ProductsView extends StatelessWidget {
               ),
             ),
             Spacer(),
-            TextButton(
-              onPressed: onPressed,
-              child: Text(
-                "See More",
-                style: AppStyles.style16Medium.copyWith(
-                  color: AppColors.colorA7736D,
-                ),
-              ),
-            ),
           ],
         ),
 
@@ -43,7 +35,6 @@ class ProductsView extends StatelessWidget {
           height: 300,
           width: double.infinity,
           child: GridView.builder(
-            physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10,
@@ -119,7 +110,12 @@ class ProductsView extends StatelessWidget {
                                 Spacer(),
 
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Cartscreen(),
+                                    ),
+                                  ),
                                   icon: SvgPicture.asset(
                                     "assets/icons/Button.svg",
                                   ),

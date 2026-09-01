@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -30,10 +31,9 @@ class OnboardingScreen extends StatelessWidget {
                       end: Alignment.bottomCenter,
                       colors: [
                         AppColors.backGroundColor.withValues(alpha: 0.1),
-                        AppColors.backGroundColor.withValues(alpha: 0.8),
+                        AppColors.backGroundColor.withValues(alpha: 0.1),
                         AppColors.backGroundColor,
                       ],
-                      stops: [0.70, 0.75, 0.75, 0.75],
                     ),
                   ),
                 ),
@@ -84,6 +84,14 @@ class OnboardingScreen extends StatelessWidget {
                         color: AppColors.whiteColor,
                       ),
                       buttoncolor: AppColors.primaryColor,
+                      onpressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

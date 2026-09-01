@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
 
 import 'package:nti_final_project/features/home/presentation/widgets/collection_view.dart';
 
@@ -33,7 +34,10 @@ class Collection extends StatelessWidget {
             ),
             Spacer(),
             TextButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CategoryScreen()),
+              ),
               child: Text(
                 "View All",
                 style: AppStyles.style14Medium.copyWith(

@@ -4,7 +4,6 @@ import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/addtocart.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/detailscontainer.dart';
 
-
 class Productdetailsscreen extends StatelessWidget {
   const Productdetailsscreen({super.key});
 
@@ -28,7 +27,7 @@ class Productdetailsscreen extends StatelessWidget {
                           width: double.infinity,
                           color: AppColors.whiteColor,
                           child: Image.asset(
-                            'assets/images/productdetails.png',
+                            'assets/images/Background (1).png',
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -36,9 +35,9 @@ class Productdetailsscreen extends StatelessWidget {
                           top: 60,
                           left: 15,
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () => Navigator.pop(context),
                             icon: SvgPicture.asset(
-                              "assets/icons/arrowbackfordetails.svg",
+                              "assets/icons/back-circle.svg",
                               width: 50,
                             ),
                           ),

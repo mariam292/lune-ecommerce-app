@@ -75,7 +75,7 @@ class Addtocartsection extends StatelessWidget {
               btntextstyle: AppStyles.style14SemiBold.copyWith(
                 color: AppColors.whiteColor,
               ),
-              buttoncolor: AppColors.primaryColor,
+              buttoncolor: AppColors.primaryColor, onpressed: () {  },
             ),
           ),
         ],

@@ -5,11 +5,12 @@ class Elevatedbutton extends StatelessWidget {
     super.key,
     required this.buttontext,
     required this.btntextstyle,
-    required this.buttoncolor,
+    required this.buttoncolor, required this.onpressed,
   });
   final String buttontext;
   final TextStyle btntextstyle;
   final Color buttoncolor;
+  final VoidCallback onpressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class Elevatedbutton extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        onPressed: () {},
+        onPressed: onpressed,
         child: Text(buttontext, style: btntextstyle),
       ),
     );

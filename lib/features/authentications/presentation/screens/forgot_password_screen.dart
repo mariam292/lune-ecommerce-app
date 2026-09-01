@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/general_text_field_section.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/otp_screen.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/header_forgot_reset_section.dart';
 
 class ForgotPassword extends StatelessWidget {
@@ -21,7 +22,10 @@ class ForgotPassword extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // back button svg icon
-              SvgPicture.asset('assets/icons/back-circle.svg'),
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: SvgPicture.asset('assets/icons/back-circle.svg'),
+              ),
 
               SizedBox(height: 34),
 
@@ -35,7 +39,7 @@ class ForgotPassword extends StatelessWidget {
               SizedBox(height: 120),
 
               //textField section
-              GeneralTextFieldSection(
+              CustomTextField(
                 labelText: 'Email Address',
                 hintText: 'Please Enter Your Email',
               ),
@@ -45,8 +49,16 @@ class ForgotPassword extends StatelessWidget {
               //elevated button section
               Elevatedbutton(
                 buttontext: 'Send Reset Link',
-                btntextstyle: AppStyles.style14SemiBold,
+                btntextstyle: AppStyles.style14SemiBold.copyWith(
+                  color: AppColors.whiteColor,
+                ),
                 buttoncolor: AppColors.primaryColor,
+                onpressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OtpVerification()),
+                  );
+                },
               ),
             ],
           ),

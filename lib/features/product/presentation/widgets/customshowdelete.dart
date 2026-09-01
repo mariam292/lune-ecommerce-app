@@ -57,7 +57,7 @@ void showDeleteDialog(BuildContext context) {
                   btntextstyle: AppStyles.style16SemiBold.copyWith(
                     color: AppColors.whiteColor,
                   ),
-                  buttoncolor: AppColors.primaryColor,
+                  buttoncolor: AppColors.primaryColor, onpressed: () {  },
                 ),
               ),
               SizedBox(height: 12),

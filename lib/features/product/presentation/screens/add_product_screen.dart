@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field.dart';
 import '../../../../core/app_colors.dart';
 
@@ -10,26 +13,8 @@ class AddProductScreen extends StatefulWidget {
 }
 
 class _AddProductScreenState extends State<AddProductScreen> {
-  final TextEditingController _productNameController =
-      TextEditingController(text: "L'Aura Satin Ribbon");
-  final TextEditingController _descriptionController =
-      TextEditingController(text: "Luxurious satin hair ribbon to wrap or bow your styling.");
-  final TextEditingController _categoryController =
-      TextEditingController(text: "Hair Accessories");
-  final TextEditingController _priceController =
-      TextEditingController(text: "\$32.00");
-  final TextEditingController _stockController =
-      TextEditingController(text: "150");
-
-  @override
-  void dispose() {
-    _productNameController.dispose();
-    _descriptionController.dispose();
-    _categoryController.dispose();
-    _priceController.dispose();
-    _stockController.dispose();
-    super.dispose();
-  }
+ 
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -45,36 +30,28 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 // Top Bar: Back Button & Title
                 Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: AppColors.colorEADFD8, width: 1),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back_ios_new, size: 16, color: AppColors.blackColor),
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    const Text(
+                     IconButton(onPressed: ()=> Navigator.pop(context), icon: SvgPicture.asset('assets/icons/back-circle.svg'),),
+
+
+
+                     SizedBox(width: 16),
+
+                     Text(
                       'Add New Product',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.primaryColor,
-                      ),
+                      style: AppStyles.style24Regular.copyWith(color: AppColors.primaryColor
+                      )
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+
+                 SizedBox(height: 24),
 
                 // Add Photos Box
                 Container(
                   width: double.infinity,
                   height: 120,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: AppColors.primaryColor.withValues(alpha: 0.5),
@@ -83,7 +60,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children:  [
                       Icon(
                         Icons.camera_alt_outlined,
                         color: AppColors.primaryColor,
@@ -92,86 +69,68 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       SizedBox(height: 6),
                       Text(
                         'Add Photos',
-                        style: TextStyle(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 13,
-                        ),
+                        style: AppStyles.style12Medium.copyWith(color: AppColors.colorA7736D
+                        )
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+
+
+                 SizedBox(height: 20),
 
                 // Product Name
                 CustomTextField(
-                  label: 'PRODUCT NAME',
+                  labelText: 'PRODUCT NAME',
                   hintText: "e.g. L'Aura Satin Ribbon",
-                  controller: _productNameController,
                 ),
-                const SizedBox(height: 16),
+
+                 SizedBox(height: 16),
 
                 // Description
                 CustomTextField(
-                  label: 'DESCRIPTION',
+                  labelText: 'DESCRIPTION',
                   hintText: "Enter product description...",
-                  controller: _descriptionController,
                 ),
-                const SizedBox(height: 16),
+                 SizedBox(height: 16),
 
                 // Category
                 CustomTextField(
-                  label: 'CATEGORY',
+                  labelText: 'CATEGORY',
                   hintText: "Select category",
-                  controller: _categoryController,
                 ),
-                const SizedBox(height: 16),
+                 SizedBox(height: 16),
 
                 // Price and Stock in a Row
                 Row(
                   children: [
                     Expanded(
                       child: CustomTextField(
-                        label: 'PRICE',
+                        labelText: 'PRICE',
                         hintText: "\$0.00",
-                        controller: _priceController,
                       ),
                     ),
-                    const SizedBox(width: 16),
+                     SizedBox(width: 16),
                     Expanded(
                       child: CustomTextField(
-                        label: 'STOCK',
+                        labelText: 'STOCK',
                         hintText: "0",
-                        controller: _stockController,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 28),
+                 SizedBox(height: 28),
 
                 // Publish Product Button
-                SizedBox(
-                  width: double.infinity,
-                  height: 52,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(26),
-                      ),
-                    ),
-                    child: const Text(
-                      'Publish Product',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                Elevatedbutton(
+                buttontext: 'Publish Product',
+                btntextstyle: AppStyles.style14SemiBold.copyWith(
+                  color: AppColors.whiteColor,
                 ),
-                const SizedBox(height: 20),
+                buttoncolor: AppColors.primaryColor, onpressed: () {  },
+              ),
+                
+                 SizedBox(height: 20),
               ],
             ),
           ),

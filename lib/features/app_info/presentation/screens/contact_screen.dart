@@ -100,7 +100,7 @@ class ContactScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     height: 48,
-                    child: Elevatedbutton(buttontext: 'SEND MESSAGE', btntextstyle: AppStyles.style16SemiBold.copyWith(color: AppColors.whiteColor), buttoncolor: AppColors.primaryColor,),
+                    child: Elevatedbutton(buttontext: 'SEND MESSAGE', btntextstyle: AppStyles.style16SemiBold.copyWith(color: AppColors.whiteColor), buttoncolor: AppColors.primaryColor, onpressed: () {  },),
                   ),
                 ],
               ),

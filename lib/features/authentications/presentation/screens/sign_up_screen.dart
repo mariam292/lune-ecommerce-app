@@ -1,6 +1,13 @@
-
 import 'package:flutter/material.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/malk.dart';
+import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/auth_navigation.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/header_login_signup.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/or_with_section.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/pass_text_field_section.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/sign_with_social_section.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -12,198 +19,66 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-
-  bool isPasswordHidden = true;
-  bool isConfirmPasswordHidden = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF8F6),
+      backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 24,
-          ),
+          padding: EdgeInsets.fromLTRB(24, 50, 24, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              const Text(
-                'LUNÉ',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF4C0D1C),
-                  letterSpacing: 2,
-                ),
+              HeaderLoginSignUp(
+                headerTitle: 'LUNÉ',
+                headerSubTitle: 'Create Account',
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'Create Account',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF2D2D2D),
-                ),
-              ),
-              const SizedBox(height: 32),
+
+              CustomTextField(labelText: 'FULL NAME', hintText: 'Malk Amr'),
+              SizedBox(height: 16),
+
               CustomTextField(
-                label: 'FULL NAME',
-                hintText: 'Malk Amr',
-              ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                label: 'EMAIL ADDRESS',
+                labelText: 'EMAIL ADDRESS',
                 hintText: 'loka@gmail.com',
               ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                label: 'PASSWORD',
+
+              SizedBox(height: 16),
+
+              PassTextFieldSection(
+                labelText: 'PASSWORD',
                 hintText: '••••••••••••',
-                isPassword: true,
-                isPasswordHidden: isPasswordHidden,
-                controller: passwordController,
-                onSuffixTap: () {
-                  setState(() {
-                    isPasswordHidden = !isPasswordHidden;
-                  });
-                },
               ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                label: 'CONFIRM PASSWORD',
+              SizedBox(height: 16),
+
+              PassTextFieldSection(
+                labelText: 'CONFIRM PASSWORD',
                 hintText: '••••••••••••',
-                isPassword: true,
-                isPasswordHidden: isConfirmPasswordHidden,
-                controller: confirmPasswordController,
-                onSuffixTap: () {
-                  setState(() {
-                    isConfirmPasswordHidden = !isConfirmPasswordHidden;
-                  });
-                },
               ),
-              const SizedBox(height: 32),
-              CustomButton(
-                text: 'Create Account',
-                onPressed: () {},
+
+              SizedBox(height: 32),
+
+              Elevatedbutton(
+                buttontext: 'Create Account',
+                btntextstyle: AppStyles.style14SemiBold.copyWith(
+                  color: AppColors.whiteColor,
+                ),
+                buttoncolor: AppColors.primaryColor,
+                onpressed: () {},
               ),
-              const SizedBox(height: 32),
-              const Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color: Color(0xFF4C0D1C),
-                      thickness: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
-                      'OR CONTINUE WITH',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFF4C0D1C),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      color: Color(0xFFEADFD8),
-                      thickness: 1,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.g_mobiledata,
-                        size: 28,
-                        color: Colors.black,
-                      ),
-                      label: const Text(
-                        'Google',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                        ),
-                        side: const BorderSide(
-                          color: Color(0xFFEADFD8),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.apple,
-                        size: 22,
-                        color: Colors.black,
-                      ),
-                      label: const Text(
-                        'Apple',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                        ),
-                        side: const BorderSide(
-                          color: Color(0xFFEADFD8),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Already have an account? ',
-                    style: TextStyle(
-                      color: Color(0xFF7A6E6B),
-                      fontSize: 13,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                        color: Color(0xFF4A101D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ),
-                ],
+
+              SizedBox(height: 30),
+              OrWithSection(),
+
+              SizedBox(height: 24),
+
+              SignWithSocialSection(),
+
+              SizedBox(height: 50),
+
+              AuthNavigation(
+                message: 'Already have an account? ',
+                navigationMessage: 'Login',
+                ontap: () => Navigator.pop(context),
               ),
             ],
           ),

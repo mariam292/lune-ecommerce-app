@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/products_view.dart';
+import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
 class FeaturedPicks extends StatelessWidget {
   FeaturedPicks({super.key});
@@ -22,7 +23,10 @@ class FeaturedPicks extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProductsView(
       section_text: "Products",
-      onPressed: onPressed,
+      onPressed:  () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Productdetailsscreen()),
+          ),
       products: products,
     );
   }

@@ -35,7 +35,7 @@ class Cartscreen extends StatelessWidget {
           IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
-              "assets/icons/right-action.svg",
+              "assets/icons/ring-action.svg",
               width: 50,
               height: 50,
             ),
@@ -57,7 +57,7 @@ class Cartscreen extends StatelessWidget {
                   itemCount: 2,
                   itemBuilder: (context, index) {
                     return CartItem(
-                      imagePath: 'assets/images/Rectangle (1).png',
+                      imagePath: 'assets/images/ImageFrame.png',
                       productName: 'Céleste Hair Grip',
                       productCategory: 'Hair Grip',
                       productPrice: '145.00',
@@ -125,7 +125,7 @@ class Cartscreen extends StatelessWidget {
                   btntextstyle: AppStyles.style16SemiBold.copyWith(
                     color: AppColors.whiteColor,
                   ),
-                  buttoncolor: AppColors.primaryColor,
+                  buttoncolor: AppColors.primaryColor, onpressed: () {  },
                 ),
               ],
             ),
