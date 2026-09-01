@@ -19,7 +19,7 @@ class SeasonalOffers extends StatelessWidget {
               ),
             ),
             width: double.infinity,
-            height: 305,
+            height: 304,
 
             child: ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(10),
@@ -51,26 +51,23 @@ class SeasonalOffers extends StatelessWidget {
                     "SEASONAL EXCLUSIVE",
                     style: AppStyles.style12Medium.copyWith(
                       color: AppColors.whiteColor,
-                      fontFamily: 'inter',
                     ),
                   ),
                   Text(
                     "Up to 20% OFF",
                     style: AppStyles.style28SemiBold.copyWith(
                       color: AppColors.whiteColor,
-                      fontFamily: 'play fair display',
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 12),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Text(
                         "SHOP NOW",
-                        style: AppStyles.style12Medium.copyWith(
+                        style: AppStyles.style14SemiBold.copyWith(
                           color: AppColors.primaryColor,
-                          fontFamily: 'Platypi',
                         ),
                       ),
                     ),

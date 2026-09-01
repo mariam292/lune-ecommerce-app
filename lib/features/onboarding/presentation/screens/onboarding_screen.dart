@@ -33,7 +33,7 @@ class OnboardingScreen extends StatelessWidget {
                         AppColors.backGroundColor.withValues(alpha: 0.8),
                         AppColors.backGroundColor,
                       ],
-                      stops: const [0.70, 0.75, 0.9, 1.0],
+                      stops: [0.70, 0.75, 0.75, 0.75],
                     ),
                   ),
                 ),

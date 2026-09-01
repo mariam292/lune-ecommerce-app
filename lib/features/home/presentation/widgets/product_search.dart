@@ -20,14 +20,13 @@ class _ProductSearchState extends State<ProductSearch> {
         decoration: InputDecoration(
           hint: Text(
             "Search accessories...",
-            style: AppStyles.style12Regular.copyWith(
+            style: AppStyles.style14Regular.copyWith(
               color: AppColors.color7A6E6B,
-              fontFamily: 'poppins',
             ),
           ),
           prefixIcon: Padding(
-            padding: const EdgeInsets.all(16),
-            child: SvgPicture.asset('assets/icons/search.svg'),
+            padding: EdgeInsets.all(2),
+            child: Icon(Icons.search, color: AppColors.color685D50, size: 25),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(22),

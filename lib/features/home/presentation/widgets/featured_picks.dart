@@ -1,19 +1,18 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/products_view.dart';
-
 
 class FeaturedPicks extends StatelessWidget {
   FeaturedPicks({super.key});
   void Function()? onPressed;
   List<Map> products = [
     {
-      "img": 'assets/images/ImageFrame (1).png',
+      "img": "assets/images/ImageFrame.png",
       "category": "CURATED SERIES",
       "product_name": "Aurore Pearl Drops",
       "price": "145.00",
     },
     {
-      "img": 'assets/images/ImageFrame (1).png',
+      "img": "assets/images/ImageFrame.png",
       "category": "CURATED SERIES",
       "product_name": "Aurore Pearl Drops",
       "price": "145.00",
@@ -22,7 +21,7 @@ class FeaturedPicks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProductsView(
-      section_text: "Featured Picks",
+      section_text: "Products",
       onPressed: onPressed,
       products: products,
     );

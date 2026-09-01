@@ -22,9 +22,8 @@ class ProductsView extends StatelessWidget {
           children: [
             Text(
               section_text,
-              style: AppStyles.style20Regular.copyWith(
+              style: AppStyles.style20SemiBold.copyWith(
                 color: AppColors.primaryColor,
-                fontFamily: 'Instrument Serif',
               ),
             ),
             Spacer(),
@@ -32,9 +31,8 @@ class ProductsView extends StatelessWidget {
               onPressed: onPressed,
               child: Text(
                 "See More",
-                style: AppStyles.style14Medium.copyWith(
+                style: AppStyles.style16Medium.copyWith(
                   color: AppColors.colorA7736D,
-                  fontFamily: 'Poppins',
                 ),
               ),
             ),
@@ -45,6 +43,7 @@ class ProductsView extends StatelessWidget {
           height: 300,
           width: double.infinity,
           child: GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 10,
@@ -99,7 +98,6 @@ class ProductsView extends StatelessWidget {
                               products[index]["category"],
                               style: AppStyles.style12Medium.copyWith(
                                 color: AppColors.color7A6E6B,
-                                fontFamily: 'inter',
                               ),
                             ),
 
@@ -107,7 +105,6 @@ class ProductsView extends StatelessWidget {
                               products[index]["product_name"],
                               style: AppStyles.style14SemiBold.copyWith(
                                 color: AppColors.primaryColor,
-                                fontFamily: 'inter',
                               ),
                             ),
 
@@ -117,7 +114,6 @@ class ProductsView extends StatelessWidget {
                                   "\$${products[index]["price"]}",
                                   style: AppStyles.style12Regular.copyWith(
                                     color: AppColors.color7A6E6B,
-                                    fontFamily: 'Poppins',
                                   ),
                                 ),
                                 Spacer(),
