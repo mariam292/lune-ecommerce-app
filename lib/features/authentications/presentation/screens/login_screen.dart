@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/change_password_screen.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/auth_navigation.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/header_login_signup.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/or_with_section.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/pass_text_field_section.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/remmeber_me_section.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/sign_with_social_section.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../widgets/custom_text_field.dart';
@@ -29,71 +23,237 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 50, 24, 20),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderLoginSignUp(
-                headerTitle: 'LUNE',
-                headerSubTitle: 'Welcom BACK',
+              const SizedBox(height: 30),
+              const Text(
+                'LUNE',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                  letterSpacing: 2,
+                ),
               ),
+              const SizedBox(height: 8),
+              const Text(
+                'Welcom BACK',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.blackColor,
+                ),
+              ),
+              const SizedBox(height: 40),
 
-              // email
+              // استخدام الـ Custom Widget للإيميل
               CustomTextField(
-                labelText: 'EMAIL ADDRESS',
+                label: 'EMAIL ADDRESS',
                 hintText: 'alexa@example.com',
               ),
 
               const SizedBox(height: 16),
 
-              // password
-              PassTextFieldSection(
-                labelText: 'PASSWORD',
+              // استخدام الـ Custom Widget للباسورد
+              CustomTextField(
+                label: 'PASSWORD',
                 hintText: '••••••••••••',
+                isPassword: true,
+                isPasswordHidden: isPasswordHidden,
+                onSuffixTap: () {
+                  setState(() {
+                    isPasswordHidden = !isPasswordHidden;
+                  });
+                },
               ),
 
               const SizedBox(height: 16),
 
-              //remember me section
-              RememberMeSection(),
-
-              SizedBox(height: 30),
-
-              // login elevated button
-              Elevatedbutton(
-                buttontext: 'Log In',
-                btntextstyle: AppStyles.style16SemiBold.copyWith(
-                  color: AppColors.whiteColor,
-                ),
-                buttoncolor: AppColors.primaryColor,
-                onpressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
-                },
+              // صف تذكرني وفلست كلمة المرور
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: Checkbox(
+                          value: remember,
+                          onChanged: (value) {
+                            setState(() {
+                              remember = value!;
+                            });
+                          },
+                          activeColor: AppColors.primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        'Remember me',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.color7A6E6B,
+                        ),
+                      ),
+                    ],
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPassword(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.color7A6E6B,
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
-              SizedBox(height: 40),
+              const SizedBox(height: 30),
 
-              OrWithSection(),
+              // زرار تسجيل الدخول
+              SizedBox(
+                width: double.infinity,
+                height: 54,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ),
+              ),
 
               const SizedBox(height: 24),
 
-              // social login buttons
-              SignWithSocialSection(),
+              // الخط الفاصل OR CONTINUE WITH
+              Row(
+                children: [
+                  const Expanded(
+                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'OR CONTINUE WITH',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.color7A6E6B,
+                      ),
+                    ),
+                  ),
+                  const Expanded(
+                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
+                  ),
+                ],
+              ),
 
-              SizedBox(height: 100),
+              const SizedBox(height: 24),
 
-              AuthNavigation(
-                message: "Don't have an account? ",
-                navigationMessage: 'Sign Up',
-                ontap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => (Signup())),
-                  );
-                },
+              // أزارير التواصل الاجتماعي (جوجل وأبل)
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.g_mobiledata,
+                        size: 28,
+                        color: AppColors.blackColor,
+                      ),
+                      label: const Text(
+                        'Google',
+                        style: TextStyle(color: AppColors.blackColor),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        side: const BorderSide(color: AppColors.colorEADFD8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.apple,
+                        color: AppColors.blackColor,
+                      ),
+                      label: const Text(
+                        'Apple',
+                        style: TextStyle(color: AppColors.blackColor),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        side: const BorderSide(color: AppColors.colorEADFD8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 30),
+
+              // رابط إنشاء حساب جديد
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Don't have an account? ",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.color7A6E6B,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Signup()),
+                    ),
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

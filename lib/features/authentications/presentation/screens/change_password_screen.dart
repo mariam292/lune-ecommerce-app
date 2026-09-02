@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/pass_text_field_section.dart';
+import '../widgets/custom_text_field.dart';
 import '../../../../core/app_colors.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -12,7 +10,23 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-  bool isPassword = true;
+  final TextEditingController _currentPasswordController =
+      TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  bool _isCurrentPasswordHidden = true;
+  bool _isNewPasswordHidden = true;
+  bool _isConfirmPasswordHidden = true;
+
+  @override
+  void dispose() {
+    _currentPasswordController.dispose();
+    _newPasswordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,84 +34,113 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 // Back Button & Title
                 Row(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
+                        icon: const Icon(Icons.arrow_back_ios_new, size: 18),
                         onPressed: () => Navigator.pop(context),
-                        icon: SvgPicture.asset('assets/icons/back-circle.svg'),
                       ),
                     ),
-                    SizedBox(width: 16),
-                    Text(
+                    const SizedBox(width: 16),
+                    const Text(
                       'Change Password',
-                      style: AppStyles.style24Regular.copyWith(
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                         color: AppColors.primaryColor,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
 
                 // Card Container
                 Container(
-                  padding: EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.blackColor.withValues(alpha: 0.03),
+                        color: Colors.black.withValues(alpha: 0.03),
                         blurRadius: 15,
-                        offset: Offset(0, 5),
+                        offset: const Offset(0, 5),
                       ),
                     ],
                   ),
-
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
+                      const Center(
                         child: Text(
                           'Enter New Password Details',
-                          style: AppStyles.style20Regular.copyWith(
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
                             color: AppColors.primaryColor,
                           ),
                         ),
                       ),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
                       // Current Password
-                      PassTextFieldSection(
-                        labelText: 'CURRENT PASSWORD',
+                      CustomTextField(
+                        label: 'CURRENT PASSWORD',
+                        controller: _currentPasswordController,
                         hintText: '••••••••••••',
+                        isPassword: true,
+                        isPasswordHidden: _isCurrentPasswordHidden,
+                        onSuffixTap: () {
+                          setState(() {
+                            _isCurrentPasswordHidden =
+                                !_isCurrentPasswordHidden;
+                          });
+                        },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
                       // New Password
-                      PassTextFieldSection(
-                        labelText: 'NEW PASSWORD',
+                      CustomTextField(
+                        label: 'NEW PASSWORD',
+                        controller: _newPasswordController,
                         hintText: '••••••••••••',
+                        isPassword: true,
+                        isPasswordHidden: _isNewPasswordHidden,
+                        onSuffixTap: () {
+                          setState(() {
+                            _isNewPasswordHidden = !_isNewPasswordHidden;
+                          });
+                        },
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
                       // Confirm Password
-                      PassTextFieldSection(
-                        labelText: 'CONFIRM NEW PASSWORD',
+                      CustomTextField(
+                        label: 'CONFIRM NEW PASSWORD',
+                        controller: _confirmPasswordController,
                         hintText: '••••••••••••',
+                        isPassword: true,
+                        isPasswordHidden: _isConfirmPasswordHidden,
+                        onSuffixTap: () {
+                          setState(() {
+                            _isConfirmPasswordHidden =
+                                !_isConfirmPasswordHidden;
+                          });
+                        },
                       ),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
 
                       // Update Button
                       SizedBox(
@@ -106,31 +149,32 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         child: OutlinedButton(
                           onPressed: () {},
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: AppColors.primaryColor),
+                            side: const BorderSide(
+                              color: AppColors.primaryColor,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25),
                             ),
                           ),
-                          child: Text(
+                          child: const Text(
                             'update password',
-                            style: AppStyles.style14SemiBold.copyWith(
+                            style: TextStyle(
                               color: AppColors.primaryColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
                       ),
-
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
 
                       // Forgot Password Link
                       Center(
                         child: TextButton(
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             'Forgot Password?',
-                            style: AppStyles.style14Regular.copyWith(
-                              color: AppColors.color7A6E6B,
-                            ),
+                            style: TextStyle(color: Colors.grey, fontSize: 14),
                           ),
                         ),
                       ),

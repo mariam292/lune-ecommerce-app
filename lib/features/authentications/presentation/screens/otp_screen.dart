@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nti_final_project/core/app_colors.dart';
-import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/reset_password_screen.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/header_forgot_reset_section.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
 
 class OtpVerification extends StatefulWidget {
   const OtpVerification({super.key});
@@ -22,22 +19,34 @@ class _OtpVerificationState extends State<OtpVerification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
+      backgroundColor: const Color(0xFFFAF8F6),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 100),
-
-              HeaderForgotResetSection(
-                headerTitle: 'Verify Your Email',
-                headerSubTitle: '''Enter the 4-digit code sent to your email
-                Loka@gmail.com''',
+              const SizedBox(height: 100),
+              const Text(
+                'Verify Your Email',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF4A101D),
+                ),
               ),
-
-              SizedBox(height: 36),
+              const SizedBox(height: 12),
+              const Text(
+                'Enter the 4-digit code sent to your email\n'
+                'Loka@gmail.com',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Color(0xFF7A6E6B),
+                  height: 1.4,
+                ),
+              ),
+              const SizedBox(height: 36),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(4, (index) {
@@ -49,7 +58,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       maxLength: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -59,15 +68,21 @@ class _OtpVerificationState extends State<OtpVerification> {
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide(color: AppColors.colorC4A4A0),
+                          borderSide: const BorderSide(
+                            color: Color(0xFFEADFD8),
+                          ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide(color: AppColors.colorC4A4A0),
+                          borderSide: const BorderSide(
+                            color: Color(0xFFEADFD8),
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide(color: AppColors.colorC4A4A0),
+                          borderSide: const BorderSide(
+                            color: Color(0xFF4A101D),
+                          ),
                         ),
                       ),
                       onChanged: (value) {
@@ -81,39 +96,30 @@ class _OtpVerificationState extends State<OtpVerification> {
                   );
                 }),
               ),
-
-              SizedBox(height: 36),
-
-              Elevatedbutton(
-                buttontext: 'Verify',
-                btntextstyle: AppStyles.style14SemiBold.copyWith(
-                  color: AppColors.whiteColor,
+              const SizedBox(height: 36),
+              CustomButton(
+                text: 'Verify',
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ResetPassword()),
                 ),
-                buttoncolor: AppColors.primaryColor,
-                onpressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ResetPassword()),
-                  );
-                },
               ),
-              SizedBox(height: 24),
-
+              const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Didn't receive the code? ",
-                    style: AppStyles.style14Regular.copyWith(
-                      color: AppColors.color7A6E6B,
-                    ),
+                    style: TextStyle(color: Color(0xFF7A6E6B), fontSize: 12),
                   ),
                   GestureDetector(
                     onTap: () {},
-                    child: Text(
+                    child: const Text(
                       'Resend (0:59)',
-                      style: AppStyles.style14SemiBold.copyWith(
-                        color: AppColors.primaryColor,
+                      style: TextStyle(
+                        color: Color(0xFF4A101D),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
                       ),
                     ),
                   ),

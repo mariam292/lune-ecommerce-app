@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
@@ -69,11 +68,9 @@ class Collection extends StatelessWidget {
                     builder: (context) => Productdetailsscreen(),
                   ),
                 ),
-                child: Container(
-                  child: CollectionView(
-                    img: collection[index].img,
-                    name: collection[index].name,
-                  ),
+                child: CollectionView(
+                  img: collection[index].img,
+                  name: collection[index].name,
                 ),
               );
             },

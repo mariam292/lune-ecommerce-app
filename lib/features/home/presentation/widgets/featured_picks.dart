@@ -21,13 +21,6 @@ class FeaturedPicks extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return ProductsView(
-      section_text: "Products",
-      onPressed:  () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Productdetailsscreen()),
-          ),
-      products: products,
-    );
+    return ProductsView(sectionText: "Products", products: products);
   }
 }

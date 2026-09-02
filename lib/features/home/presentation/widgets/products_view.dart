@@ -6,14 +6,8 @@ import 'package:nti_final_project/features/cart/presentation/screens/cart_screen
 import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
 class ProductsView extends StatelessWidget {
-  ProductsView({
-    super.key,
-    required this.section_text,
-    required this.onPressed,
-    required this.products,
-  });
-  final section_text;
-  void Function()? onPressed;
+  ProductsView({super.key, required this.sectionText, required this.products});
+  final sectionText;
   final List products;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +17,7 @@ class ProductsView extends StatelessWidget {
         Row(
           children: [
             Text(
-              section_text,
+              sectionText,
               style: AppStyles.style20SemiBold.copyWith(
                 color: AppColors.primaryColor,
               ),
@@ -52,13 +46,18 @@ class ProductsView extends StatelessWidget {
                     child: Stack(
                       children: [
                         InkWell(
-                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>Productdetailsscreen())),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Productdetailsscreen(),
+                            ),
+                          ),
                           child: Container(
                             width: double.infinity,
                             height: 209,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                          
+
                               image: DecorationImage(
                                 image: AssetImage(products[index]["img"]),
                                 fit: BoxFit.cover,

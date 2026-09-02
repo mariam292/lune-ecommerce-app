@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../core/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -29,7 +28,7 @@ class CustomTextField extends StatelessWidget {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.bold,
-            color: AppColors.color7A6E6B,
+            color: Color(0xFF7A6E6B),
           ),
         ),
         const SizedBox(height: 8),
@@ -39,7 +38,7 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             filled: true,
-            fillColor: AppColors.whiteColor,
+            fillColor: Colors.white,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 16,
@@ -50,18 +49,18 @@ class CustomTextField extends StatelessWidget {
                       isPasswordHidden
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
-                      color: AppColors.color7A6E6B,
+                      color: const Color(0xFF7A6E6B),
                     ),
                     onPressed: onSuffixTap,
                   )
                 : null,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(color: AppColors.colorEADFD8),
+              borderSide: const BorderSide(color: Color(0xFFEADFD8)),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(color: AppColors.colorEADFD8),
+              borderSide: const BorderSide(color: Color(0xFFEADFD8)),
             ),
           ),
         ),

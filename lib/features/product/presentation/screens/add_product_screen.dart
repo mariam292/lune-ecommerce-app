@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field_forgot_reset_pass.dart';
 import '../../../../core/app_colors.dart';
 
 class AddProductScreen extends StatefulWidget {
@@ -13,9 +14,6 @@ class AddProductScreen extends StatefulWidget {
 }
 
 class _AddProductScreenState extends State<AddProductScreen> {
- 
- 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,21 +28,23 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 // Top Bar: Back Button & Title
                 Row(
                   children: [
-                     IconButton(onPressed: ()=> Navigator.pop(context), icon: SvgPicture.asset('assets/icons/back-circle.svg'),),
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: SvgPicture.asset('assets/icons/back-circle.svg'),
+                    ),
 
+                    SizedBox(width: 16),
 
-
-                     SizedBox(width: 16),
-
-                     Text(
+                    Text(
                       'Add New Product',
-                      style: AppStyles.style24Regular.copyWith(color: AppColors.primaryColor
-                      )
+                      style: AppStyles.style24Regular.copyWith(
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                   ],
                 ),
 
-                 SizedBox(height: 24),
+                SizedBox(height: 24),
 
                 // Add Photos Box
                 Container(
@@ -60,7 +60,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
+                    children: [
                       Icon(
                         Icons.camera_alt_outlined,
                         color: AppColors.primaryColor,
@@ -69,68 +69,69 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       SizedBox(height: 6),
                       Text(
                         'Add Photos',
-                        style: AppStyles.style12Medium.copyWith(color: AppColors.colorA7736D
-                        )
+                        style: AppStyles.style12Medium.copyWith(
+                          color: AppColors.colorA7736D,
+                        ),
                       ),
                     ],
                   ),
                 ),
 
-
-                 SizedBox(height: 20),
+                SizedBox(height: 20),
 
                 // Product Name
-                CustomTextField(
+                CustomTextFieldForgotResetPass(
                   labelText: 'PRODUCT NAME',
                   hintText: "e.g. L'Aura Satin Ribbon",
                 ),
 
-                 SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Description
-                CustomTextField(
+                CustomTextFieldForgotResetPass(
                   labelText: 'DESCRIPTION',
                   hintText: "Enter product description...",
                 ),
-                 SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Category
-                CustomTextField(
+                CustomTextFieldForgotResetPass(
                   labelText: 'CATEGORY',
                   hintText: "Select category",
                 ),
-                 SizedBox(height: 16),
+                SizedBox(height: 16),
 
                 // Price and Stock in a Row
                 Row(
                   children: [
                     Expanded(
-                      child: CustomTextField(
+                      child: CustomTextFieldForgotResetPass(
                         labelText: 'PRICE',
                         hintText: "\$0.00",
                       ),
                     ),
-                     SizedBox(width: 16),
+                    SizedBox(width: 16),
                     Expanded(
-                      child: CustomTextField(
+                      child: CustomTextFieldForgotResetPass(
                         labelText: 'STOCK',
                         hintText: "0",
                       ),
                     ),
                   ],
                 ),
-                 SizedBox(height: 28),
+                SizedBox(height: 28),
 
                 // Publish Product Button
                 Elevatedbutton(
-                buttontext: 'Publish Product',
-                btntextstyle: AppStyles.style14SemiBold.copyWith(
-                  color: AppColors.whiteColor,
+                  buttontext: 'Publish Product',
+                  btntextstyle: AppStyles.style14SemiBold.copyWith(
+                    color: AppColors.whiteColor,
+                  ),
+                  buttoncolor: AppColors.primaryColor,
+                  onpressed: () {},
                 ),
-                buttoncolor: AppColors.primaryColor, onpressed: () {  },
-              ),
-                
-                 SizedBox(height: 20),
+
+                SizedBox(height: 20),
               ],
             ),
           ),

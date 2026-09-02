@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/products_view.dart';
 
 class NewArraival extends StatelessWidget {
   NewArraival({super.key});
 
-  void Function()? onPressed;
   List<Map> products = [
     {
       "img": 'assets/images/ImageFrame.png',
@@ -21,10 +21,6 @@ class NewArraival extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return ProductsView(
-      section_text: "New Arrivals",
-      onPressed: onPressed,
-      products: products,
-    );
+    return ProductsView(sectionText: "New Arrivals", products: products);
   }
 }

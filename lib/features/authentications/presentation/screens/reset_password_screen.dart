@@ -18,54 +18,56 @@ class ResetPassword extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(24, 22, 24, 22),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // back button svg icon
-              IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: SvgPicture.asset('assets/icons/back-circle.svg'),
-              ),
-
-              SizedBox(height: 34),
-
-              //header section
-              HeaderForgotResetSection(
-                headerTitle: 'Reset Password',
-                headerSubTitle:
-                    'Create a secure new password to ensure your account security.',
-              ),
-
-              SizedBox(height: 120),
-
-              //password textField section
-              PassTextFieldSection(
-                labelText: 'New Password',
-                hintText: 'Enter a strong passord',
-              ),
-
-              SizedBox(height: 16),
-
-              PassTextFieldSection(
-                labelText: 'Confirm New Password',
-                hintText: 'confirm new password',
-              ),
-
-              SizedBox(height: 30),
-
-              //elevated button section
-              Elevatedbutton(
-                buttontext: 'Reset Password',
-                btntextstyle: AppStyles.style14SemiBold.copyWith(
-                  color: AppColors.whiteColor,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // back button svg icon
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: SvgPicture.asset('assets/icons/back-circle.svg'),
                 ),
-                buttoncolor: AppColors.primaryColor,
-                onpressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+
+                SizedBox(height: 34),
+
+                //header section
+                HeaderForgotResetSection(
+                  headerTitle: 'Reset Password',
+                  headerSubTitle:
+                      'Create a secure new password to ensure your account security.',
                 ),
-              ),
-            ],
+
+                SizedBox(height: 120),
+
+                //password textField section
+                PassTextFieldSection(
+                  labelText: 'New Password',
+                  hintText: 'Enter a strong passord',
+                ),
+
+                SizedBox(height: 16),
+
+                PassTextFieldSection(
+                  labelText: 'Confirm New Password',
+                  hintText: 'confirm new password',
+                ),
+
+                SizedBox(height: 30),
+
+                //elevated button section
+                Elevatedbutton(
+                  buttontext: 'Reset Password',
+                  btntextstyle: AppStyles.style14SemiBold.copyWith(
+                    color: AppColors.whiteColor,
+                  ),
+                  buttoncolor: AppColors.primaryColor,
+                  onpressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
