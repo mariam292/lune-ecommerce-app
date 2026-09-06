@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/about_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/contact_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/privacy_screen.dart';
-import 'package:nti_final_project/features/app_info/presentation/widgets/privacy_policy_item.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/change_password_screen.dart';
+import 'package:nti_final_project/features/product/presentation/add_product_cubit/add_product_cuibt.dart';
 import 'package:nti_final_project/features/product/presentation/screens/add_product_screen.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/profile_header_card.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/profile_menu_item.dart';
-import 'package:nti_final_project/features/profile/presentation/widgets/text_button_section.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -142,7 +144,10 @@ class ProfileScreen extends StatelessWidget {
                             ontap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => AddProductScreen(),
+                                builder: (context) => BlocProvider(
+                                  create: (context) => AddProductCuibt(),
+                                  child: AddProductScreen(),
+                                ),
                               ),
                             ),
                           ),
@@ -150,18 +155,18 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                    SizedBox(height: 24),
 
                     // Logout
-                    Container(
-                      width: double.infinity,
-                      height: 64,
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: AppColors.colorD1D5DB),
+                    Elevatedbutton(
+                      buttontext: 'Logout',
+                      btntextstyle: AppStyles.style16SemiBold.copyWith(
+                        color: AppColors.primaryColor,
                       ),
-                      child: TextButtonSection(),
+                      buttoncolor: AppColors.whiteColor,
+                      onpressed: () {
+                        SystemNavigator.pop();
+                      },
                     ),
                   ],
                 ),
