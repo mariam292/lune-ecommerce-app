@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nti_final_project/features/authentications/presentation/screens/change_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../widgets/custom_text_field.dart';
+import '../../data/api/auth_api.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,6 +16,64 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool remember = false;
   bool isPasswordHidden = true;
+  bool isLoading = false;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final AuthApi authApi = AuthApi();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> login() async {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter email and password'),
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      await authApi.login(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      if (!mounted) return;
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login failed'),
+        ),
+      );
+    }
+
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,19 +105,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 40),
-
-              // استخدام الـ Custom Widget للإيميل
               CustomTextField(
                 label: 'EMAIL ADDRESS',
                 hintText: 'alexa@example.com',
+                controller: emailController,
               ),
-
               const SizedBox(height: 16),
-
-              // استخدام الـ Custom Widget للباسورد
               CustomTextField(
                 label: 'PASSWORD',
                 hintText: '••••••••••••',
+                controller: passwordController,
                 isPassword: true,
                 isPasswordHidden: isPasswordHidden,
                 onSuffixTap: () {
@@ -68,10 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   });
                 },
               ),
-
               const SizedBox(height: 16),
-
-              // صف تذكرني وفلست كلمة المرور
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -122,42 +174,40 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-
               const SizedBox(height: 30),
-
-              // زرار تسجيل الدخول
               SizedBox(
                 width: double.infinity,
                 height: 54,
                 child: ElevatedButton(
-                  onPressed: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  ),
+                  onPressed: isLoading ? null : login,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.whiteColor,
-                    ),
-                  ),
+                  child: isLoading
+                      ? const CircularProgressIndicator(
+                          color: AppColors.whiteColor,
+                        )
+                      : const Text(
+                          'Login',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.whiteColor,
+                          ),
+                        ),
                 ),
               ),
-
               const SizedBox(height: 24),
-
-              // الخط الفاصل OR CONTINUE WITH
               Row(
                 children: [
                   const Expanded(
-                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
+                    child: Divider(
+                      color: AppColors.colorEADFD8,
+                      thickness: 1,
+                    ),
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
@@ -171,14 +221,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const Expanded(
-                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
+                    child: Divider(
+                      color: AppColors.colorEADFD8,
+                      thickness: 1,
+                    ),
                   ),
                 ],
               ),
-
               const SizedBox(height: 24),
-
-              // أزارير التواصل الاجتماعي (جوجل وأبل)
               Row(
                 children: [
                   Expanded(
@@ -191,11 +241,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       label: const Text(
                         'Google',
-                        style: TextStyle(color: AppColors.blackColor),
+                        style: TextStyle(
+                          color: AppColors.blackColor,
+                        ),
                       ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: AppColors.colorEADFD8),
+                        side: const BorderSide(
+                          color: AppColors.colorEADFD8,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -212,11 +266,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       label: const Text(
                         'Apple',
-                        style: TextStyle(color: AppColors.blackColor),
+                        style: TextStyle(
+                          color: AppColors.blackColor,
+                        ),
                       ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: AppColors.colorEADFD8),
+                        side: const BorderSide(
+                          color: AppColors.colorEADFD8,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -225,10 +283,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-
               const SizedBox(height: 30),
-
-              // رابط إنشاء حساب جديد
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -242,7 +297,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Signup()),
+                      MaterialPageRoute(
+                        builder: (context) => Signup(),
+                      ),
                     ),
                     child: const Text(
                       'Sign Up',
