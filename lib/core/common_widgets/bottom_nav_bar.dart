@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/features/cart/presentation/cubits/cart_cubit.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
@@ -69,7 +71,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Cartscreen()),
+              MaterialPageRoute(
+                builder: (context) => BlocProvider(
+                  create: (context) => CartCubit(),
+                  child: Cartscreen(),
+                ),
+              ),
             ),
           ),
           label: " ",

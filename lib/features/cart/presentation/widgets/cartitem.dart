@@ -7,14 +7,12 @@ import 'package:nti_final_project/core/app_text_style.dart';
 class CartItem extends StatelessWidget {
   final String imagePath;
   final String productName;
-  final String productCategory;
   final String productPrice;
 
   const CartItem({
     super.key,
     required this.imagePath,
     required this.productName,
-    required this.productCategory,
     required this.productPrice,
   });
 
@@ -34,7 +32,7 @@ class CartItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
+              child: Image.network(
                 imagePath,
                 width: 80,
                 height: 80,
@@ -69,14 +67,7 @@ class CartItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 2),
-
-                  Text(
-                    productCategory,
-                    style: AppStyles.style16Regular.copyWith(
-                      color: AppColors.color7A6E6B,
-                    ),
-                  ),
+                  
                   const SizedBox(height: 10),
 
                   Row(
@@ -84,7 +75,7 @@ class CartItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "$productPrice EGP",
+                        "${productPrice.toString()} EGP",
                         style: AppStyles.style16SemiBold.copyWith(
                           color: AppColors.primaryColor,
                         ),
