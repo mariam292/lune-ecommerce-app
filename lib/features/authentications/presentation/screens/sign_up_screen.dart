@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
-
 import 'package:nti_final_project/features/authentications/presentation/widgets/text_fiield.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
 
@@ -26,40 +27,51 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF8F6),
+      backgroundColor: 
+      AppColors.backGroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding:  EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              const Text(
+               SizedBox(height: 20),
+
+              Text(
                 'LUNÉ',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF4C0D1C),
-                  letterSpacing: 2,
+                style:
+                 AppStyles.style32Regular.copyWith(
+                  color: 
+                   Color(0xFF4C0D1C),
                 ),
               ),
-              const SizedBox(height: 8),
-              const Text(
+
+               SizedBox(height: 8),
+
+              Text(
                 'Create Account',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF2D2D2D),
+                style:
+                 AppStyles.style16Regular.copyWith(
+                  color:  Color(0xFF2D2D2D),
                 ),
               ),
-              const SizedBox(height: 32),
-              CustomTextField(label: 'FULL NAME', hintText: 'Malk Amr'),
-              const SizedBox(height: 16),
+
+               SizedBox(height: 32),
+
+              CustomTextField(
+                label: 'FULL NAME',
+                hintText: 'Malk Amr',
+              ),
+
+               SizedBox(height: 16),
+
               CustomTextField(
                 label: 'EMAIL ADDRESS',
                 hintText: 'loka@gmail.com',
               ),
-              const SizedBox(height: 16),
+
+               SizedBox(height: 16),
+
               CustomTextField(
                 label: 'PASSWORD',
                 hintText: '••••••••••••',
@@ -72,7 +84,9 @@ class _SignupState extends State<Signup> {
                   });
                 },
               ),
-              const SizedBox(height: 16),
+
+               SizedBox(height: 16),
+
               CustomTextField(
                 label: 'CONFIRM PASSWORD',
                 hintText: '••••••••••••',
@@ -85,76 +99,107 @@ class _SignupState extends State<Signup> {
                   });
                 },
               ),
-              const SizedBox(height: 32),
+
+               SizedBox(height: 32),
+
               CustomButton(
                 text: 'Create Account',
                 onPressed: () => Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
                 ),
               ),
-              const SizedBox(height: 32),
-              const Row(
+
+               SizedBox(height: 32),
+
+              Row(
                 children: [
                   Expanded(
-                    child: Divider(color: Color(0xFF4C0D1C), thickness: 1),
+                    child: Divider(
+                      color:
+                       AppColors.color5A3036,
+                    ),
                   ),
+
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    padding:  EdgeInsets.symmetric(horizontal: 12),
                     child: Text(
                       'OR CONTINUE WITH',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFF4C0D1C),
-                        fontWeight: FontWeight.bold,
+                      style:
+                       AppStyles.style12Bold.copyWith(
+                        color:  Color(0xFF4C0D1C),
                       ),
                     ),
                   ),
+
                   Expanded(
-                    child: Divider(color: Color(0xFFEADFD8), thickness: 1),
+                    child: Divider(
+                      color:
+                       AppColors.colorE6E2DB,
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+
+               SizedBox(height: 24),
+
               Row(
                 children: [
                   Expanded(
                     child: OutlinedButton.icon(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.g_mobiledata,
                         size: 28,
-                        color: Colors.black,
+                        color:
+                         AppColors.blackColor,
                       ),
-                      label: const Text(
+                      label: Text(
                         'Google',
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(
+                          color:
+                           AppColors.blackColor,
+                        ),
                       ),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: Color(0xFFEADFD8)),
+                        padding:  EdgeInsets.symmetric(vertical: 12),
+                        side:  BorderSide(
+                          color:
+                           AppColors.colorE6E2DB,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+
+                   SizedBox(width: 16),
+
                   Expanded(
                     child: OutlinedButton.icon(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.apple,
                         size: 22,
-                        color: Colors.black,
+                        color:
+                         AppColors.blackColor,
                       ),
-                      label: const Text(
+                      label: Text(
                         'Apple',
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(
+                          color:
+                           AppColors.blackColor,
+                        ),
                       ),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: Color(0xFFEADFD8)),
+                        padding:  EdgeInsets.symmetric(vertical: 12),
+                        side: BorderSide(
+                          color:
+                           AppColors.colorE6E2DB,
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -163,22 +208,24 @@ class _SignupState extends State<Signup> {
                   ),
                 ],
               ),
-              const SizedBox(height: 32),
+
+               SizedBox(height: 32),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Already have an account? ',
-                    style: TextStyle(color: Color(0xFF7A6E6B), fontSize: 13),
+                    style: 
+                    AppStyles.style14Regular.copyWith(color: Color(0xFF7A6E6B),
+                    ),
                   ),
+
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: const Text(
+                    child: Text(
                       'Login',
-                      style: TextStyle(
-                        color: Color(0xFF4A101D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
+                      style: AppStyles.style14Regular.copyWith(color:  Color(0xFF4A101D),
                       ),
                     ),
                   ),

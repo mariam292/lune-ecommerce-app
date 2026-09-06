@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/reset_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
 
@@ -12,41 +15,59 @@ class OtpVerification extends StatefulWidget {
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
+  final String email = 'Loka@gmail.com';
+
   final List<TextEditingController> controllers = List.generate(4, (index) {
     return TextEditingController();
   });
 
+  Future<void> resendOtp() async {
+    final Dio dio = Dio();
+
+    final response = await dio.post(
+      "https://accessories-eshop.runasp.net/api/auth/resend-otp",
+      data: {
+        "email": email,
+      },
+    );
+
+    print(response.data);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF8F6),
+      backgroundColor: 
+       AppColors.backGroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding:  EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 100),
-              const Text(
-                'Verify Your Email',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4A101D),
-                ),
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                'Enter the 4-digit code sent to your email\n'
-                'Loka@gmail.com',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Color(0xFF7A6E6B),
-                  height: 1.4,
-                ),
-              ),
-              const SizedBox(height: 36),
+               SizedBox(height: 100),
+
+              Text(
+  'Verify Your Email',
+  style: AppStyles.style28Light.copyWith(
+    color:
+     Color(0xFF4A101D),
+  ),
+),
+                
+               SizedBox(height: 12),
+
+             Text(
+  'Enter the 4-digit code sent to your email\n'
+  '$email',
+  textAlign: TextAlign.center,
+  style: AppStyles.style14Light.copyWith(
+    color: Color(0xFF7A6E6B),
+  ),
+),
+              
+               SizedBox(height: 36),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(4, (index) {
@@ -58,30 +79,31 @@ class _OtpVerificationState extends State<OtpVerification> {
                       textAlign: TextAlign.center,
                       keyboardType: TextInputType.number,
                       maxLength: 1,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppStyles.style20Bold,
                       decoration: InputDecoration(
                         counterText: '',
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor:
+                        AppColors.whiteColor,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFEADFD8),
+                          borderSide:  BorderSide(
+                          color: 
+                          AppColors.colorEADFD8
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(
-                            color: Color(0xFFEADFD8),
+                          borderSide:  BorderSide(
+                            color:
+                             AppColors.colorEADFD8
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(
-                            color: Color(0xFF4A101D),
+                          borderSide:  BorderSide(
+                            color: 
+                            AppColors.color5A3036,
                           ),
                         ),
                       ),
@@ -96,30 +118,37 @@ class _OtpVerificationState extends State<OtpVerification> {
                   );
                 }),
               ),
-              const SizedBox(height: 36),
+
+               SizedBox(height: 36),
+
               CustomButton(
                 text: 'Verify',
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ResetPassword()),
+                  MaterialPageRoute(
+                    builder: (context) => ResetPassword(),
+                  ),
                 ),
               ),
-              const SizedBox(height: 24),
+
+               SizedBox(height: 24),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                   Text(
                     "Didn't receive the code? ",
-                    style: TextStyle(color: Color(0xFF7A6E6B), fontSize: 12),
+                    style:AppStyles.style14SemiBold.copyWith(color: Color(0xFF7A6E6B),
+                    ),
                   ),
+
                   GestureDetector(
-                    onTap: () {},
-                    child: const Text(
+                    onTap: () {
+                      resendOtp();
+                    },
+                    child:  Text(
                       'Resend (0:59)',
-                      style: TextStyle(
-                        color: Color(0xFF4A101D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                      style: AppStyles.style14SemiBold.copyWith(color:Color(0xFF4A101D) ,
                       ),
                     ),
                   ),
