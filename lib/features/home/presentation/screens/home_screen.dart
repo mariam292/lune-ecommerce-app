@@ -5,14 +5,29 @@ import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/collections.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/featured_picks.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/product_search.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/seasonal_exclusive_offer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+ @override
+  void initState() {
+    super.initState();
+    context.read<CategoryCubit>().get_category();
+     context.read<ProductsCubit>().get_products(); 
+  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +37,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child:  SingleChildScrollView(
+          child: SingleChildScrollView(
             child: Column(
               spacing: 17,
               children: [
@@ -40,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                       icon: SvgPicture.asset("assets/icons/right-action.svg"),
                       padding: EdgeInsets.all(0),
                     ),
-            
+
                     IconButton(
                       onPressed: () => Navigator.push(
                         context,
@@ -53,12 +68,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 ProductSearch(),
                 SeasonalOffers(),
-                Collection(),
-            
-                BlocProvider(
-                  create: (context) =>  ProductsCubit(),
-                  child: FeaturedPicks(),
-                ),
+                  Collection(),
+                   FeaturedPicks(),
+                
               ],
             ),
           ),

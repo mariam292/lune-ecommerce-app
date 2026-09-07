@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/category_states.dart';
 
 import 'package:nti_final_project/features/home/presentation/widgets/collection_view.dart';
 import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
-class Collection extends StatelessWidget {
+class Collection extends StatefulWidget {
   Collection({super.key});
 
-  List<CollectionView> collection = [
-    CollectionView(img: "assets/images/cat1.png", name: "Jewelry"),
+  @override
+  State<Collection> createState() => _CollectionState();
+}
 
-    CollectionView(img: "assets/images/cat2.png", name: "Bags"),
-    CollectionView(img: "assets/images/cat3.png", name: "Scarves"),
-    CollectionView(img: "assets/images/cat4.png", name: "Watches"),
-
-    CollectionView(img: "assets/images/cat5.png", name: "Sunglasses"),
-  ];
-
+class _CollectionState extends State<Collection> {
+ 
+  List collection=[];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,33 +48,57 @@ class Collection extends StatelessWidget {
           ],
         ),
 
-        SizedBox(
-          height: 100,
-          child: ListView.separated(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
+        BlocBuilder<CategoryCubit, CategoryState>(
+          builder: (context, state) {
+           if(state is CategoryLoadingState)
+           {
 
-            separatorBuilder: (context, index) {
-              return SizedBox(width: 12);
-            },
+            return Center(child: CircularProgressIndicator(),);
+           }
+           else if (state is CategoryFailureState)
+           {
 
-            itemCount: collection.length,
+          return Text("Error...............");
+           }
+           else if (state is CategorySuccessState)
 
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Productdetailsscreen(),
-                  ),
-                ),
-                child: CollectionView(
-                  img: collection[index].img,
-                  name: collection[index].name,
-                ),
-              );
-            },
-          ),
+           {
+              collection=state.category;
+            return SizedBox(
+              height: 100,
+              child: ListView.separated(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+
+                separatorBuilder: (context, index) {
+                  return SizedBox(width: 12);
+                },
+
+                itemCount: collection.length,
+
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CategoryScreen(),
+                      ),
+                    ),
+                    child: CollectionView(
+                      img: collection[index]["coverPictureUrl"],
+                      name: collection[index]["name"],
+                    ),
+                  );
+                },
+              ),
+            );
+          
+           }
+           else 
+           {
+              return Center(child: Text("Data Error"),);
+           }
+          },
         ),
       ],
     );
