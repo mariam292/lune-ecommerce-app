@@ -5,11 +5,13 @@ import '../../../../core/app_colors.dart';
 class CustomTextFieldForgotResetPass extends StatelessWidget {
   final String labelText;
   final String hintText;
+  final TextEditingController? controller;
 
   const CustomTextFieldForgotResetPass({
     super.key,
     required this.labelText,
     required this.hintText,
+    this.controller,
   });
 
   @override

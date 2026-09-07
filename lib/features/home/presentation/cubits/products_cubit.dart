@@ -9,26 +9,17 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   HomeRemoteData homeRemoteData = HomeRemoteData();
 
-  Future<void> get_products() async {
+  Future<void> getProducts() async {
     emit(ProductsLoadingState());
-    homeRemoteData.get_products().then( 
-
-onError: (err) {
-  log(err.toString());
-  emit(ProductsFailureState(err));
-}
-
-,(val){
-log(val.toString());
-emit(ProductsSuccessState(val));
-
-
-}
-
-
-
-
-
+    homeRemoteData.getProducts().then(
+      onError: (err) {
+        log(err.toString());
+        emit(ProductsFailureState(err.toString()));
+      },
+      (val) {
+        log(val.toString());
+        emit(ProductsSuccessState(products: val));
+      },
     );
   }
 }

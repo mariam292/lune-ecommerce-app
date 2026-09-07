@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/product/data/models/review_model.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/reviews_cubit.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/reviews_state.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/reviewsection.dart';
 
 class Detailscontainer extends StatelessWidget {
@@ -132,19 +136,42 @@ class Detailscontainer extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          Reviewsection(
-            name: "Sophia M.",
-            date: "Oct 12, 2023",
-            comment:
-                "Absolutely stunning piece. The pearl has a beautiful luster and the chain is delicate but sturdy.",
+          SizedBox(height: 12),
+          BlocBuilder<ReviewsCubit, ReviewsState>(
+            builder: (context, state) {
+              if (state is ReviewsLoadingState) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is ReviewsFailureState) {
+                return Text("Error...${state.error}");
+              } else if (state is ReviewsSuccessState) {
+                // final List<ReviewModel> reviews = state.reviews;
+                if (state.reviews.isEmpty) {
+                  return const Text('No reviews found');
+                }
+
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: state.reviews.length,
+                  itemBuilder: (context, index) {
+                    final review = state.reviews[index];
+                    return Reviewsection(
+                      name: review.userName,
+                      date: review.createdAt.toString(),
+                      comment: review.comment,
+                    );
+                  },
+                );
+              } else {
+                return Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(color: AppColors.blackColor),
+                );
+              }
+            },
           ),
-          const SizedBox(height: 12),
-          Reviewsection(
-            name: "Emma L.",
-            date: "Sep 28, 2023",
-            comment:
-                "Absolutely stunning piece. The pearl has a beautiful luster and the chain is delicate but sturdy.",
-          ),
+
           SizedBox(height: 16),
           SizedBox(
             width: double.infinity,

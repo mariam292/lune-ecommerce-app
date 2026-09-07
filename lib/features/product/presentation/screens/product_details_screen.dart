@@ -1,11 +1,28 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/features/home/data/product_model.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/reviews_cubit.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/addtocart.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/detailscontainer.dart';
 
-class Productdetailsscreen extends StatelessWidget {
-  const Productdetailsscreen({super.key});
+class Productdetailsscreen extends StatefulWidget {
+  const Productdetailsscreen({super.key, required this.product});
+  final ProductModel product;
+
+  @override
+  State<Productdetailsscreen> createState() => _ProductdetailsscreenState();
+}
+
+class _ProductdetailsscreenState extends State<Productdetailsscreen> {
+  final Dio dio = Dio();
+  @override
+  void initState() {
+    super.initState();
+    context.read<ReviewsCubit>().getReviews(productId: widget.product.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +43,8 @@ class Productdetailsscreen extends StatelessWidget {
                           height: 400,
                           width: double.infinity,
                           color: AppColors.whiteColor,
-                          child: Image.asset(
-                            'assets/images/Background (1).png',
+                          child: Image.network(
+                            widget.product.image,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -48,10 +65,9 @@ class Productdetailsscreen extends StatelessWidget {
                     Container(
                       transform: Matrix4.translationValues(0.0, -30.0, 0.0),
                       child: Detailscontainer(
-                        productname: "Luminous Pearl Drop Necklace",
-                        productprice: "450",
-                        productdescription:
-                            "An embodiment of understated elegance, this necklace features a single, perfectly spherical freshwater pearl suspended from a delicate 18k solid gold chain. The minimalist design allows the natural luster of the pearl to take center stage.....",
+                        productname: widget.product.name,
+                        productprice: widget.product.price.toString(),
+                        productdescription: widget.product.description,
                       ),
                     ),
                   ],

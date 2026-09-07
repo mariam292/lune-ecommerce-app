@@ -7,8 +7,10 @@ class PassTextFieldSection extends StatefulWidget {
     super.key,
     required this.labelText,
     required this.hintText,
+    this.controller,
   });
   final String labelText, hintText;
+  final TextEditingController? controller;
 
   @override
   State<PassTextFieldSection> createState() => _PassTextFieldSectionState();

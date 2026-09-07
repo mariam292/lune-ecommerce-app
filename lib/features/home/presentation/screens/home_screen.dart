@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child:  SingleChildScrollView(
+          child: SingleChildScrollView(
             child: Column(
               spacing: 17,
               children: [
@@ -37,10 +37,10 @@ class HomeScreen extends StatelessWidget {
                     Spacer(),
                     IconButton(
                       onPressed: () {},
-                      icon: SvgPicture.asset("assets/icons/right-action.svg"),
+                      icon: SvgPicture.asset("assets/icons/ring-action.svg"),
                       padding: EdgeInsets.all(0),
                     ),
-            
+
                     IconButton(
                       onPressed: () => Navigator.push(
                         context,
@@ -54,9 +54,9 @@ class HomeScreen extends StatelessWidget {
                 ProductSearch(),
                 SeasonalOffers(),
                 Collection(),
-            
+
                 BlocProvider(
-                  create: (context) =>  ProductsCubit(),
+                  create: (context) => ProductsCubit(),
                   child: FeaturedPicks(),
                 ),
               ],
