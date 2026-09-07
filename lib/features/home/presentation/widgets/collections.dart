@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
@@ -17,7 +19,11 @@ class Collection extends StatefulWidget {
 }
 
 class _CollectionState extends State<Collection> {
- 
+   void initState() {
+    super.initState();
+    context.read<CategoryCubit>().get_category();
+      
+  }
   List collection=[];
   @override
   Widget build(BuildContext context) {
@@ -64,6 +70,7 @@ class _CollectionState extends State<Collection> {
 
            {
               collection=state.category;
+              log("hggff${collection}");
             return SizedBox(
               height: 100,
               child: ListView.separated(
@@ -76,7 +83,7 @@ class _CollectionState extends State<Collection> {
 
                 itemCount: collection.length,
 
-                itemBuilder: (context, index) {
+                itemBuilder: (context,index) {
                   return InkWell(
                     onTap: () => Navigator.push(
                       context,
