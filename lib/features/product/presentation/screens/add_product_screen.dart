@@ -23,7 +23,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController categoryController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController stockController = TextEditingController();
-  final TextEditingController imageController = TextEditingController();
 
   @override
   void dispose() {
@@ -32,7 +31,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
     categoryController.dispose();
     priceController.dispose();
     stockController.dispose();
-    imageController.dispose();
     super.dispose();
   }
 
@@ -187,7 +185,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           price: double.tryParse(priceController.text) ?? 0.0,
                           categoryid: categoryController.text,
                           stock: int.tryParse(stockController.text) ?? 0,
-                          imageurl: imageController.text,
                         );
                       },
                     );

@@ -11,7 +11,7 @@ class AddProductFaliureState extends AddProductState {
 }
 
 class AddProductSuccessState extends AddProductState {
- final List myproduct;
+  final Map myproduct;
 
   AddProductSuccessState({required this.myproduct});
 }
