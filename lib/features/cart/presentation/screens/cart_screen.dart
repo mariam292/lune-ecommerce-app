@@ -81,7 +81,8 @@ class _CartscreenState extends State<Cartscreen> {
                           return CartItem(
                             imagePath: mycart[index]["productCoverUrl"],
                             productName: mycart[index]["productName"],
-                            productPrice: mycart[index]["finalPricePerUnit"],
+                            productPrice: mycart[index]["finalPricePerUnit"]
+                                .toString(),
                           );
                         },
                       );
