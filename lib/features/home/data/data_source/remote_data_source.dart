@@ -62,7 +62,7 @@ log("before res");
   ));
   log(response.data.toString());
   log(response.data);
-  return response.data["categories "];     
+  return response.data["categories"];     
     
  
 }
