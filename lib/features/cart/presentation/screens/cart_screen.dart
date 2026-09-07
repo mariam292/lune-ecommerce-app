@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
 import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/features/cart/presentation/cubits/cart_cubit.dart';
+import 'package:nti_final_project/features/cart/presentation/cubits/cart_states.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/cartitem.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/customsummaryitem.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/promocode.dart';
+import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
 
-class Cartscreen extends StatelessWidget {
+class Cartscreen extends StatefulWidget {
   const Cartscreen({super.key});
+
+  @override
+  State<Cartscreen> createState() => _CartscreenState();
+}
+
+class _CartscreenState extends State<Cartscreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CartCubit>().getcart();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
       backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.backGroundColor,
@@ -50,17 +67,26 @@ class Cartscreen extends StatelessWidget {
               crossAxisAlignment: .start,
               children: [
                 SizedBox(height: 10),
-                ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 2,
-                  itemBuilder: (context, index) {
-                    return CartItem(
-                      imagePath: 'assets/images/ImageFrame.png',
-                      productName: 'Céleste Hair Grip',
-                      productCategory: 'Hair Grip',
-                      productPrice: '145.00',
-                    );
+                BlocBuilder<CartCubit, CartState>(
+                  builder: (context, state) {
+                    if (state is GetCartFailureState) {
+                      return Text("Erorrrrrrrr");
+                    } else if (state is GetCartSuccessState) {
+                      final mycart = state.productcart;
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: mycart.length,
+                        itemBuilder: (context, index) {
+                          return CartItem(
+                            imagePath: mycart[index]["productCoverUrl"],
+                            productName: mycart[index]["productName"],
+                            productPrice: mycart[index]["finalPricePerUnit"],
+                          );
+                        },
+                      );
+                    }
+                    return Center(child: CircularProgressIndicator());
                   },
                 ),
                 SizedBox(height: 15),
@@ -125,7 +151,12 @@ class Cartscreen extends StatelessWidget {
                     color: AppColors.whiteColor,
                   ),
                   buttoncolor: AppColors.primaryColor,
-                  onpressed: () {},
+                  onpressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                  },
                 ),
               ],
             ),
