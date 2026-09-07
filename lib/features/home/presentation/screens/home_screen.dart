@@ -5,14 +5,27 @@ import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/collections.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/featured_picks.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/product_search.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/seasonal_exclusive_offer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CategoryCubit>().get_category();
+    context.read<ProductsCubit>().getProducts();
+  }
 
   @override
   Widget build(BuildContext context) {

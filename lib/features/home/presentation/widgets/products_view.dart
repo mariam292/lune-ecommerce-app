@@ -4,15 +4,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
-import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
 import 'package:nti_final_project/features/home/data/product_model.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/cart_cubit.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/cart_states.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_state.dart';
 import 'package:nti_final_project/features/product/presentation/cubits/reviews_cubit.dart';
 import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
 class ProductsView extends StatefulWidget {
-  ProductsView({super.key, required this.sectionText});
+  const ProductsView({super.key, required this.sectionText});
   final sectionText;
 
   @override
@@ -20,7 +21,6 @@ class ProductsView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<ProductsView> {
-  List products = [];
   void Function()? onPressed;
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _ProductsViewState extends State<ProductsView> {
           children: [
             Text(
               widget.sectionText,
-              style: AppStyles.style20Regular.copyWith(
+              style: AppStyles.style20SemiBold.copyWith(
                 color: AppColors.primaryColor,
               ),
             ),
@@ -96,7 +96,7 @@ class _ProductsViewState extends State<ProductsView> {
                                 ),
                                 child: Container(
                                   width: double.infinity,
-                                  height: 180,
+                                  height: 190,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
 
@@ -158,12 +158,54 @@ class _ProductsViewState extends State<ProductsView> {
                                       Spacer(),
 
                                       IconButton(
-                                        onPressed: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Cartscreen(),
-                                          ),
-                                        ),
+                                        onPressed: () {
+                                          context
+                                              .read<AddToCartCubit>()
+                                              .addcartproducts(
+                                                product_id: products[index].id,
+                                              );
+
+                                          BlocListener<
+                                            AddToCartCubit,
+                                            AddToCartState
+                                          >(
+                                            listener: (context, state) {
+                                              if (state
+                                                  is AddToCartitemsLoadingState) {
+                                                ScaffoldMessenger.of(
+                                                  context,
+                                                ).showSnackBar(
+                                                  SnackBar(
+                                                    content: Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    ),
+                                                  ),
+                                                );
+                                              } else if (state
+                                                  is AddToCartitemsSuccessState) {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Cartscreen(),
+                                                  ),
+                                                );
+                                              } else if (state
+                                                  is AddToCartitemsFailureState) {
+                                                ScaffoldMessenger.of(
+                                                  context,
+                                                ).showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      "invalid Item",
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                          );
+                                        },
                                         icon: SvgPicture.asset(
                                           "assets/icons/Button.svg",
                                         ),

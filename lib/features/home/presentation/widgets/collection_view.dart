@@ -18,7 +18,7 @@ class CollectionView extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (context) => CategoryScreen()),
           ),
-          child: CircleAvatar(backgroundImage: AssetImage(img), radius: 32),
+          child: CircleAvatar(backgroundImage: NetworkImage(img), radius: 32,),
         ),
         Text(
           name,

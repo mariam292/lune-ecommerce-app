@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
 import 'package:nti_final_project/features/profile/presentation/screens/profile_screen.dart';
 
@@ -39,7 +42,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
             ),
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
+              MaterialPageRoute(builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (context) => CategoryCubit()),
+                    BlocProvider(create: (context) =>  ProductsCubit()),
+                  ],
+                  child: HomeScreen() ,
+                ),),
             ),
           ),
           label: " ",

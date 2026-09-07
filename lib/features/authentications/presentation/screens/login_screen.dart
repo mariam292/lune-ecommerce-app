@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/change_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
 import '../../../../core/app_colors.dart';
 import '../widgets/custom_text_field.dart';
@@ -132,7 +135,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                   onPressed: () => Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) =>  MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (context) => CategoryCubit()),
+                    BlocProvider(create: (context) =>  ProductsCubit()),
+                  ],
+                  child: HomeScreen() ,
+                ),),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryColor,

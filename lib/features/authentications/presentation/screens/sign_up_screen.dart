@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
 
 import 'package:nti_final_project/features/authentications/presentation/widgets/text_fiield.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
+import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
 
 class Signup extends StatefulWidget {
@@ -90,7 +93,13 @@ class _SignupState extends State<Signup> {
                 text: 'Create Account',
                 onPressed: () => Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) =>  MultiBlocProvider(
+                  providers: [
+                    BlocProvider(create: (context) => CategoryCubit()),
+                    BlocProvider(create: (context) =>  ProductsCubit()),
+                  ],
+                  child: HomeScreen() ,
+                ),),
                 ),
               ),
               const SizedBox(height: 32),
