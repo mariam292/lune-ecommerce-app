@@ -1,4 +1,4 @@
-import 'package:nti_final_project/features/home/data/product_model.dart';
+import 'package:nti_final_project/features/home/data/models/product_model.dart';
 
 abstract class ProductsState {}
 

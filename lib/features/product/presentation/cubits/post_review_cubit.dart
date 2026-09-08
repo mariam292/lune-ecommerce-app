@@ -8,22 +8,16 @@ class PostReviewCubit extends Cubit<PostReviewState> {
   final PostReviewRemoteDataSource postReviewRemoteDataSource =
       PostReviewRemoteDataSource();
 
-  Future<void> postReviewData(
-    String productId,
-    String comment,
-  ) async {
-    await postReviewRemoteDataSource
-        .postReviewData(
-          productId: productId,
-          comment: comment,
-        )
-        .then(
-          onError: (error) {
-            emit(PostReviewFailureState());
-          },
-          (value) {
-            emit(PostReviewSuccessState());
-          },
-        );
+  Future<void> postReviewData(String productId, String comment) async {
+    try {
+      await postReviewRemoteDataSource.postReviewData(
+        productId: productId,
+        comment: comment,
+      );
+
+      emit(PostReviewSuccessState());
+    } catch (e) {
+      emit(PostReviewFailureState());
+    }
   }
 }

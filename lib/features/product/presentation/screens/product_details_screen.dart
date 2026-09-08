@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
-import 'package:nti_final_project/features/home/data/product_model.dart';
+import 'package:nti_final_project/features/home/data/models/product_model.dart';
 import 'package:nti_final_project/features/product/presentation/cubits/get_reviews_cubit.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/addtocart.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/detailscontainer.dart';
@@ -67,7 +67,7 @@ class _ProductdetailsscreenState extends State<Productdetailsscreen> {
                       child: Detailscontainer(
                         productname: widget.product.name,
                         productprice: widget.product.price.toString(),
-                        productdescription: widget.product.description,
+                        productdescription: widget.product.description, productId: widget.product.id,
                       ),
                     ),
                   ],

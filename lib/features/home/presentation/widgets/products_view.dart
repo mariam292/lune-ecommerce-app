@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
-import 'package:nti_final_project/features/home/data/product_model.dart';
+import 'package:nti_final_project/features/home/data/models/product_model.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/cart_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/cart_states.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';

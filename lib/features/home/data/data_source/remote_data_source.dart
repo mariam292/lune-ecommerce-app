@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:nti_final_project/features/home/data/product_model.dart';
+import 'package:nti_final_project/features/home/data/models/product_model.dart';
 
 class HomeRemoteData {
   final dio = Dio();
@@ -18,7 +18,7 @@ class HomeRemoteData {
       }
 
       return products;
-    } on DioException catch (e) { 
+    } on DioException catch (e) {
       throw Exception(e.response?.data['message']);
     }
   }
@@ -55,6 +55,4 @@ class HomeRemoteData {
       throw Exception(e.response?.data['message']);
     }
   }
-
-
 }

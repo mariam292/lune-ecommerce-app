@@ -5,18 +5,22 @@ import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/product/presentation/cubits/get_reviews_cubit.dart';
 import 'package:nti_final_project/features/product/presentation/cubits/get_reviews_state.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/post_review_cubit.dart';
+import 'package:nti_final_project/features/product/presentation/widgets/review_dialog.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/reviewsection.dart';
 
 class Detailscontainer extends StatelessWidget {
   final String productname;
   final String productprice;
   final String productdescription;
+  final String productId;
 
   const Detailscontainer({
     super.key,
     required this.productname,
     required this.productprice,
     required this.productdescription,
+    required this.productId,
   });
 
   @override
@@ -109,31 +113,6 @@ class Detailscontainer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6),
-          Row(
-            children: [
-              Text(
-                "4.8",
-                style: AppStyles.style24Bold.copyWith(
-                  color: AppColors.blackColor,
-                ),
-              ),
-              const SizedBox(width: 6),
-              Row(
-                children: List.generate(
-                  5,
-                  (index) => SvgPicture.asset("assets/icons/staricon.svg"),
-                ),
-              ),
-              const SizedBox(width: 6),
-              Text(
-                "124 REVIEWS",
-                style: AppStyles.style12Medium.copyWith(
-                  color: AppColors.color7A6E6B,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
 
           SizedBox(height: 12),
           BlocBuilder<ReviewsCubit, GetReviewsState>(
@@ -148,18 +127,48 @@ class Detailscontainer extends StatelessWidget {
                   return const Text('No reviews found');
                 }
 
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.reviews.length,
-                  itemBuilder: (context, index) {
-                    final review = state.reviews[index];
-                    return Reviewsection(
-                      name: review.userName,
-                      date: review.createdAt.toString(),
-                      comment: review.comment,
-                    );
-                  },
+                return Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "4.8",
+                          style: AppStyles.style24Bold.copyWith(
+                            color: AppColors.blackColor,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        Row(
+                          children: List.generate(
+                            5,
+                            (index) =>
+                                SvgPicture.asset("assets/icons/staricon.svg"),
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          ('${state.reviews.length.toString()} Reviews'),
+                          style: AppStyles.style12Medium.copyWith(
+                            color: AppColors.color7A6E6B,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.reviews.length,
+                      itemBuilder: (context, index) {
+                        final review = state.reviews[index];
+                        return Reviewsection(
+                          name: review.userName,
+                          date: review.createdAt.toString(),
+                          comment: review.comment,
+                        );
+                      },
+                    ),
+                  ],
                 );
               } else {
                 return Container(
@@ -180,7 +189,17 @@ class Detailscontainer extends StatelessWidget {
                 backgroundColor: AppColors.whiteColor,
                 side: BorderSide(color: AppColors.primaryColor, width: 1.5),
               ),
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return BlocProvider(
+                      create: (context) => PostReviewCubit(),
+                      child: ReviewDialog(productId: productId.toString()),
+                    );
+                  },
+                );
+              },
               child: Text(
                 "Add your review",
                 style: AppStyles.style16SemiBold.copyWith(
