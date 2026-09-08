@@ -12,8 +12,7 @@ import 'package:nti_final_project/features/authentications/presentation/widgets/
 import 'package:nti_final_project/features/authentications/presentation/widgets/navigation_elevated_button.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/pass_text_field_section.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/signup_header.dart';
-
-import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/otp_screen.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -23,14 +22,16 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  final nameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   @override
   void dispose() {
-    nameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
@@ -44,10 +45,12 @@ class _SignupState extends State<Signup> {
       child: BlocListener<SignupCubit, SignupState>(
         listener: (context, state) {
           if (state is SignupSuccess) {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => OtpVerification(
+                  email: emailController.text.trim(),
+                ),
               ),
             );
           }
@@ -73,9 +76,15 @@ class _SignupState extends State<Signup> {
                   SignupHeader(),
                   const SizedBox(height: 16),
                   CustomTextFieldForgotResetPass(
-                    labelText: 'FULL NAME',
-                    hintText: 'Enter Your Name',
-                    controller: nameController,
+                    labelText: 'FIRST NAME',
+                    hintText: 'Enter Your First Name',
+                    controller: firstNameController,
+                  ),
+                  const SizedBox(height: 12),
+                  CustomTextFieldForgotResetPass(
+                    labelText: 'LAST NAME',
+                    hintText: 'Enter Your Last Name',
+                    controller: lastNameController,
                   ),
                   const SizedBox(height: 12),
                   CustomTextFieldForgotResetPass(
@@ -114,7 +123,8 @@ class _SignupState extends State<Signup> {
                           }
 
                           context.read<SignupCubit>().register(
-                                name: nameController.text.trim(),
+                                firstName: firstNameController.text.trim(),
+                                lastName: lastNameController.text.trim(),
                                 email: emailController.text.trim(),
                                 password: passwordController.text,
                                 confirmPassword:

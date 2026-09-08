@@ -6,17 +6,42 @@ import 'signup_state.dart';
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit() : super(SignupInitial());
 
+  final Dio dio = Dio();
+
   Future<void> register({
-    required String name,
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
     required String confirmPassword,
   }) async {
-    if (name.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        confirmPassword.isEmpty) {
-      emit(SignupError("Please fill in all fields"));
+    if (firstName.trim().isEmpty) {
+      emit(SignupError("First name is required"));
+      return;
+    }
+
+    if (lastName.trim().isEmpty) {
+      emit(SignupError("Last name is required"));
+      return;
+    }
+
+    if (lastName.trim().length < 3) {
+      emit(SignupError("Last name must be at least 3 characters"));
+      return;
+    }
+
+    if (email.trim().isEmpty) {
+      emit(SignupError("Email is required"));
+      return;
+    }
+
+    if (password.isEmpty) {
+      emit(SignupError("Password is required"));
+      return;
+    }
+
+    if (confirmPassword.isEmpty) {
+      emit(SignupError("Confirm password is required"));
       return;
     }
 
@@ -30,46 +55,59 @@ class SignupCubit extends Cubit<SignupState> {
       return;
     }
 
-    final fullName = name.split(RegExp(r'\s+'));
-
-    final firstName = fullName.first;
-
-    final lastName =
-        fullName.length > 1 ? fullName.sublist(1).join(' ') : '';
-
     emit(SignupLoading());
 
     try {
-      final dio = Dio();
-
       final response = await dio.post(
         "https://accessories-eshop.runasp.net/api/auth/register",
         data: {
-          "email": email,
+          "email": email.trim(),
           "password": password,
-          "firstName": firstName,
-          "lastName": lastName,
+          "firstName": firstName.trim(),
+          "lastName": lastName.trim(),
         },
       );
 
-      print(response.data);
+      print("STATUS: ${response.statusCode}");
+      print("DATA: ${response.data}");
 
-      emit(SignupSuccess());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        emit(SignupSuccess());
+      } else {
+        emit(SignupError("Registration failed"));
+      }
     } on DioException catch (e) {
+      print("STATUS: ${e.response?.statusCode}");
+      print("DATA: ${e.response?.data}");
+      print("MESSAGE: ${e.message}");
+
       String message = "Registration failed";
 
-      if (e.response?.data is Map) {
-        final data = e.response?.data as Map;
+      final data = e.response?.data;
 
-        if (data["message"] != null) {
+      if (data is Map) {
+        final errors = data["errors"];
+
+        if (errors is Map && errors.isNotEmpty) {
+          final firstError = errors.values.first;
+
+          if (firstError is List && firstError.isNotEmpty) {
+            message = firstError.first.toString();
+          } else {
+            message = firstError.toString();
+          }
+        } else if (data["message"] != null) {
           message = data["message"].toString();
-        } else if (data["errors"] != null) {
-          message = data["errors"].toString();
         }
+      }
+
+      if (e.response?.statusCode == 500 && message == "Registration failed") {
+        message = "Server error. Please try again later.";
       }
 
       emit(SignupError(message));
     } catch (e) {
+      print("ERROR: $e");
       emit(SignupError("Something went wrong"));
     }
   }

@@ -11,7 +11,12 @@ import 'package:nti_final_project/features/authentications/presentation/screens/
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
 
 class OtpVerification extends StatefulWidget {
-  const OtpVerification({super.key});
+  final String email;
+
+  const OtpVerification({
+    super.key,
+    required this.email,
+  });
 
   @override
   State<OtpVerification> createState() {
@@ -20,10 +25,8 @@ class OtpVerification extends StatefulWidget {
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
-  final String email = 'Loka@gmail.com';
-
   final List<TextEditingController> controllers = List.generate(
-    4,
+    6,
     (index) => TextEditingController(),
   );
 
@@ -78,11 +81,20 @@ class _OtpVerificationState extends State<OtpVerification> {
       create: (context) => OtpCubit(),
       child: BlocListener<OtpCubit, OtpState>(
         listener: (context, state) {
-          if (state is OtpSuccess) {
+          if (state is OtpVerified) {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ResetPassword(),
+              ),
+            );
+          }
+
+          if (state is OtpResendSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('OTP sent successfully'),
+                backgroundColor: Colors.green,
               ),
             );
           }
@@ -116,7 +128,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Enter the 4-digit code sent to your email\n$email',
+                    'Enter the 6-digit code sent to your email\n${widget.email}',
                     textAlign: TextAlign.center,
                     style: AppStyles.style14Light.copyWith(
                       color: const Color(0xFF7A6E6B),
@@ -126,10 +138,10 @@ class _OtpVerificationState extends State<OtpVerification> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(
-                      4,
+                      6,
                       (index) {
                         return SizedBox(
-                          width: 55,
+                          width: 45,
                           height: 55,
                           child: TextField(
                             controller: controllers[index],
@@ -161,7 +173,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                               ),
                             ),
                             onChanged: (value) {
-                              if (value.isNotEmpty && index < 3) {
+                              if (value.isNotEmpty && index < 5) {
                                 FocusScope.of(context).nextFocus();
                               } else if (value.isEmpty && index > 0) {
                                 FocusScope.of(context).previousFocus();
@@ -186,11 +198,11 @@ class _OtpVerificationState extends State<OtpVerification> {
                             return;
                           }
 
-                          if (otp.length != 4) {
+                          if (otp.length != 6) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text(
-                                  'Please enter the 4-digit OTP',
+                                  'Please enter the 6-digit OTP',
                                 ),
                               ),
                             );
@@ -198,7 +210,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                           }
 
                           context.read<OtpCubit>().validateOtp(
-                                email: email,
+                                email: widget.email,
                                 otp: otp,
                               );
                         },
@@ -219,7 +231,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                         onTap: seconds == 0
                             ? () {
                                 context.read<OtpCubit>().resendOtp(
-                                      email: email,
+                                      email: widget.email,
                                     );
                                 startTimer();
                               }

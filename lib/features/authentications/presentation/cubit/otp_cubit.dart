@@ -24,16 +24,18 @@ class OtpCubit extends Cubit<OtpState> {
       );
 
       if (response.statusCode == 200) {
-        emit(OtpSuccess());
+        emit(OtpVerified());
       } else {
         emit(OtpError('Invalid OTP'));
       }
     } on DioException catch (e) {
-      emit(
-        OtpError(
-          e.response?.data?['message'] ?? 'Something went wrong',
-        ),
-      );
+      final data = e.response?.data;
+
+      if (data is Map && data['message'] != null) {
+        emit(OtpError(data['message'].toString()));
+      } else {
+        emit(OtpError('Invalid OTP'));
+      }
     } catch (e) {
       emit(OtpError('Something went wrong'));
     }
@@ -53,16 +55,18 @@ class OtpCubit extends Cubit<OtpState> {
       );
 
       if (response.statusCode == 200) {
-        emit(OtpSuccess());
+        emit(OtpResendSuccess());
       } else {
         emit(OtpError('Failed to resend OTP'));
       }
     } on DioException catch (e) {
-      emit(
-        OtpError(
-          e.response?.data?['message'] ?? 'Something went wrong',
-        ),
-      );
+      final data = e.response?.data;
+
+      if (data is Map && data['message'] != null) {
+        emit(OtpError(data['message'].toString()));
+      } else {
+        emit(OtpError('Failed to resend OTP'));
+      }
     } catch (e) {
       emit(OtpError('Something went wrong'));
     }
