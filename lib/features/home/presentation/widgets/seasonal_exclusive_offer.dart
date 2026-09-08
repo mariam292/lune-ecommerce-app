@@ -70,7 +70,10 @@ class SeasonalOffers extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => OffersScreen(),
+                            builder: (context) => BlocProvider(
+                              create: (context) => OffersCubit(),
+                              child: OffersScreen(),
+                            ),
                           ),
                         );
                       },

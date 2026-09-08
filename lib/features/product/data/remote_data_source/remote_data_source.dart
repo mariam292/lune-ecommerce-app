@@ -15,7 +15,7 @@ class AddProductRemoteDataSource {
       final Response response = await dio.post(
         "https://accessories-eshop.runasp.net/api/products",
         data: {
-          "sellerId": "96247200-9a2b-4c76-2cbb-08df0a6853c1",
+          "sellerId": "e51c257c-bec2-4dc4-35e2-08df0daa4f93",
           "name": name,
           "description": description,
           "nameArabic": name,
@@ -29,13 +29,13 @@ class AddProductRemoteDataSource {
           "discountPercentage": 0,
           "categoryIds": [categoryid],
           "productPictureUrls": [
-            "https://images.unsplash.com/photo-1584917865442-de89df76afd3",
+            "https://cdn.phototourl.com/free/2026-09-08-95efef8b-b53a-456f-a255-6f2208d2b4d2.png",
           ],
         },
         options: Options(
           headers: {
             'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmOTE5ZjczYy1kOGYwLTQ2YzYtNTE4Yi0wOGRmMGJkM2MwOGUiLCJqdGkiOiJlYmFhNzE0My1lNmU5LTQxZDUtODY1Ny0zMDlmNzk5MDRkODciLCJlbWFpbCI6InJhZ2hhZG1vaGFtZWQ1NDVAZ21haWwuY29tIiwibmFtZSI6InJhZ2hhZCBtb2hhbWVkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MDA0ODQ2LCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.WLjU1upIu4klqZii2-C9rBIENMJRTzp7RBz_LeiatAw',
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmOTE5ZjczYy1kOGYwLTQ2YzYtNTE4Yi0wOGRmMGJkM2MwOGUiLCJqdGkiOiI3NDRjOWM3NC0zYTgyLTRlOTUtYWIwZC1lYTA4NzA2MWFhMmMiLCJlbWFpbCI6InJhZ2hhZG1vaGFtZWQ1NDVAZ21haWwuY29tIiwibmFtZSI6InJhZ2hhZCBtb2hhbWVkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MTExODk3LCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.c9bErANskia-zuMJM4Gl369_OicKtescWXFByBAFGGU',
           },
         ),
       );
