@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/features/product/presentation/cubits/reviews_cubit.dart';
-import 'package:nti_final_project/features/product/presentation/cubits/reviews_state.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/get_reviews_cubit.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/get_reviews_state.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/reviewsection.dart';
 
 class Detailscontainer extends StatelessWidget {
@@ -136,13 +136,13 @@ class Detailscontainer extends StatelessWidget {
           const SizedBox(height: 12),
 
           SizedBox(height: 12),
-          BlocBuilder<ReviewsCubit, ReviewsState>(
+          BlocBuilder<ReviewsCubit, GetReviewsState>(
             builder: (context, state) {
-              if (state is ReviewsLoadingState) {
+              if (state is GetReviewsLoadingState) {
                 return Center(child: CircularProgressIndicator());
-              } else if (state is ReviewsFailureState) {
+              } else if (state is GetReviewsFailureState) {
                 return Text("Error...${state.error}");
-              } else if (state is ReviewsSuccessState) {
+              } else if (state is GetReviewsSuccessState) {
                 // final List<ReviewModel> reviews = state.reviews;
                 if (state.reviews.isEmpty) {
                   return const Text('No reviews found');

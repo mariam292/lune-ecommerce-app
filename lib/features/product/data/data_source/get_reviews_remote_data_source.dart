@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:nti_final_project/features/product/data/models/review_model.dart';
 
-class ReviewsRemoteDataSource {
+class GetReviewsRemoteDataSource {
   final dio = Dio();
 
-  Future<List<ReviewModel>> getReviews(String productId) async {
-    List<ReviewModel> reviews = [];
+  Future<List<GetReviewModel>> getReviews(String productId) async {
+    List<GetReviewModel> reviews = [];
     try {
       final Response response = await dio.get(
         'https://accessories-eshop.runasp.net/api/reviews/${productId}',
@@ -21,7 +21,7 @@ class ReviewsRemoteDataSource {
       log('PRODUCT ID: $productId');
       log('RESPONSE: ${response.data}');
       for (var element in response.data['reviews']['items']) {
-        final ReviewModel model = ReviewModel.fromJson(element);
+        final GetReviewModel model = GetReviewModel.fromJson(element);
         reviews.add(model);
       }
 
