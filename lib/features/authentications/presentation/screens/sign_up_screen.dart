@@ -1,12 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/text_fiield.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field_forgot_reset_pass.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/navigation_elevated_button.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/pass_text_field_section.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/signup_header.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
+import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({super.key});
+  Signup({super.key});
 
   @override
   State<Signup> createState() {
@@ -24,208 +28,113 @@ class _SignupState extends State<Signup> {
   bool isPasswordHidden = true;
   bool isConfirmPasswordHidden = true;
 
+  Future<void> register() async {
+    final Dio dio = Dio();
+
+    final fullName = nameController.text.trim().split(' ');
+
+    final firstName = fullName.first;
+    final lastName =
+        fullName.length > 1 ? fullName.sublist(1).join(' ') : '';
+
+    final response = await dio.post(
+      "https://accessories-eshop.runasp.net/api/auth/register",
+      data: {
+        "email": emailController.text,
+        "password": passwordController.text,
+        "firstName": firstName,
+        "lastName": lastName,
+      },
+    );
+
+    print(response.data);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: 
-      AppColors.backGroundColor,
+      backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding:  EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               SizedBox(height: 20),
+              SizedBox(height: 24),
 
-              Text(
-                'LUNÉ',
-                style:
-                 AppStyles.style32Regular.copyWith(
-                  color: 
-                   Color(0xFF4C0D1C),
-                ),
-              ),
+              SignupHeader(),
 
-               SizedBox(height: 8),
+              SizedBox(height: 16),
 
-              Text(
-                'Create Account',
-                style:
-                 AppStyles.style16Regular.copyWith(
-                  color:  Color(0xFF2D2D2D),
-                ),
-              ),
-
-               SizedBox(height: 32),
-
-              CustomTextField(
-                label: 'FULL NAME',
+              CustomTextFieldForgotResetPass(
+                labelText: 'FULL NAME',
                 hintText: 'Malk Amr',
+                controller: nameController,
               ),
 
-               SizedBox(height: 16),
+              SizedBox(height: 12),
 
-              CustomTextField(
-                label: 'EMAIL ADDRESS',
+              CustomTextFieldForgotResetPass(
+                labelText: 'EMAIL ADDRESS',
                 hintText: 'loka@gmail.com',
+                controller: emailController,
               ),
 
-               SizedBox(height: 16),
+              SizedBox(height: 12),
 
-              CustomTextField(
-                label: 'PASSWORD',
-                hintText: '••••••••••••',
-                isPassword: true,
-                isPasswordHidden: isPasswordHidden,
+              PassTextFieldSection(
+                labelText: 'PASSWORD',
+                hintText: 'Enter Your Password',
                 controller: passwordController,
-                onSuffixTap: () {
-                  setState(() {
-                    isPasswordHidden = !isPasswordHidden;
-                  });
-                },
               ),
 
-               SizedBox(height: 16),
+              SizedBox(height: 12),
 
-              CustomTextField(
-                label: 'CONFIRM PASSWORD',
-                hintText: '••••••••••••',
-                isPassword: true,
-                isPasswordHidden: isConfirmPasswordHidden,
+              PassTextFieldSection(
+                labelText: 'CONFIRM PASSWORD',
+                hintText: 'Confirm Your Password',
                 controller: confirmPasswordController,
-                onSuffixTap: () {
-                  setState(() {
-                    isConfirmPasswordHidden = !isConfirmPasswordHidden;
-                  });
-                },
               ),
 
-               SizedBox(height: 32),
+              SizedBox(height: 24),
 
-              CustomButton(
-                text: 'Create Account',
-                onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
-                  ),
+              Elevatedbutton(
+                buttontext: 'Create Account',
+                btntextstyle: TextStyle(
+                  color: Colors.white,
                 ),
+                buttoncolor: AppColors.primaryColor,
+                onpressed: register,
               ),
 
-               SizedBox(height: 32),
+              SizedBox(height: 24),
 
-              Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color:
-                       AppColors.color5A3036,
-                    ),
-                  ),
+              NavigationElevatedButton(),
 
-                  Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
-                      'OR CONTINUE WITH',
-                      style:
-                       AppStyles.style12Bold.copyWith(
-                        color:  Color(0xFF4C0D1C),
-                      ),
-                    ),
-                  ),
-
-                  Expanded(
-                    child: Divider(
-                      color:
-                       AppColors.colorE6E2DB,
-                    ),
-                  ),
-                ],
-              ),
-
-               SizedBox(height: 24),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.g_mobiledata,
-                        size: 28,
-                        color:
-                         AppColors.blackColor,
-                      ),
-                      label: Text(
-                        'Google',
-                        style: TextStyle(
-                          color:
-                           AppColors.blackColor,
-                        ),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        padding:  EdgeInsets.symmetric(vertical: 12),
-                        side:  BorderSide(
-                          color:
-                           AppColors.colorE6E2DB,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                   SizedBox(width: 16),
-
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.apple,
-                        size: 22,
-                        color:
-                         AppColors.blackColor,
-                      ),
-                      label: Text(
-                        'Apple',
-                        style: TextStyle(
-                          color:
-                           AppColors.blackColor,
-                        ),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        padding:  EdgeInsets.symmetric(vertical: 12),
-                        side: BorderSide(
-                          color:
-                           AppColors.colorE6E2DB,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-               SizedBox(height: 32),
+              SizedBox(height: 24),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Already have an account? ',
-                    style: 
-                    AppStyles.style14Regular.copyWith(color: Color(0xFF7A6E6B),
+                    style: AppStyles.style14Regular.copyWith(
+                      color: Color(0xFF7A6E6B),
                     ),
                   ),
-
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Text(
                       'Login',
-                      style: AppStyles.style14Regular.copyWith(color:  Color(0xFF4A101D),
+                      style: AppStyles.style14Regular.copyWith(
+                        color: Color(0xFF4A101D),
                       ),
                     ),
                   ),

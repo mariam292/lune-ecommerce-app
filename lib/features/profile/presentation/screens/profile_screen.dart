@@ -6,7 +6,6 @@ import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/about_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/contact_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/privacy_screen.dart';
-import 'package:nti_final_project/features/app_info/presentation/widgets/privacy_policy_item.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/change_password_screen.dart';
 import 'package:nti_final_project/features/product/presentation/screens/add_product_screen.dart';
 import 'package:nti_final_project/features/profile/presentation/widgets/profile_header_card.dart';

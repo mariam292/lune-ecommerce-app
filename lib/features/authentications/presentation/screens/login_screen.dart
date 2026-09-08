@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nti_final_project/features/authentications/presentation/screens/change_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';

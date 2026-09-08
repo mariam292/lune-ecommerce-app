@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/showdelete.dart';
 

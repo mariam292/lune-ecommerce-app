@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nti_final_project/features/home/presentation/widgets/products_view.dart';
-import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
 class FeaturedPicks extends StatelessWidget {
   FeaturedPicks({super.key});

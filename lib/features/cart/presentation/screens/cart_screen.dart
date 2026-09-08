@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/cartitem.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/customsummaryitem.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/promocode.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Elevatedbutton extends StatelessWidget {
-  const Elevatedbutton({
+   Elevatedbutton({
     super.key,
     required this.buttontext,
     required this.btntextstyle,
