@@ -4,33 +4,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/features/home/data/data_source/remote_data_source.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/cart_states.dart';
 
-class AddToCartCubit extends Cubit<AddToCartState>
-{
-  AddToCartCubit():super(CartInitialStateState());
+class AddToCartCubit extends Cubit<AddToCartState> {
+  AddToCartCubit() : super(CartInitialStateState());
 
-HomeRemoteData homeRemoteData =HomeRemoteData();
+  HomeRemoteData homeRemoteData = HomeRemoteData();
 
-Future<void> addcartproducts({required product_id}) async {
-    emit( AddToCartitemsLoadingState());
+  Future<void> addcartproducts({required product_id}) async {
+    emit(AddToCartitemsLoadingState());
 
     await homeRemoteData
-        .cart_products(praductid: product_id)
+        .cartProducts(praductid: product_id)
         .then(
           onError: (error) {
-            log(error.toString());
-            emit(  AddToCartitemsFailureState());
-          
+            emit(AddToCartitemsFailureState(error: error.toString()));
           },
 
           (val) {
-            emit(  AddToCartitemsSuccessState());
-          
+            emit(AddToCartitemsSuccessState());
           },
         );
   }
-
-
-
-
-  
 }

@@ -23,7 +23,7 @@ class HomeRemoteData {
     }
   }
 
-  Future<List> cart_products({required praductid}) async {
+  Future<List> cartProducts({required praductid}) async {
     try {
       final Response response = await dio.post(
         'https://accessories-eshop.runasp.net/api/cart/items',
@@ -42,17 +42,25 @@ class HomeRemoteData {
     }
   }
 
-  Future<List> get_categories() async {
+  Future<List> getCategories() async {
     log("before res");
+
     try {
       final Response response = await dio.get(
         "https://accessories-eshop.runasp.net/api/categories",
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODEwMDc4Mi1mMTAxLTRjNzYtMzVkOS0wOGRmMGRhYTRmOTMiLCJqdGkiOiJjNWJhNzUwNi03NzM0LTQ3Y2EtYjUzMy0zNzIxNzM2MzgzYmMiLCJlbWFpbCI6Im1hcmlhbWFidW11c2FsbG01NUBnbWFpbC5jb20iLCJuYW1lIjoibWFyaWFtIGVtYWQiLCJyb2xlcyI6IiIsInBpY3R1cmUiOiIiLCJleHAiOjE3ODkxMDU0NDksImlzcyI6ImVzaG9wLm5ldCIsImF1ZCI6ImVzaG9wLm5ldCJ9.tRC5Ra3HL4qQypbaEI6eHmTLcI82T9cVx_gEEYezf0I',
+          },
+        ),
       );
       log(response.data.toString());
+      log("after res");
+
       return response.data["categories"];
-      log("afater res");
-    } on DioException catch (e) {
-      throw Exception(e.response?.data['message']);
+    } on Exception catch (e) {
+      throw Exception(e.toString());
     }
   }
 }

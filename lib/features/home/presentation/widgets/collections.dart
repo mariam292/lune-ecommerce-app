@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
@@ -9,7 +10,7 @@ import 'package:nti_final_project/features/home/presentation/cubits/category_sta
 import 'package:nti_final_project/features/home/presentation/widgets/collection_view.dart';
 
 class Collection extends StatefulWidget {
-  Collection({super.key});
+  const Collection({super.key});
 
   @override
   State<Collection> createState() => _CollectionState();
@@ -46,7 +47,15 @@ class _CollectionState extends State<Collection> {
           ],
         ),
 
-        BlocBuilder<CategoryCubit, CategoryState>(
+        BlocConsumer<CategoryCubit, CategoryState>(
+          listener: (context, state) {
+               if (state is CategoryFailureState)
+           {
+
+                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString()),backgroundColor: AppColors.primaryColor,));
+           }
+          },
+          
           builder: (context, state) {
             if (state is CategoryLoadingState) {
               return Center(child: CircularProgressIndicator());
