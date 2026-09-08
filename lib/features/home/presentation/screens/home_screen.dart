@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
  @override
   void initState() {
     super.initState();
-    
+    context.read<CategoryCubit>().get_category();
      context.read<ProductsCubit>().get_products(); 
   }
  

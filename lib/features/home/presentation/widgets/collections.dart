@@ -19,12 +19,8 @@ class Collection extends StatefulWidget {
 }
 
 class _CollectionState extends State<Collection> {
-   void initState() {
-    super.initState();
-    context.read<CategoryCubit>().get_category();
-      
-  }
-  List collection=[];
+  
+    List<dynamic> Collection=[];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,23 +50,28 @@ class _CollectionState extends State<Collection> {
           ],
         ),
 
-        BlocBuilder<CategoryCubit, CategoryState>(
+        BlocConsumer<CategoryCubit, CategoryState>(
+          listener: (context, state) {
+               if (state is CategoryFailureState)
+           {
+
+                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString()),backgroundColor: AppColors.primaryColor,));
+           }
+          },
+          
           builder: (context, state) {
+        
            if(state is CategoryLoadingState)
            {
 
             return Center(child: CircularProgressIndicator(),);
            }
-           else if (state is CategoryFailureState)
-           {
-
-          return Text("Error...............");
-           }
+         
            else if (state is CategorySuccessState)
 
            {
-              collection=state.category;
-              log("hggff${collection}");
+               Collection=state.category;
+              log("zahra ${ Collection.toString()}");
             return SizedBox(
               height: 100,
               child: ListView.separated(
@@ -81,7 +82,7 @@ class _CollectionState extends State<Collection> {
                   return SizedBox(width: 12);
                 },
 
-                itemCount: collection.length,
+                itemCount:  Collection.length,
 
                 itemBuilder: (context,index) {
                   return InkWell(
@@ -92,8 +93,8 @@ class _CollectionState extends State<Collection> {
                       ),
                     ),
                     child: CollectionView(
-                      img: collection[index]["coverPictureUrl"],
-                      name: collection[index]["name"],
+                      img:  Collection[index]["coverPictureUrl"],
+                      name:  Collection[index]["name"],
                     ),
                   );
                 },

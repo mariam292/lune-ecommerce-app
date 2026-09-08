@@ -7,7 +7,7 @@ class  CategorySuccessState extends  CategoryState{
 
  CategorySuccessState( this.category);
 
-final List  category;
+final  List<dynamic> category;
 
 
 
