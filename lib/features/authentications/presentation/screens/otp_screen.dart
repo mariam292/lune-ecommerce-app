@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,15 +27,48 @@ class _OtpVerificationState extends State<OtpVerification> {
     (index) => TextEditingController(),
   );
 
+  Timer? timer;
+  int seconds = 59;
+
   String get otp {
     return controllers.map((controller) => controller.text).join();
   }
 
   @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    timer?.cancel();
+
+    setState(() {
+      seconds = 59;
+    });
+
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        if (seconds > 0) {
+          setState(() {
+            seconds--;
+          });
+        } else {
+          timer.cancel();
+        }
+      },
+    );
+  }
+
+  @override
   void dispose() {
+    timer?.cancel();
+
     for (final controller in controllers) {
       controller.dispose();
     }
+
     super.dispose();
   }
 
@@ -131,6 +166,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                               } else if (value.isEmpty && index > 0) {
                                 FocusScope.of(context).previousFocus();
                               }
+
                               setState(() {});
                             },
                           ),
@@ -170,39 +206,34 @@ class _OtpVerificationState extends State<OtpVerification> {
                     },
                   ),
                   const SizedBox(height: 24),
-                  BlocBuilder<OtpCubit, OtpState>(
-                    builder: (context, state) {
-                      final isLoading = state is OtpLoading;
-
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Didn't receive the code? ",
-                            style: AppStyles.style14SemiBold.copyWith(
-                              color: const Color(0xFF7A6E6B),
-                            ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Didn't receive the code? ",
+                        style: AppStyles.style14SemiBold.copyWith(
+                          color: const Color(0xFF7A6E6B),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: seconds == 0
+                            ? () {
+                                context.read<OtpCubit>().resendOtp(
+                                      email: email,
+                                    );
+                                startTimer();
+                              }
+                            : null,
+                        child: Text(
+                          'Resend (0:${seconds.toString().padLeft(2, '0')})',
+                          style: AppStyles.style14SemiBold.copyWith(
+                            color: seconds == 0
+                                ? const Color(0xFF4A101D)
+                                : Colors.grey,
                           ),
-                          GestureDetector(
-                            onTap: isLoading
-                                ? null
-                                : () {
-                                    context.read<OtpCubit>().resendOtp(
-                                          email: email,
-                                        );
-                                  },
-                            child: Text(
-                              'Resend (0:59)',
-                              style: AppStyles.style14SemiBold.copyWith(
-                                color: isLoading
-                                    ? Colors.grey
-                                    : const Color(0xFF4A101D),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
