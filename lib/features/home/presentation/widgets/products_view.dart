@@ -9,7 +9,7 @@ import 'package:nti_final_project/features/home/presentation/cubits/cart_cubit.d
 import 'package:nti_final_project/features/home/presentation/cubits/cart_states.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_state.dart';
-import 'package:nti_final_project/features/product/presentation/cubits/reviews_cubit.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/get_reviews_cubit.dart';
 import 'package:nti_final_project/features/product/presentation/screens/product_details_screen.dart';
 
 class ProductsView extends StatefulWidget {

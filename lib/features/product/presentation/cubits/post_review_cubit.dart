@@ -9,24 +9,20 @@ class PostReviewCubit extends Cubit<PostReviewState> {
       PostReviewRemoteDataSource();
 
   Future<void> postReviewData(
-    String name,
-    String email,
-    String pass,
-    String phone,
+    String productId,
+    String comment,
   ) async {
     await postReviewRemoteDataSource
         .postReviewData(
-          message: message,
-          userId: userId,
           productId: productId,
           comment: comment,
         )
         .then(
           onError: (error) {
-            emit(SignUpFaliure());
+            emit(PostReviewFailureState());
           },
           (value) {
-            emit(SignUpSuccess());
+            emit(PostReviewSuccessState());
           },
         );
   }

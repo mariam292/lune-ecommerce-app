@@ -1,14 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
 
-import 'package:nti_final_project/features/authentications/presentation/widgets/text_fiield.dart';
-import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
-import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
+import 'package:nti_final_project/core/app_colors.dart';
+import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field_forgot_reset_pass.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/navigation_elevated_button.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/pass_text_field_section.dart';
+import 'package:nti_final_project/features/authentications/presentation/widgets/signup_header.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
+import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 
 class Signup extends StatefulWidget {
-  const Signup({super.key});
+  Signup({super.key});
 
   @override
   State<Signup> createState() {
@@ -26,168 +29,113 @@ class _SignupState extends State<Signup> {
   bool isPasswordHidden = true;
   bool isConfirmPasswordHidden = true;
 
+  Future<void> register() async {
+    final Dio dio = Dio();
+
+    final fullName = nameController.text.trim().split(' ');
+
+    final firstName = fullName.first;
+    final lastName =
+        fullName.length > 1 ? fullName.sublist(1).join(' ') : '';
+
+    final response = await dio.post(
+      "https://accessories-eshop.runasp.net/api/auth/register",
+      data: {
+        "email": emailController.text,
+        "password": passwordController.text,
+        "firstName": firstName,
+        "lastName": lastName,
+      },
+    );
+
+    print(response.data);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF8F6),
+      backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
-              const Text(
-                'LUNÉ',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF4C0D1C),
-                  letterSpacing: 2,
-                ),
+              SizedBox(height: 24),
+
+              SignupHeader(),
+
+              SizedBox(height: 16),
+
+              CustomTextFieldForgotResetPass(
+                labelText: 'FULL NAME',
+                hintText: 'Malk Amr',
+                controller: nameController,
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'Create Account',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF2D2D2D),
-                ),
-              ),
-              const SizedBox(height: 32),
-              CustomTextField(label: 'FULL NAME', hintText: 'Malk Amr'),
-              const SizedBox(height: 16),
-              CustomTextField(
-                label: 'EMAIL ADDRESS',
+
+              SizedBox(height: 12),
+
+              CustomTextFieldForgotResetPass(
+                labelText: 'EMAIL ADDRESS',
                 hintText: 'loka@gmail.com',
+                controller: emailController,
               ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                label: 'PASSWORD',
-                hintText: '••••••••••••',
-                isPassword: true,
-                isPasswordHidden: isPasswordHidden,
+
+              SizedBox(height: 12),
+
+              PassTextFieldSection(
+                labelText: 'PASSWORD',
+                hintText: 'Enter Your Password',
                 controller: passwordController,
-                onSuffixTap: () {
-                  setState(() {
-                    isPasswordHidden = !isPasswordHidden;
-                  });
-                },
               ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                label: 'CONFIRM PASSWORD',
-                hintText: '••••••••••••',
-                isPassword: true,
-                isPasswordHidden: isConfirmPasswordHidden,
+
+              SizedBox(height: 12),
+
+              PassTextFieldSection(
+                labelText: 'CONFIRM PASSWORD',
+                hintText: 'Confirm Your Password',
                 controller: confirmPasswordController,
-                onSuffixTap: () {
-                  setState(() {
-                    isConfirmPasswordHidden = !isConfirmPasswordHidden;
-                  });
-                },
               ),
-              const SizedBox(height: 32),
-              CustomButton(
-                text: 'Create Account',
-                onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) =>  MultiBlocProvider(
-                  providers: [
-                    BlocProvider(create: (context) => CategoryCubit()),
-                    BlocProvider(create: (context) =>  ProductsCubit()),
-                  ],
-                  child: HomeScreen() ,
-                ),),
+
+              SizedBox(height: 24),
+
+              Elevatedbutton(
+                buttontext: 'Create Account',
+                btntextstyle: TextStyle(
+                  color: Colors.white,
                 ),
+                buttoncolor: AppColors.primaryColor,
+                onpressed: register,
               ),
-              const SizedBox(height: 32),
-              const Row(
-                children: [
-                  Expanded(
-                    child: Divider(color: Color(0xFF4C0D1C), thickness: 1),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(
-                      'OR CONTINUE WITH',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFF4C0D1C),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(color: Color(0xFFEADFD8), thickness: 1),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.g_mobiledata,
-                        size: 28,
-                        color: Colors.black,
-                      ),
-                      label: const Text(
-                        'Google',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: Color(0xFFEADFD8)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.apple,
-                        size: 22,
-                        color: Colors.black,
-                      ),
-                      label: const Text(
-                        'Apple',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: Color(0xFFEADFD8)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
+
+              SizedBox(height: 24),
+
+              NavigationElevatedButton(),
+
+              SizedBox(height: 24),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Already have an account? ',
-                    style: TextStyle(color: Color(0xFF7A6E6B), fontSize: 13),
+                    style: AppStyles.style14Regular.copyWith(
+                      color: Color(0xFF7A6E6B),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: const Text(
+                    child: Text(
                       'Login',
-                      style: TextStyle(
+                      style: AppStyles.style14Regular.copyWith(
                         color: Color(0xFF4A101D),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
                       ),
                     ),
                   ),

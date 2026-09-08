@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/features/product/data/remote_data_source/remote_data_source.dart';
-import 'package:nti_final_project/features/product/presentation/add_product_cubit/add_product_states.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/add_product_states.dart';
 
 class AddProductCuibt extends Cubit<AddProductState> {
   AddProductCuibt() : super(AddProductInitialState());

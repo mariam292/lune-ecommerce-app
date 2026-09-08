@@ -18,7 +18,7 @@ class HomeRemoteData {
       }
 
       return products;
-    } on DioException catch (e) {
+    } on DioException catch (e) { 
       throw Exception(e.response?.data['message']);
     }
   }
@@ -55,4 +55,6 @@ class HomeRemoteData {
       throw Exception(e.response?.data['message']);
     }
   }
+
+
 }

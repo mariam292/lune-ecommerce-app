@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
-import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
-import 'package:nti_final_project/features/product/presentation/add_product_cubit/add_product_cuibt.dart';
-import 'package:nti_final_project/features/product/presentation/add_product_cubit/add_product_states.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/add_product_cuibt.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/add_product_states.dart';
 import '../../../../core/app_colors.dart';
 
 class AddProductScreen extends StatefulWidget {

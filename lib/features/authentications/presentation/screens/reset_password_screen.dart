@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/elevatedbutton.dart';
+import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/header_forgot_reset_section.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/pass_text_field_section.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';

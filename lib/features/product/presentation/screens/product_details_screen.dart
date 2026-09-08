@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/features/home/data/product_model.dart';
-import 'package:nti_final_project/features/product/presentation/cubits/reviews_cubit.dart';
+import 'package:nti_final_project/features/product/presentation/cubits/get_reviews_cubit.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/addtocart.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/detailscontainer.dart';
 
