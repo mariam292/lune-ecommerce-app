@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/otp_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
 import 'package:nti_final_project/features/spalsh/spalsh_screen.dart';
 
