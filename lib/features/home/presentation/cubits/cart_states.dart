@@ -12,4 +12,9 @@ class   AddToCartitemsSuccessState extends   AddToCartState {}
 
 
 
-class   AddToCartitemsFailureState extends AddToCartState{}
+class   AddToCartitemsFailureState extends AddToCartState{
+       AddToCartitemsFailureState({ required this.error});
+
+      final String error;
+
+}

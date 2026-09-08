@@ -18,14 +18,14 @@ Future<void> addcartproducts({required product_id}) async {
         .then(
           onError: (error) {
                
-            emit(  AddToCartitemsFailureState());
+            emit(  AddToCartitemsFailureState(error:error.toString()));
           
           },
 
           (val) {
             emit(  AddToCartitemsSuccessState());
           
-          },
+          }
         );
   }
 
