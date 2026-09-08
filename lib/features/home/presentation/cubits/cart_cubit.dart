@@ -17,7 +17,7 @@ Future<void> addcartproducts({required product_id}) async {
         .cart_products(praductid: product_id)
         .then(
           onError: (error) {
-            log(error.toString());
+               
             emit(  AddToCartitemsFailureState());
           
           },

@@ -48,12 +48,19 @@ class _ProductsViewState extends State<ProductsView> {
           ],
         ),
 
-        BlocBuilder<ProductsCubit, ProductsState>(
+        BlocConsumer<ProductsCubit, ProductsState>(
+          listener: (context, state) {
+            if (state is ProductsFailureState) {
+                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString()),backgroundColor: AppColors.primaryColor,));
+;
+            }
+
+             
+
+          },
           builder: (context, state) {
             if (state is ProductsLoadingState) {
               return Center(child: CircularProgressIndicator());
-            } else if (state is ProductsFailureState) {
-              return Text("Error..............");
             } else if (state is ProductsSuccessState)
               products = state.products;
             {
@@ -88,16 +95,19 @@ class _ProductsViewState extends State<ProductsView> {
                                 child: Container(
                                   width: double.infinity,
                                   height: 190,
+                                  clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                        products[index]["coverPictureUrl"],
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
                                   ),
+                                    
+                                      child:Image.network(
+                                        products[index]["coverPictureUrl"],
+                                        fit: BoxFit.cover,errorBuilder: (context, error, stackTrace) {
+                                          return Center(child:Icon(Icons.image_not_supported));
+                                        },
+                                      ),
+                                  
+                                  
                                 ),
                               ),
 
@@ -171,18 +181,24 @@ class _ProductsViewState extends State<ProductsView> {
                                                     content: Center(
                                                       child:
                                                           CircularProgressIndicator(),
-                                                    ),
+                                                    ),backgroundColor: AppColors.primaryColor, 
                                                   ),
                                                 );
                                               } else if (state
                                                   is AddToCartitemsSuccessState) {
-                                                Navigator.push(
+                                                
+                                                   ScaffoldMessenger.of(
                                                   context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Cartscreen(),
-                                                  ),
-                                                );
+                                                ).showSnackBar(
+                                                  SnackBar(
+                                                    content: Text("Item Added 👌")
+                                                   ,backgroundColor: AppColors.primaryColor, ),
+                                                  );
+                                                
+
+
+
+
                                               } else if (state
                                                   is AddToCartitemsFailureState) {
                                                 ScaffoldMessenger.of(
@@ -191,7 +207,7 @@ class _ProductsViewState extends State<ProductsView> {
                                                   SnackBar(
                                                     content: Text(
                                                       "invalid Item",
-                                                    ),
+                                                    ),backgroundColor: AppColors.primaryColor, 
                                                   ),
                                                 );
                                               }
