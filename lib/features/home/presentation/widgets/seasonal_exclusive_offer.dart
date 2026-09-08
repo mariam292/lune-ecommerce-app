@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/offers/presentation/cubits/offers_cubit.dart';
+import 'package:nti_final_project/features/offers/presentation/screens/offers_screen.dart';
 
 class SeasonalOffers extends StatelessWidget {
   const SeasonalOffers({super.key});
@@ -63,7 +66,14 @@ class SeasonalOffers extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OffersScreen(),
+                          ),
+                        );
+                      },
                       child: Text(
                         "SHOP NOW",
                         style: AppStyles.style14SemiBold.copyWith(
