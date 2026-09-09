@@ -103,9 +103,7 @@ class _OffersScreenState extends State<OffersScreen> {
                                       child: Stack(
                                         children: [
                                           InkWell(
-                                            onTap: () {
-                                              
-                                            },
+                                            onTap: () {},
                                             child: Container(
                                               width: double.infinity,
                                               height: 190,
@@ -114,7 +112,7 @@ class _OffersScreenState extends State<OffersScreen> {
                                                     BorderRadius.circular(12),
                                                 image: DecorationImage(
                                                   image: NetworkImage(
-                                                    "https://cdn.phototourl.com/free/2026-09-08-95efef8b-b53a-456f-a255-6f2208d2b4d2.png",
+                                                    "https://cdn.phototourl.com/free/2026-09-09-ef922c07-68bd-41cf-b602-7265b05e9304.png",
                                                     // myoffers[index]["coverUrl"],
                                                   ),
                                                   fit: BoxFit.cover,
