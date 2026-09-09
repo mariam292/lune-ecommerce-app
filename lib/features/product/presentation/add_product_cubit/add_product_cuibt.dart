@@ -16,6 +16,7 @@ class AddProductCuibt extends Cubit<AddProductState> {
     required double price,
     required String categoryid,
     required int stock,
+    required String imageurl,
   }) async {
     emit(AddProductLodingState());
 
@@ -26,17 +27,14 @@ class AddProductCuibt extends Cubit<AddProductState> {
         price: price,
         categoryid: categoryid,
         stock: stock,
+        imageurl: imageurl,
       );
 
       emit(AddProductSuccessState(myproduct: product));
     } catch (e) {
       log("ADD PRODUCT ERROR: $e");
 
-      emit(
-        AddProductFaliureState(
-          errormessage: e.toString(),
-        ),
-      );
+      emit(AddProductFaliureState(errormessage: e.toString()));
     }
   }
 }

@@ -10,6 +10,7 @@ class AddProductRemoteDataSource {
     required double price,
     required String categoryid,
     required int stock,
+    required String imageurl
   }) async {
     try {
       final Response response = await dio.post(
@@ -21,7 +22,7 @@ class AddProductRemoteDataSource {
           "nameArabic": name,
           "descriptionArabic": description,
           "coverPictureUrl":
-              "https://images.unsplash.com/photo-1584917865442-de89df76afd3",
+              imageurl,
           "price": price,
           "stock": stock,
           "weight": 1,
@@ -29,13 +30,13 @@ class AddProductRemoteDataSource {
           "discountPercentage": 0,
           "categoryIds": [categoryid],
           "productPictureUrls": [
-            "https://cdn.phototourl.com/free/2026-09-08-95efef8b-b53a-456f-a255-6f2208d2b4d2.png",
+            imageurl,
           ],
         },
         options: Options(
           headers: {
             'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmOTE5ZjczYy1kOGYwLTQ2YzYtNTE4Yi0wOGRmMGJkM2MwOGUiLCJqdGkiOiI3NDRjOWM3NC0zYTgyLTRlOTUtYWIwZC1lYTA4NzA2MWFhMmMiLCJlbWFpbCI6InJhZ2hhZG1vaGFtZWQ1NDVAZ21haWwuY29tIiwibmFtZSI6InJhZ2hhZCBtb2hhbWVkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MTExODk3LCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.c9bErANskia-zuMJM4Gl369_OicKtescWXFByBAFGGU',
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmOTE5ZjczYy1kOGYwLTQ2YzYtNTE4Yi0wOGRmMGJkM2MwOGUiLCJqdGkiOiIxMTYwNTRjYy01OTU4LTQxNjUtYjNlYi00MzA2Y2JmOGFlNzciLCJlbWFpbCI6InJhZ2hhZG1vaGFtZWQ1NDVAZ21haWwuY29tIiwibmFtZSI6InJhZ2hhZCBtb2hhbWVkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MTE1MjI0LCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.XcMmtpsfncKDs1H3DcYAcuDy0jP7uF8z_6xLUv3C96c',
           },
         ),
       );
