@@ -9,8 +9,21 @@ import 'package:nti_final_project/features/authentications/presentation/screens/
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field_forgot_reset_pass.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/header_forgot_reset_section.dart';
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
+
+  @override
+  State<ForgotPassword> createState() => _ForgotPasswordState();
+}
+
+class _ForgotPasswordState extends State<ForgotPassword> {
+  final emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,32 +36,23 @@ class ForgotPassword extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // back button svg icon
                 IconButton(
                   onPressed: () => Navigator.pop(context),
                   icon: SvgPicture.asset('assets/icons/back-circle.svg'),
                 ),
-
-                SizedBox(height: 34),
-
-                //header section
+                const SizedBox(height: 34),
                 HeaderForgotResetSection(
                   headerTitle: 'Forgot Password?',
                   headerSubTitle:
                       'No worries! Enter your registered email address below, and we will send you instructions to reset your password.',
                 ),
-
-                SizedBox(height: 120),
-
-                //textField section
+                const SizedBox(height: 120),
                 CustomTextFieldForgotResetPass(
                   labelText: 'Email Address',
                   hintText: 'Please Enter Your Email',
+                  controller: emailController,
                 ),
-
-                SizedBox(height: 30),
-
-                //elevated button section
+                const SizedBox(height: 30),
                 Elevatedbutton(
                   buttontext: 'Send Reset Link',
                   btntextstyle: AppStyles.style14SemiBold.copyWith(
@@ -56,10 +60,21 @@ class ForgotPassword extends StatelessWidget {
                   ),
                   buttoncolor: AppColors.primaryColor,
                   onpressed: () {
+                    if (emailController.text.trim().isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please enter your email'),
+                        ),
+                      );
+                      return;
+                    }
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OtpVerification(),
+                        builder: (context) => OtpVerification(
+                          email: emailController.text.trim(),
+                        ),
                       ),
                     );
                   },
