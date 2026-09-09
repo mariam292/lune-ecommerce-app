@@ -10,7 +10,7 @@ class HomeRemoteData {
     List<ProductModel> products = [];
     try {
       final Response response = await dio.get(
-        'https://accessories-eshop.runasp.net/api/products',
+        'https://accessories-eshop.runasp.net/api/products', data: {"page":3},
       );
       for (var element in response.data['items']) {
         final ProductModel model = ProductModel.fromJson(element);
@@ -23,11 +23,11 @@ class HomeRemoteData {
     }
   }
 
-  Future<List> cartProducts({required praductid}) async {
+  Future<dynamic> cartProducts({required praductid}) async {
     try {
       final Response response = await dio.post(
         'https://accessories-eshop.runasp.net/api/cart/items',
-        data: {"productId": praductid, "quantity": 1},
+        data: {"productId": praductid, "quantity": 1  },
         options: Options(
           headers: {
             'Authorization':

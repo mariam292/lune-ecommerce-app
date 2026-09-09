@@ -34,9 +34,9 @@ class AddProductRemoteDataSource {
         },
         options: Options(
           headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmOTE5ZjczYy1kOGYwLTQ2YzYtNTE4Yi0wOGRmMGJkM2MwOGUiLCJqdGkiOiI3NDRjOWM3NC0zYTgyLTRlOTUtYWIwZC1lYTA4NzA2MWFhMmMiLCJlbWFpbCI6InJhZ2hhZG1vaGFtZWQ1NDVAZ21haWwuY29tIiwibmFtZSI6InJhZ2hhZCBtb2hhbWVkIiwicm9sZXMiOiIiLCJwaWN0dXJlIjoiIiwiZXhwIjoxNzg5MTExODk3LCJpc3MiOiJlc2hvcC5uZXQiLCJhdWQiOiJlc2hvcC5uZXQifQ.c9bErANskia-zuMJM4Gl369_OicKtescWXFByBAFGGU',
-          },
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODEwMDc4Mi1mMTAxLTRjNzYtMzVkOS0wOGRmMGRhYTRmOTMiLCJqdGkiOiJkZGIwOWYwZC1iNmE2LTQ2MzAtODNiNy1iZWU4YWNhOTk0N2YiLCJlbWFpbCI6Im1hcmlhbWFidW11c2FsbG01NUBnbWFpbC5jb20iLCJuYW1lIjoibWFyaWFtIGVtYWQiLCJyb2xlcyI6IiIsInBpY3R1cmUiOiIiLCJleHAiOjE3ODkxMzUzODgsImlzcyI6ImVzaG9wLm5ldCIsImF1ZCI6ImVzaG9wLm5ldCJ9.kxzJNxC_ioo6lFvdCtaoT1jUk1wB2ocOXBnjNNoNrAc',
+
+                         },
         ),
       );
       log("Success Status Code: ${response.statusCode}");
