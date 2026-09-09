@@ -161,18 +161,21 @@ class _ProductsViewState extends State<ProductsView> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
                                       ),
-                                     child: Image.network(
-                                      products[index].image,
-                                      fit: BoxFit.cover,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                            return Center(
-                                              child: Icon(
-                                                Icons.image_not_supported,
-                                              ),
-                                            );
-                                          },
-                                    ),
+                                     child:  ClipRRect(
+                                      borderRadius:BorderRadius.circular(12) ,
+                                       child: Image.network(
+                                        products[index].image,
+                                        fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                              return Center(
+                                                child: Icon(
+                                                  Icons.image_not_supported,
+                                                ),
+                                              );
+                                            },
+                                                                           ),
+                                     ),
                                    
                                   ),
                                 ),
