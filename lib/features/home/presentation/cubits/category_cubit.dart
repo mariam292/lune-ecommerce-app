@@ -9,6 +9,7 @@ class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitialState());
 
   HomeRemoteData homeRemoteData = HomeRemoteData();
+<<<<<<< HEAD
   Future<void> getCategory() async {
     emit(CategoryLoadingState());
 
@@ -17,8 +18,24 @@ class CategoryCubit extends Cubit<CategoryState> {
         emit(CategoryFailureState(error));
       },
       (val) {
+=======
+
+  Future<void> get_category() async {
+    emit(CategoryLoadingState());
+
+    await homeRemoteData.get_categories().then(
+      onError: (error) {
+        emit(CategoryFailureState(error.toString()));
+      },
+      (val) {
+        print(val);
+>>>>>>> origin/Nour
         emit(CategorySuccessState(val));
       },
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Nour
