@@ -162,7 +162,7 @@ class _ProductsViewState extends State<ProductsView> {
                                           context
                                               .read<AddToCartCubit>()
                                               .addcartproducts(
-                                                product_id: products[index].id,
+                                                productId: products[index].id,
                                               );
 
                                           BlocListener<

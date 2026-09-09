@@ -9,11 +9,11 @@ class AddToCartCubit extends Cubit<AddToCartState> {
 
   HomeRemoteData homeRemoteData = HomeRemoteData();
 
-  Future<void> addcartproducts({required product_id}) async {
+  Future<void> addcartproducts({required productId}) async {
     emit(AddToCartitemsLoadingState());
 
     await homeRemoteData
-        .cartProducts(praductid: product_id)
+        .cartProducts(praductid: productId)
         .then(
           onError: (error) {
             emit(AddToCartitemsFailureState(error: error.toString()));

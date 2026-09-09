@@ -9,7 +9,7 @@ class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitialState());
 
   HomeRemoteData homeRemoteData = HomeRemoteData();
-  Future<void> get_category() async {
+  Future<void> getCategory() async {
     emit(CategoryLoadingState());
 
     await homeRemoteData.getCategories().then(
