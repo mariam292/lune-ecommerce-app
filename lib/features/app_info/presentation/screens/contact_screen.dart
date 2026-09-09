@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 import 'package:nti_final_project/features/app_info/presentation/widgets/customappbar.dart';
-=======
-import '../../../../core/app_colors.dart';
-import '../../../../core/app_text_style.dart';
-
->>>>>>> origin/Nour
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({super.key});
@@ -53,22 +47,15 @@ class ContactScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
 
-                    _buildTextField(
-                      hintText: 'Your Name',
-                    ),
+                    _buildTextField(hintText: 'Your Name'),
 
                     const SizedBox(height: 12),
 
-                    _buildTextField(
-                      hintText: 'Your Email',
-                    ),
+                    _buildTextField(hintText: 'Your Email'),
 
                     const SizedBox(height: 12),
 
-                    _buildTextField(
-                      hintText: 'Message',
-                      maxLines: 5,
-                    ),
+                    _buildTextField(hintText: 'Message', maxLines: 5),
 
                     const SizedBox(height: 20),
 
@@ -137,15 +124,10 @@ class ContactScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField({
-    required String hintText,
-    int maxLines = 1,
-  }) {
+  Widget _buildTextField({required String hintText, int maxLines = 1}) {
     return TextField(
       maxLines: maxLines,
-      style: AppStyles.style14Regular.copyWith(
-        color: AppColors.blackColor,
-      ),
+      style: AppStyles.style14Regular.copyWith(color: AppColors.blackColor),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppStyles.style14Regular.copyWith(

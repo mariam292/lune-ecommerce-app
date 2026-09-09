@@ -36,10 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.3.0
   dio: ^5.11.1
-<<<<<<< HEAD
   bloc: ^9.2.1
-=======
->>>>>>> origin/Nour
   flutter_bloc: ^9.1.1
 
 dev_dependencies:

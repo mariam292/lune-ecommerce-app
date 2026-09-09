@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutter_bloc/flutter_bloc.dart';
-=======
->>>>>>> origin/Nour
 import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
@@ -39,9 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> login() async {
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please enter email and password'),
-        ),
+        const SnackBar(content: Text('Please enter email and password')),
       );
       return;
     }
@@ -60,18 +55,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => HomeScreen(),
-        ),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     } catch (e) {
       if (!mounted) return;
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login failed'),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Login failed')));
     }
 
     if (mounted) {
@@ -185,20 +176,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
                 height: 54,
                 child: ElevatedButton(
-<<<<<<< HEAD
                   onPressed: () => Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) =>  MultiBlocProvider(
-                  providers: [
-                    BlocProvider(create: (context) => CategoryCubit()),
-                    BlocProvider(create: (context) =>  ProductsCubit()),
-                  ],
-                  child: HomeScreen() ,
-                ),),
+                    MaterialPageRoute(
+                      builder: (context) => MultiBlocProvider(
+                        providers: [
+                          BlocProvider(create: (context) => CategoryCubit()),
+                          BlocProvider(create: (context) => ProductsCubit()),
+                        ],
+                        child: HomeScreen(),
+                      ),
+                    ),
                   ),
-=======
-                  onPressed: isLoading ? null : login,
->>>>>>> origin/Nour
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryColor,
                     shape: RoundedRectangleBorder(
@@ -223,10 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 children: [
                   const Expanded(
-                    child: Divider(
-                      color: AppColors.colorEADFD8,
-                      thickness: 1,
-                    ),
+                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
@@ -240,10 +226,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const Expanded(
-                    child: Divider(
-                      color: AppColors.colorEADFD8,
-                      thickness: 1,
-                    ),
+                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
                   ),
                 ],
               ),
@@ -260,15 +243,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       label: const Text(
                         'Google',
-                        style: TextStyle(
-                          color: AppColors.blackColor,
-                        ),
+                        style: TextStyle(color: AppColors.blackColor),
                       ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(
-                          color: AppColors.colorEADFD8,
-                        ),
+                        side: const BorderSide(color: AppColors.colorEADFD8),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -285,15 +264,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       label: const Text(
                         'Apple',
-                        style: TextStyle(
-                          color: AppColors.blackColor,
-                        ),
+                        style: TextStyle(color: AppColors.blackColor),
                       ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(
-                          color: AppColors.colorEADFD8,
-                        ),
+                        side: const BorderSide(color: AppColors.colorEADFD8),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -316,9 +291,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Signup(),
-                      ),
+                      MaterialPageRoute(builder: (context) => Signup()),
                     ),
                     child: const Text(
                       'Sign Up',

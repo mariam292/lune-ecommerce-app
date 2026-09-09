@@ -12,7 +12,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoryCubit()..get_category(),
+      create: (context) => CategoryCubit(),
       child: Scaffold(
         backgroundColor: AppColors.backGroundColor,
         body: SafeArea(
@@ -24,15 +24,11 @@ class CategoryScreen extends StatelessWidget {
                 child: BlocBuilder<CategoryCubit, CategoryState>(
                   builder: (context, state) {
                     if (state is CategoryLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return const Center(child: CircularProgressIndicator());
                     }
 
                     if (state is CategoryFailureState) {
-                      return Center(
-                        child: Text(state.error),
-                      );
+                      return Center(child: Text(state.error));
                     }
 
                     if (state is CategorySuccessState) {
@@ -42,11 +38,11 @@ class CategoryScreen extends StatelessWidget {
                         itemCount: categories.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio: 167 / 155,
-                        ),
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio: 167 / 155,
+                            ),
                         itemBuilder: (context, index) {
                           final category = categories[index];
 
