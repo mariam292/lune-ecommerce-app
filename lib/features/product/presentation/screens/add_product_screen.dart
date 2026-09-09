@@ -23,6 +23,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController categoryController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController stockController = TextEditingController();
+  final TextEditingController imageurlController = TextEditingController();
 
   @override
   void dispose() {
@@ -31,6 +32,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     categoryController.dispose();
     priceController.dispose();
     stockController.dispose();
+    imageurlController.dispose();
     super.dispose();
   }
 
@@ -117,11 +119,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
                 CustomTextField(
                   label: "Category GUID",
-                  hintText: "Select or enter category ID",
+                  hintText: " Enter category ID",
                   controller: categoryController,
                 ),
 
-                SizedBox(height: 16),
+                SizedBox(height: 12),
+
+                CustomTextField(
+                  label: "Image url",
+                  hintText: " Enter Image Url",
+                  controller: imageurlController,
+                ),
+
+                SizedBox(height: 12),
 
                 Row(
                   children: [
@@ -185,6 +195,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           price: double.tryParse(priceController.text) ?? 0.0,
                           categoryid: categoryController.text,
                           stock: int.tryParse(stockController.text) ?? 0,
+                          imageurl: imageurlController.text,
                         );
                       },
                     );
