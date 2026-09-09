@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,130 +50,12 @@ class _ProductsViewState extends State<ProductsView> {
           ],
         ),
 
-        BlocConsumer<ProductsCubit, ProductsState>(
-          listener: (context, state) {
-            if (state is ProductsFailureState) {
-                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString()),backgroundColor: AppColors.primaryColor,));
-;
-            }
-
-             
-
-          },
-          builder: (context, state) {
-            if (state is ProductsLoadingState) {
-              return Center(child: CircularProgressIndicator());
-            } else if (state is ProductsSuccessState)
-              products = state.products;
-            {
-              return SizedBox(
-                width: double.infinity,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisExtent: 300,
-                    mainAxisSpacing: 10
-                  ),
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: products.length,
-
-                  itemBuilder: (context, index) {
-                    return Column(
-                      spacing: 5,
-                      children: [
-                        Expanded(
-                          child: Stack(
-                            children: [
-                              InkWell(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        Productdetailsscreen(),
-                                  ),
-                                ),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 190,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                    
-                                      child:Image.network(
-                                        products[index]["coverPictureUrl"],
-                                        fit: BoxFit.cover,errorBuilder: (context, error, stackTrace) {
-                                          return Center(child:Icon(Icons.image_not_supported));
-                                        },
-                                      ),
-                                  
-                                  
-                                ),
-                              ),
-
-                              Positioned(
-                                left: 140,
-                                right: 0,
-                                top: 0,
-                                bottom: 150,
-
-                                child: IconButton(
-                                  onPressed: () {},
-                                  icon: SvgPicture.asset(
-                                    "assets/icons/LikeBadge.svg",
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    products[index]["categories"][0],
-                                    style: AppStyles.style12Medium.copyWith(
-                                      color: AppColors.color7A6E6B,
-                                    ), 
-                                  ),
-
-                                  Text(
-                                    products[index]["name"],
-                                    style: AppStyles.style14SemiBold.copyWith(
-                                      color: AppColors.primaryColor,
-                                    ),maxLines: 1,overflow: TextOverflow.ellipsis,
-                                  ),
-
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "\$${products[index]["price"]}",
-                                        style: AppStyles.style12Regular
-                                            .copyWith(
-                                              color: AppColors.color7A6E6B,
-                                            ),
-                                      ),
-                                      Spacer(),
-
-                                      IconButton(
-                                        onPressed: () {
-                                          context
-                                              .read<AddToCartCubit>()
-                                              .addcartproducts(
-                                                product_id:
-                                                    products[index]["id"] ,
-                                              );
-
-                                          BlocListener<
+           BlocListener<
                                             AddToCartCubit,
                                             AddToCartState
                                           >(
                                             listener: (context, state) {
+                                              log("Adddddddddd$state");
                                               if (state
                                                   is AddToCartitemsLoadingState) {
                                                 ScaffoldMessenger.of(
@@ -181,7 +65,7 @@ class _ProductsViewState extends State<ProductsView> {
                                                     content: Center(
                                                       child:
                                                           CircularProgressIndicator(),
-                                                    ),backgroundColor: AppColors.primaryColor, 
+                                                    ),backgroundColor: Colors.amberAccent, 
                                                   ),
                                                 );
                                               } else if (state
@@ -191,8 +75,8 @@ class _ProductsViewState extends State<ProductsView> {
                                                   context,
                                                 ).showSnackBar(
                                                   SnackBar(
-                                                    content: Text("Item Added 👌")
-                                                   ,backgroundColor: AppColors.primaryColor, ),
+                                                    content: Text("Item Added successfully ☝️")
+                                                   ,backgroundColor: Colors.green, ),
                                                   );
                                                 
 
@@ -206,32 +90,162 @@ class _ProductsViewState extends State<ProductsView> {
                                                 ).showSnackBar(
                                                   SnackBar(
                                                     content: Text(
-                                                      "invalid Item",
+                                                      "Error:${state.error.toString()}",
                                                     ),backgroundColor: AppColors.primaryColor, 
                                                   ),
                                                 );
                                               }
                                             },
-                                          );
-                                        },
-                                        icon: SvgPicture.asset(
-                                          "assets/icons/Button.svg",
-                                        ),
-                                      ),
-                                    ],
+                                      
+                                       
+          child: BlocConsumer<ProductsCubit, ProductsState>(
+            listener: (context, state) {
+              if (state is ProductsFailureState) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.error.toString()),
+                    backgroundColor: AppColors.primaryColor,
+                  ),
+                );
+                ;
+              }
+            },
+            builder: (context, state) {
+              if (state is ProductsLoadingState) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is ProductsSuccessState)
+                products = state.products;
+              {
+                return SizedBox(
+                  width: double.infinity,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisExtent: 300,
+                      mainAxisSpacing: 10,
+                    ),
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: products.length,
+
+                    itemBuilder: (context, index) {
+                      return Column(
+                        spacing: 5,
+                        children: [
+                          Expanded(
+                            child: Stack(
+                              children: [
+                                InkWell(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          Productdetailsscreen(),
+                                    ),
                                   ),
-                                ],
-                              ),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 190,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+
+                                    child: Image.network(
+                                      products[index]["coverPictureUrl"],
+                                      fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                            return Center(
+                                              child: Icon(
+                                                Icons.image_not_supported,
+                                              ),
+                                            );
+                                          },
+                                    ),
+                                  ),
+                                ),
+
+                                Positioned(
+                                  left: 140,
+                                  right: 0,
+                                  top: 0,
+                                  bottom: 150,
+
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: SvgPicture.asset(
+                                      "assets/icons/LikeBadge.svg",
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              );
-            }
-          },
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      products[index]["categories"][0],
+                                      style: AppStyles.style12Medium.copyWith(
+                                        color: AppColors.color7A6E6B,
+                                      ),
+                                    ),
+
+                                    Text(
+                                      products[index]["name"],
+                                      style: AppStyles.style14SemiBold.copyWith(
+                                        color: AppColors.primaryColor,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "\$${products[index]["price"]}",
+                                          style: AppStyles.style12Regular
+                                              .copyWith(
+                                                color: AppColors.color7A6E6B,
+                                              ),
+                                        ),
+                                        Spacer(),
+
+                                        IconButton(
+                                          onPressed: () {
+                                            context
+                                                .read<AddToCartCubit>()
+                                                .addcartproducts(
+                                                  product_id:
+                                                      products[index]["id"],
+                                                );
+
+                                      
+                                          },
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/Button.svg",
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ],
     );
