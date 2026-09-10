@@ -25,22 +25,25 @@ class CustomTextFieldForgotResetPass extends StatelessWidget {
             color: AppColors.color7A6E6B,
           ),
         ),
-        SizedBox(height: 8),
-
+        const SizedBox(height: 8),
         TextFormField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: AppStyles.style14Light.copyWith(
               color: AppColors.color7A6E6B,
             ),
-
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide(color: AppColors.colorEADFD8),
+              borderSide: const BorderSide(
+                color: AppColors.colorEADFD8,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide(color: AppColors.primaryColor),
+              borderSide: const BorderSide(
+                color: AppColors.primaryColor,
+              ),
             ),
           ),
         ),

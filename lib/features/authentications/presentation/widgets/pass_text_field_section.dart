@@ -9,7 +9,9 @@ class PassTextFieldSection extends StatefulWidget {
     required this.hintText,
     this.controller,
   });
-  final String labelText, hintText;
+
+  final String labelText;
+  final String hintText;
   final TextEditingController? controller;
 
   @override
@@ -18,6 +20,7 @@ class PassTextFieldSection extends StatefulWidget {
 
 class _PassTextFieldSectionState extends State<PassTextFieldSection> {
   bool isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,8 +32,9 @@ class _PassTextFieldSectionState extends State<PassTextFieldSection> {
             color: AppColors.color7A6E6B,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         TextFormField(
+          controller: widget.controller,
           obscureText: isObscure,
           decoration: InputDecoration(
             suffixIcon: IconButton(
@@ -45,18 +49,21 @@ class _PassTextFieldSectionState extends State<PassTextFieldSection> {
                     : Icons.visibility_outlined,
               ),
             ),
-
             hintText: widget.hintText,
             hintStyle: AppStyles.style14Light.copyWith(
               color: AppColors.color7A6E6B,
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide(color: AppColors.colorEADFD8),
+              borderSide: const BorderSide(
+                color: AppColors.colorEADFD8,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
-              borderSide: BorderSide(color: AppColors.primaryColor),
+              borderSide: const BorderSide(
+                color: AppColors.primaryColor,
+              ),
             ),
           ),
         ),

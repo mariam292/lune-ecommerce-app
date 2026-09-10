@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
@@ -25,7 +26,7 @@ class Customappbar extends StatelessWidget implements PreferredSizeWidget {
           icon: SvgPicture.asset("assets/icons/cart_bag.svg"),
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Cartscreen()),
+            MaterialPageRoute(builder: (context) =>  MainScreen(index:2)),
           ),
         ),
       ],

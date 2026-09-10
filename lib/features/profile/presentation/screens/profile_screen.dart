@@ -22,7 +22,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backGroundColor,
-
       body: SafeArea(
         child: Column(
           children: [
@@ -36,9 +35,7 @@ class ProfileScreen extends StatelessWidget {
                     onTap: () => Navigator.pop(context),
                     child: SvgPicture.asset("assets/icons/back-circle.svg"),
                   ),
-
                   const SizedBox(width: 16),
-
                   Text(
                     'My Profile',
                     style: AppStyles.style28Regular.copyWith(
@@ -48,17 +45,13 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Profile Content
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
                 child: Column(
                   children: [
                     const ProfileHeaderCard(),
-
                     const SizedBox(height: 24),
-
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -76,67 +69,71 @@ class ProfileScreen extends StatelessWidget {
                                 'assets/icons/Toggle Switch_margin.svg',
                             ontap: () {},
                           ),
-                          Divider(),
-
+                          const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/change_password.svg',
                             title: 'Change Password',
                             suffixiconpath: 'assets/icons/vector_2.svg',
-                            ontap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ChangePasswordScreen(),
-                              ),
-                            ),
+                            ontap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ChangePasswordScreen(),
+                                ),
+                              );
+                            },
                           ),
-                          Divider(),
-
+                          const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/privacy_policy.svg',
                             title: 'Privacy Policy',
                             suffixiconpath: 'assets/icons/vector_2.svg',
-                            ontap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PrivacyScreen(),
-                              ),
-                            ),
+                            ontap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PrivacyScreen(),
+                                ),
+                              );
+                            },
                           ),
-                          Divider(),
-
+                          const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/language.svg',
                             title: 'Language',
                             suffixiconpath: 'assets/icons/vector_2.svg',
                             ontap: () {},
                           ),
-                          Divider(),
-
+                          const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/about_us.svg',
                             title: 'About Us',
                             suffixiconpath: 'assets/icons/vector_2.svg',
-                            ontap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AboutUs(),
-                              ),
-                            ),
+                            ontap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AboutUs(),
+                                ),
+                              );
+                            },
                           ),
-                          Divider(),
-
+                          const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/contact_us.svg',
                             title: 'Contact Us',
                             suffixiconpath: 'assets/icons/vector_2.svg',
-                            ontap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ContactScreen(),
-                              ),
-                            ),
+                            ontap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ContactScreen(),
+                                ),
+                              );
+                            },
                           ),
-                          Divider(),
+                          const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/carbon_add-alt.svg',
                             title: 'Add New Product',
@@ -175,8 +172,6 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
-
-      // Custom Bottom Navigation Bar
     );
   }
 }

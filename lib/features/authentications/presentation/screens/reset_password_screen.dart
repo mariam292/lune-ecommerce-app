@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
@@ -66,13 +67,7 @@ class ResetPassword extends StatelessWidget {
                   buttoncolor: AppColors.primaryColor,
                   onpressed: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>  MultiBlocProvider(
-                  providers: [
-                    BlocProvider(create: (context) => CategoryCubit()),
-                    BlocProvider(create: (context) =>  ProductsCubit()),
-                  ],
-                  child: HomeScreen() ,
-                ),),
+                    MaterialPageRoute(builder: (context) =>  MainScreen()),
                   ),
                 ),
               ],

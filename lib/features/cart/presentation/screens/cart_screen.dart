@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
+ 
 import 'package:nti_final_project/features/cart/presentation/cubits/cart_cubit.dart';
 import 'package:nti_final_project/features/cart/presentation/cubits/cart_states.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
@@ -29,7 +30,7 @@ class _CartscreenState extends State<Cartscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(),
+      
       backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.backGroundColor,
@@ -155,7 +156,7 @@ class _CartscreenState extends State<Cartscreen> {
                   onpressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) =>  MainScreen()),
                     );
                   },
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_text_field.dart';
 import '../../../../core/app_colors.dart';
+import '../../data/api/auth_api.dart';
+import 'forgot_password_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -10,15 +12,19 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  final AuthApi authApi = AuthApi();
+
   final TextEditingController _currentPasswordController =
       TextEditingController();
-  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _newPasswordController =
+      TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
   bool _isCurrentPasswordHidden = true;
   bool _isNewPasswordHidden = true;
   bool _isConfirmPasswordHidden = true;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -26,6 +32,65 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     _newPasswordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  Future<void> changePassword() async {
+    if (_currentPasswordController.text.isEmpty ||
+        _newPasswordController.text.isEmpty ||
+        _confirmPasswordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill all fields'),
+        ),
+      );
+      return;
+    }
+
+    if (_newPasswordController.text !=
+        _confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Passwords do not match'),
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await authApi.changePassword(
+        currentPassword: _currentPasswordController.text,
+        newPassword: _newPasswordController.text,
+        confirmNewPassword: _confirmPasswordController.text,
+      );
+
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Password changed successfully'),
+        ),
+      );
+
+      Navigator.pop(context);
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Failed to change password'),
+        ),
+      );
+    }
+
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -40,7 +105,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 16),
-                // Back Button & Title
                 Row(
                   children: [
                     Container(
@@ -49,7 +113,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
-                        icon: const Icon(Icons.arrow_back_ios_new, size: 18),
+                        icon: const Icon(
+                          Icons.arrow_back_ios_new,
+                          size: 18,
+                        ),
                         onPressed: () => Navigator.pop(context),
                       ),
                     ),
@@ -65,8 +132,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ],
                 ),
                 const SizedBox(height: 32),
-
-                // Card Container
                 Container(
                   padding: const EdgeInsets.all(24.0),
                   decoration: BoxDecoration(
@@ -94,8 +159,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         ),
                       ),
                       const SizedBox(height: 24),
-
-                      // Current Password
                       CustomTextField(
                         label: 'CURRENT PASSWORD',
                         controller: _currentPasswordController,
@@ -110,8 +173,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         },
                       ),
                       const SizedBox(height: 16),
-
-                      // New Password
                       CustomTextField(
                         label: 'NEW PASSWORD',
                         controller: _newPasswordController,
@@ -120,13 +181,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         isPasswordHidden: _isNewPasswordHidden,
                         onSuffixTap: () {
                           setState(() {
-                            _isNewPasswordHidden = !_isNewPasswordHidden;
+                            _isNewPasswordHidden =
+                                !_isNewPasswordHidden;
                           });
                         },
                       ),
                       const SizedBox(height: 16),
-
-                      // Confirm Password
                       CustomTextField(
                         label: 'CONFIRM NEW PASSWORD',
                         controller: _confirmPasswordController,
@@ -141,13 +201,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         },
                       ),
                       const SizedBox(height: 24),
-
-                      // Update Button
                       SizedBox(
                         width: double.infinity,
                         height: 50,
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed:
+                              _isLoading ? null : changePassword,
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(
                               color: AppColors.primaryColor,
@@ -156,25 +215,42 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               borderRadius: BorderRadius.circular(25),
                             ),
                           ),
-                          child: const Text(
-                            'update password',
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                          child: _isLoading
+                              ? const SizedBox(
+                                  height: 22,
+                                  width: 22,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : const Text(
+                                  'update password',
+                                  style: TextStyle(
+                                    color: AppColors.primaryColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                         ),
                       ),
                       const SizedBox(height: 16),
-
-                      // Forgot Password Link
                       Center(
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ForgotPassword(),
+                              ),
+                            );
+                          },
                           child: const Text(
                             'Forgot Password?',
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ),
