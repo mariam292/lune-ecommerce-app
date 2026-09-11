@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => MainScreen(index: 0,)),
       );
     } catch (e) {
       if (!mounted) return;
@@ -178,13 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () => Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MultiBlocProvider(
-                        providers: [
-                          BlocProvider(create: (context) => CategoryCubit()),
-                          BlocProvider(create: (context) => ProductsCubit()),
-                        ],
-                        child: HomeScreen(),
-                      ),
+                      builder: (context) => MainScreen()
                     ),
                   ),
                   style: ElevatedButton.styleFrom(

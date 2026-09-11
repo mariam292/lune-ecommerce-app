@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
@@ -89,7 +90,7 @@ class Addtocartsection extends StatelessWidget {
               buttoncolor: AppColors.primaryColor,
               onpressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Cartscreen()),
+                MaterialPageRoute(builder: (context) =>  MainScreen(index:2)),
               ),
             ),
           ),

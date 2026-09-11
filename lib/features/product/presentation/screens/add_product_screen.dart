@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
+ 
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
@@ -39,7 +40,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(),
+      
       backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: Padding(
@@ -173,7 +174,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                       );
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(builder: (context) => MainScreen()),
                       );
                     }
                   },
