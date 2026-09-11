@@ -33,6 +33,7 @@ class Reviewsection extends StatelessWidget {
                 color: AppColors.blackColor,
               ),
             ),
+            Spacer(),
             Text(
               date,
               style: AppStyles.style16Regular.copyWith(
