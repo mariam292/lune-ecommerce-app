@@ -14,7 +14,7 @@ class LuneApp extends StatelessWidget {
     return MaterialApp(
       theme: AppThemeData.lightTheme,
       darkTheme: AppThemeData.darkTheme,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       home: Splash(),
     );

@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
+import 'package:nti_final_project/core/theme/switch_theme_mode.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/about_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/contact_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/privacy_screen.dart';
@@ -62,34 +63,36 @@ class ProfileScreen extends StatelessWidget {
                       clipBehavior: Clip.antiAlias,
                       child: Column(
                         children: [
-                          child: Row(
-          children: [
-            // Menu icon
-            SizedBox(
-              width: 24,
-              height: 24,
-              child: SvgPicture.asset(icon, width: 24, height: 24),
-            ),
+                          Row(
+                            children: [
+                              // Menu icon
+                              SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: SvgPicture.asset(
+                                  'assets/icons/dark_mode.svg',
+                                  width: 24,
+                                  height: 24,
+                                ),
+                              ),
 
-            const SizedBox(width: 16),
+                              const SizedBox(width: 16),
 
-            // Menu title
-            Text(
-              title,
-              style: AppStyles.style16Regular,
-              // .copyWith(
-              //   color: AppColors.blackColor,
-              // ),
-            ),
-            Spacer(),
+                              // Menu title
+                              Text(
+                                'Dark Mode',
+                                style: AppStyles.style16Regular,
+                                // .copyWith(
+                                //   color: AppColors.blackColor,
+                                // ),
+                              ),
+                              Spacer(),
+                              //SwitchThemeMode(),
 
-            // Arrow
-            InkWell(
-              onTap: ontap,
-              child: SvgPicture.asset(suffixiconpath, width: 23, height: 23),
-            ),
-          ],
-        ),
+                              // Arrow
+                              //  SwitchListTile(value: true, onChanged: (newVal){})
+                            ],
+                          ),
                           // ProfileMenuItem(
                           //   icon: 'assets/icons/dark_mode.svg',
                           //   title: 'Dark Mode',
