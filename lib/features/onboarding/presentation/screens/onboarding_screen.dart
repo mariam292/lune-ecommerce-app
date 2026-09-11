@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
+import 'package:nti_final_project/features/authentications/presentation/cubit/login_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -88,7 +90,10 @@ class OnboardingScreen extends StatelessWidget {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                            builder: (context) => BlocProvider(
+                              create: (context) =>  LoginCubit(),
+                              child: LoginScreen(),
+                            ),
                           ),
                         );
                       },

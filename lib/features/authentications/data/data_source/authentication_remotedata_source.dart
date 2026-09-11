@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class AuthApi {
@@ -9,15 +11,21 @@ class AuthApi {
     required String email,
     required String password,
   }) async {
-    final response = await dio.post(
-      'https://accessories-eshop.runasp.net/api/auth/login',
-      data: {
-        'email': email,
-        'password': password,
-      },
-    );
-
-    accessToken = response.data['accessToken'];
+    try {
+      final response = await dio.post(
+        'https://accessories-eshop.runasp.net/api/auth/login',
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
+      
+      accessToken = response.data['accessToken'];
+       log("${response.data},${response.statusCode}");
+    } on DioException catch (e) {
+       log('error is: ${e.response!.data.toString()?? 'errors' }');
+       throw Exception(e.response!.data.toString()?? 'errors');
+}
   }
 
   Future<void> changePassword({
@@ -39,5 +47,4 @@ class AuthApi {
         },
       ),
     );
-  }
-}
+  }}

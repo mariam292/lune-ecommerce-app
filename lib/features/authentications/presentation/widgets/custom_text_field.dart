@@ -8,7 +8,7 @@ class CustomTextField extends StatelessWidget {
   final bool isPasswordHidden;
   final VoidCallback? onSuffixTap;
   final TextEditingController? controller;
-
+  final  FormFieldValidator<String>? validator;
   const CustomTextField({
     super.key,
     required this.label,
@@ -17,10 +17,12 @@ class CustomTextField extends StatelessWidget {
     this.isPasswordHidden = false,
     this.onSuffixTap,
     this.controller,
+    this.validator
   });
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,7 +35,9 @@ class CustomTextField extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        TextField(
+        TextFormField(
+          autovalidateMode:AutovalidateMode.onUserInteraction ,
+          validator: validator,
           controller: controller,
           obscureText: isPassword && isPasswordHidden,
           decoration: InputDecoration(
