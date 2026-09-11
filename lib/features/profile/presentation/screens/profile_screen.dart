@@ -89,9 +89,6 @@ class ProfileScreen extends StatelessWidget {
                               ),
                               Spacer(),
                               SwitchThemeMode(),
-
-                              // Arrow
-                              //  SwitchListTile(value: true, onChanged: (newVal){})
                             ],
                           ),
                           // ProfileMenuItem(
