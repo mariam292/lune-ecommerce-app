@@ -74,7 +74,6 @@ class _CartscreenState extends State<Cartscreen> {
                       final mycart = state.productcart;
 
                       //price calc section(عدوهاااااا)
-
                       double subtotal = 0;
                       double totalPrice = 0;
 
