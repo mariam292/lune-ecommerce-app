@@ -28,14 +28,14 @@ class _CollectionState extends State<Collection> {
             Text(
               "Categories",
               style: AppStyles.style20SemiBold.copyWith(
-                color: AppColors.primaryColor,
+                // color: AppColors.primaryColor,
               ),
             ),
             Spacer(),
             TextButton(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  MainScreen(index:1)),
+                MaterialPageRoute(builder: (context) => MainScreen(index: 1)),
               ),
               child: Text(
                 "View All",
@@ -83,7 +83,7 @@ class _CollectionState extends State<Collection> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  MainScreen(index:1),
+                          builder: (context) => MainScreen(index: 1),
                         ),
                       ),
                       child: CollectionView(

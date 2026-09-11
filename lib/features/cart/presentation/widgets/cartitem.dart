@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 
-
-
 class CartItem extends StatelessWidget {
   final String imagePath;
   final String productName;
@@ -19,7 +17,7 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: AppColors.whiteColor,
+      // color: AppColors.whiteColor,
       margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -52,7 +50,7 @@ class CartItem extends StatelessWidget {
                         child: Text(
                           productName,
                           style: AppStyles.style16SemiBold.copyWith(
-                            color: AppColors.blackColor,
+                            // color: AppColors.blackColor,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -67,7 +65,7 @@ class CartItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
+
                   const SizedBox(height: 10),
 
                   Row(
@@ -77,7 +75,7 @@ class CartItem extends StatelessWidget {
                       Text(
                         "${productPrice.toString()} EGP",
                         style: AppStyles.style16SemiBold.copyWith(
-                          color: AppColors.primaryColor,
+                          // color: AppColors.primaryColor,
                         ),
                       ),
 

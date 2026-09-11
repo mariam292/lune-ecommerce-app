@@ -50,9 +50,9 @@ class _MainScreenState extends State<MainScreen> {
             activeIcon: Icon(Icons.person),
           ),
         ],
-        selectedItemColor: AppColors.primaryColor,
-        unselectedItemColor: AppColors.blackColor,
 
+        // selectedItemColor: AppColors.primaryColor,
+        // unselectedItemColor: AppColors.blackColor,
         onTap: (newvalue) {
           setState(() {
             widget.index = newvalue;
@@ -70,7 +70,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
 
         BlocProvider(
-          create: (context) =>  CategoryCubit(),
+          create: (context) => CategoryCubit(),
           child: CategoryScreen(),
         ),
 

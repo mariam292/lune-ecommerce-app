@@ -11,7 +11,7 @@ class PrivacyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Customappbar(),
-      backgroundColor: AppColors.backGroundColor,
+      // backgroundColor: AppColors.backGroundColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(24, 45, 24, 92),
         child: Column(
@@ -19,16 +19,18 @@ class PrivacyScreen extends StatelessWidget {
           children: [
             Text(
               'Privacy Policy',
-              style: AppStyles.style24Regular.copyWith(
-                color: AppColors.primaryColor,
-              ),
+              style: AppStyles.style24Regular,
+              // .copyWith(
+              //   color: AppColors.primaryColor,
+              // ),
             ),
             SizedBox(height: 10),
             Text(
               'Last Updated: October 26, 2023',
-              style: AppStyles.style12Medium.copyWith(
-                color: AppColors.color584141,
-              ),
+              style: AppStyles.style12Medium,
+              // .copyWith(
+              //   color: AppColors.color584141,
+              // ),
             ),
 
             Divider(),
@@ -40,9 +42,10 @@ class PrivacyScreen extends StatelessWidget {
                     SizedBox(height: 36),
                     Text(
                       'At LUNA, we value your privacy and are committed to protecting your personal data when you visit our website or interact with our brand.',
-                      style: AppStyles.style16Medium.copyWith(
-                        color: AppColors.blackColor,
-                      ),
+                      style: AppStyles.style16Medium,
+                      // .copyWith(
+                      //   color: AppColors.blackColor,
+                      // ),
                     ),
 
                     PrivacyPolicyItem(
@@ -79,16 +82,18 @@ class PrivacyScreen extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: 'For inquiries, please contact us at ',
-                    style: AppStyles.style12Medium.copyWith(
-                      color: AppColors.color584141,
-                    ),
+                    style: AppStyles.style12Medium,
+                    // .copyWith(
+                    //   color: AppColors.color584141,
+                    // ),
                   ),
 
                   TextSpan(
                     text: 'privacy@luna.com.',
-                    style: AppStyles.style12Medium.copyWith(
-                      color: AppColors.primaryColor,
-                    ),
+                    style: AppStyles.style12Medium,
+                    // .copyWith(
+                    //   color: AppColors.primaryColor,
+                    // ),
                   ),
                 ],
               ),

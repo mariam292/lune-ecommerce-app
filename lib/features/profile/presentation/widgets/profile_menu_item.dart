@@ -9,7 +9,8 @@ class ProfileMenuItem extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
-    required this.suffixiconpath, required this.ontap,
+    required this.suffixiconpath,
+    required this.ontap,
   });
 
   final String icon;
@@ -37,15 +38,16 @@ class ProfileMenuItem extends StatelessWidget {
             // Menu title
             Text(
               title,
-              style: AppStyles.style16Regular.copyWith(
-                color: AppColors.blackColor,
-              ),
+              style: AppStyles.style16Regular,
+              // .copyWith(
+              //   color: AppColors.blackColor,
+              // ),
             ),
             Spacer(),
 
             // Arrow
             InkWell(
-              onTap:ontap,
+              onTap: ontap,
               child: SvgPicture.asset(suffixiconpath, width: 23, height: 23),
             ),
           ],

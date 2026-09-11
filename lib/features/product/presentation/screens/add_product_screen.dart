@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
- 
+
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field.dart';
 import 'package:nti_final_project/features/home/presentation/screens/home_screen.dart';
@@ -40,8 +40,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      backgroundColor: AppColors.backGroundColor,
+      // backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12),
@@ -58,9 +57,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     SizedBox(width: 16),
                     Text(
                       'Add New Product',
-                      style: AppStyles.style24Regular.copyWith(
-                        color: AppColors.primaryColor,
-                      ),
+                      style: AppStyles.style24Regular,
+                      // .copyWith(
+                      //   color: AppColors.primaryColor,
+                      // ),
                     ),
                   ],
                 ),
@@ -73,7 +73,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     width: double.infinity,
                     height: 120,
                     decoration: BoxDecoration(
-                      color: AppColors.whiteColor,
+                      // color: AppColors.whiteColor,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color: AppColors.primaryColor.withValues(alpha: 0.5),
@@ -186,7 +186,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     return Elevatedbutton(
                       buttontext: 'Add Product',
                       btntextstyle: AppStyles.style16SemiBold.copyWith(
-                        color: AppColors.whiteColor,
+                        // color: AppColors.whiteColor,
                       ),
                       buttoncolor: AppColors.primaryColor,
                       onpressed: () {

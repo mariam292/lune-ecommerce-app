@@ -48,9 +48,8 @@ class _SignupState extends State<Signup> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => OtpVerification(
-                  email: emailController.text.trim(),
-                ),
+                builder: (context) =>
+                    OtpVerification(email: emailController.text.trim()),
               ),
             );
           }
@@ -65,7 +64,6 @@ class _SignupState extends State<Signup> {
           }
         },
         child: Scaffold(
-          backgroundColor: AppColors.backGroundColor,
           body: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -113,9 +111,7 @@ class _SignupState extends State<Signup> {
                         buttontext: isLoading
                             ? 'Creating Account...'
                             : 'Create Account',
-                        btntextstyle: const TextStyle(
-                          color: Colors.white,
-                        ),
+                        btntextstyle: const TextStyle(color: Colors.white),
                         buttoncolor: AppColors.primaryColor,
                         onpressed: () {
                           if (isLoading) {
@@ -123,13 +119,12 @@ class _SignupState extends State<Signup> {
                           }
 
                           context.read<SignupCubit>().register(
-                                firstName: firstNameController.text.trim(),
-                                lastName: lastNameController.text.trim(),
-                                email: emailController.text.trim(),
-                                password: passwordController.text,
-                                confirmPassword:
-                                    confirmPasswordController.text,
-                              );
+                            firstName: firstNameController.text.trim(),
+                            lastName: lastNameController.text.trim(),
+                            email: emailController.text.trim(),
+                            password: passwordController.text,
+                            confirmPassword: confirmPasswordController.text,
+                          );
                         },
                       );
                     },

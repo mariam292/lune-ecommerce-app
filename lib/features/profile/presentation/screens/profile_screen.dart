@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
+      // backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -55,20 +55,48 @@ class ProfileScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
+                        // color: AppColors.whiteColor,
                         borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: AppColors.colorD1D5DB),
+                        // border: Border.all(color: AppColors.colorD1D5DB),
                       ),
                       clipBehavior: Clip.antiAlias,
                       child: Column(
                         children: [
-                          ProfileMenuItem(
-                            icon: 'assets/icons/dark_mode.svg',
-                            title: 'Dark Mode',
-                            suffixiconpath:
-                                'assets/icons/Toggle Switch_margin.svg',
-                            ontap: () {},
-                          ),
+                          child: Row(
+          children: [
+            // Menu icon
+            SizedBox(
+              width: 24,
+              height: 24,
+              child: SvgPicture.asset(icon, width: 24, height: 24),
+            ),
+
+            const SizedBox(width: 16),
+
+            // Menu title
+            Text(
+              title,
+              style: AppStyles.style16Regular,
+              // .copyWith(
+              //   color: AppColors.blackColor,
+              // ),
+            ),
+            Spacer(),
+
+            // Arrow
+            InkWell(
+              onTap: ontap,
+              child: SvgPicture.asset(suffixiconpath, width: 23, height: 23),
+            ),
+          ],
+        ),
+                          // ProfileMenuItem(
+                          //   icon: 'assets/icons/dark_mode.svg',
+                          //   title: 'Dark Mode',
+                          //   suffixiconpath:
+                          //       'assets/icons/Toggle Switch_margin.svg',
+                          //   ontap: () {},
+                          // ),
                           const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/change_password.svg',

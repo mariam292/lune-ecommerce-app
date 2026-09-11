@@ -41,7 +41,7 @@ class _ProductsViewState extends State<ProductsView> {
             Text(
               widget.sectionText,
               style: AppStyles.style20SemiBold.copyWith(
-                color: AppColors.primaryColor,
+                // color: AppColors.primaryColor,
               ),
             ),
             Spacer(),
@@ -57,53 +57,35 @@ class _ProductsViewState extends State<ProductsView> {
           ],
         ),
 
-                                     BlocListener<
-                                            AddToCartCubit,
-                                            AddToCartState
-                                          >(
-                                            listener: (context, state) {
-                                              log("Adddddddddd$state");
-                                              if (state
-                                                  is AddToCartitemsLoadingState) {
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    content: Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    ),backgroundColor: Colors.amberAccent, 
-                                                  ),
-                                                );
-                                              } else if (state
-                                                  is AddToCartitemsSuccessState) {
-                                               
-                                                   ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    content: Text("Item Added successfully ☝️")
-                                                   ,backgroundColor: Colors.green, ),
-                                                  
-                                                );
-                                              } else if (state
-                                                  is AddToCartitemsFailureState) {
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-                                                    content:   Text(
-                                                      "Error:${state.error.toString()}",
-                                                    ),backgroundColor: AppColors.primaryColor, 
-                                               
-                                                  ),
-                                                );
-                                              }
-                                            },
-                                          
-          child: BlocConsumer<ProductsCubit, ProductsState>(
+        BlocListener<AddToCartCubit, AddToCartState>(
+          listener: (context, state) {
+            log("Adddddddddd$state");
+            if (state is AddToCartitemsLoadingState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Center(child: CircularProgressIndicator()),
+                  backgroundColor: Colors.amberAccent,
+                ),
+              );
+            } else if (state is AddToCartitemsSuccessState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Item Added successfully ☝️"),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            } else if (state is AddToCartitemsFailureState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Error:${state.error.toString()}"),
+                  backgroundColor: AppColors.primaryColor,
+                ),
+              );
+            }
+          },
 
-              listener: (context, state) {
+          child: BlocConsumer<ProductsCubit, ProductsState>(
+            listener: (context, state) {
               if (state is ProductsFailureState) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -111,16 +93,13 @@ class _ProductsViewState extends State<ProductsView> {
                     backgroundColor: AppColors.primaryColor,
                   ),
                 );
-              
               }
             },
-
-
 
             builder: (context, state) {
               if (state is ProductsLoadingState) {
                 return Center(child: CircularProgressIndicator());
-              }   else if (state is ProductsSuccessState) {
+              } else if (state is ProductsSuccessState) {
                 final List<ProductModel> products = state.products;
 
                 return SizedBox(
@@ -160,10 +139,10 @@ class _ProductsViewState extends State<ProductsView> {
                                     height: 190,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
-                                      ),
-                                     child:  ClipRRect(
-                                      borderRadius:BorderRadius.circular(12) ,
-                                       child: Image.network(
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.network(
                                         products[index].image,
                                         fit: BoxFit.cover,
                                         errorBuilder:
@@ -174,9 +153,8 @@ class _ProductsViewState extends State<ProductsView> {
                                                 ),
                                               );
                                             },
-                                                                           ),
-                                     ),
-                                   
+                                      ),
+                                    ),
                                   ),
                                 ),
 
@@ -212,8 +190,9 @@ class _ProductsViewState extends State<ProductsView> {
                                     Text(
                                       products[index].name,
                                       style: AppStyles.style14SemiBold.copyWith(
-                                        color: AppColors.primaryColor,
-                                      ),   maxLines: 1,
+                                        // color: AppColors.primaryColor,
+                                      ),
+                                      maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
 

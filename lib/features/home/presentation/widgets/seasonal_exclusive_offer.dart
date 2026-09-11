@@ -80,7 +80,7 @@ class SeasonalOffers extends StatelessWidget {
                       child: Text(
                         "SHOP NOW",
                         style: AppStyles.style14SemiBold.copyWith(
-                          color: AppColors.primaryColor,
+                          // color: AppColors.primaryColor,
                         ),
                       ),
                     ),

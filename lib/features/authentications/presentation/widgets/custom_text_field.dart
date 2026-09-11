@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
           style: const TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.bold,
-            color: AppColors.color7A6E6B,
+            // color: AppColors.color7A6E6B,
           ),
         ),
         const SizedBox(height: 8),
@@ -38,8 +38,8 @@ class CustomTextField extends StatelessWidget {
           obscureText: isPassword && isPasswordHidden,
           decoration: InputDecoration(
             hintText: hintText,
-            filled: true,
-            fillColor: AppColors.whiteColor,
+            // filled: true,
+            // fillColor: AppColors.whiteColor,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 16,
@@ -50,7 +50,7 @@ class CustomTextField extends StatelessWidget {
                       isPasswordHidden
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
-                      color: AppColors.color7A6E6B,
+                      // color: AppColors.color7A6E6B,
                     ),
                     onPressed: onSuffixTap,
                   )

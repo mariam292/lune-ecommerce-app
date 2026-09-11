@@ -14,7 +14,7 @@ class CategoryScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => CategoryCubit(),
       child: Scaffold(
-        backgroundColor: AppColors.backGroundColor,
+        // backgroundColor: AppColors.backGroundColor,
         body: SafeArea(
           child: Column(
             children: [

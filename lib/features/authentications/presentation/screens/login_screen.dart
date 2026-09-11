@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/Main_Screen.dart';
+import 'package:nti_final_project/features/authentications/presentation/cubit/forgot_pass_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
@@ -56,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainScreen(index: 0,)),
+        MaterialPageRoute(builder: (context) => MainScreen(index: 0)),
       );
     } catch (e) {
       if (!mounted) return;
@@ -88,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.primaryColor,
+                  // color: AppColors.primaryColor,
                   letterSpacing: 2,
                 ),
               ),
@@ -98,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.blackColor,
+                  // color: AppColors.blackColor,
                 ),
               ),
               const SizedBox(height: 40),
@@ -147,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Remember me',
                         style: TextStyle(
                           fontSize: 12,
-                          color: AppColors.color7A6E6B,
+                          // color: AppColors.color7A6E6B,
                         ),
                       ),
                     ],
@@ -157,7 +158,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ForgotPassword(),
+                          builder: (context) => BlocProvider(
+                            create: (context) => ForgotPassCubit(),
+                            child: const ForgotPassword(),
+                          ),
                         ),
                       );
                     },
@@ -178,9 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: ElevatedButton(
                   onPressed: () => Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => MainScreen()
-                    ),
+                    MaterialPageRoute(builder: (context) => MainScreen()),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryColor,
@@ -197,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.whiteColor,
+                            // color: AppColors.whiteColor,
                           ),
                         ),
                 ),
@@ -206,7 +208,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 children: [
                   const Expanded(
-                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
+                    child: Divider(
+                      // color: AppColors.colorEADFD8,
+                      thickness: 1,
+                    ),
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
@@ -215,12 +220,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.color7A6E6B,
+                        // color: AppColors.color7A6E6B,
                       ),
                     ),
                   ),
                   const Expanded(
-                    child: Divider(color: AppColors.colorEADFD8, thickness: 1),
+                    child: Divider(
+                      // color: AppColors.colorEADFD8,
+                      thickness: 1,
+                    ),
                   ),
                 ],
               ),
@@ -233,15 +241,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: const Icon(
                         Icons.g_mobiledata,
                         size: 28,
-                        color: AppColors.blackColor,
+                        // color: AppColors.blackColor,
                       ),
                       label: const Text(
                         'Google',
-                        style: TextStyle(color: AppColors.blackColor),
+                        // style: TextStyle(color: AppColors.blackColor),
                       ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: AppColors.colorEADFD8),
+                        // side: const BorderSide(color: AppColors.colorEADFD8),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -254,15 +262,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {},
                       icon: const Icon(
                         Icons.apple,
-                        color: AppColors.blackColor,
+                        // color: AppColors.blackColor,
                       ),
                       label: const Text(
                         'Apple',
-                        style: TextStyle(color: AppColors.blackColor),
+                        // style: TextStyle(color: AppColors.blackColor),
                       ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: const BorderSide(color: AppColors.colorEADFD8),
+                        // side: const BorderSide(color: AppColors.colorEADFD8),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
@@ -279,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Don't have an account? ",
                     style: TextStyle(
                       fontSize: 12,
-                      color: AppColors.color7A6E6B,
+                      // color: AppColors.color7A6E6B,
                     ),
                   ),
                   GestureDetector(

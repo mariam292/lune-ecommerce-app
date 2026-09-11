@@ -44,11 +44,12 @@ class _ReviewDialogState extends State<ReviewDialog> {
               ),
             ),
           );
+          Navigator.pop(context);
         }
       },
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        backgroundColor: AppColors.backGroundColor,
+        // backgroundColor: AppColors.backGroundColor,
         insetPadding: const EdgeInsets.symmetric(horizontal: 24),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),

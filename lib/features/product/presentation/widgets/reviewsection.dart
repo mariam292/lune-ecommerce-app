@@ -30,14 +30,14 @@ class Reviewsection extends StatelessWidget {
             Text(
               name,
               style: AppStyles.style16Regular.copyWith(
-                color: AppColors.blackColor,
+                // color: AppColors.blackColor,
               ),
             ),
             Spacer(),
             Text(
               date,
               style: AppStyles.style16Regular.copyWith(
-                color: AppColors.blackColor,
+                // color: AppColors.blackColor,
               ),
             ),
           ],
@@ -46,7 +46,7 @@ class Reviewsection extends StatelessWidget {
         Text(
           comment,
           style: AppStyles.style14Regular.copyWith(
-            color: AppColors.color7A6E6B,
+            // color: AppColors.color7A6E6B,
           ),
         ),
       ],

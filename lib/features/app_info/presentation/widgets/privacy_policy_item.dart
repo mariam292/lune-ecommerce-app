@@ -26,16 +26,18 @@ class PrivacyPolicyItem extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8),
             child: Text(
               mainText,
-              style: AppStyles.style16Regular.copyWith(
-                color: AppColors.primaryColor,
-              ),
+              style: AppStyles.style16Regular,
+              // .copyWith(
+              //   color: AppColors.primaryColor,
+              // ),
             ),
           ),
         ),
 
         Text(
           subText,
-          style: AppStyles.style12Medium.copyWith(color: AppColors.color584141),
+          style: AppStyles.style12Medium,
+          // .copyWith(color: AppColors.color584141),
         ),
       ],
     );

@@ -28,7 +28,7 @@ class Detailscontainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(35),
           topRight: Radius.circular(35),
@@ -45,15 +45,16 @@ class Detailscontainer extends StatelessWidget {
                 child: Text(
                   productname,
                   style: AppStyles.style24Medium.copyWith(
-                    color: AppColors.primaryColor,
+                    // color: AppColors.primaryColor,
                   ),
                 ),
               ),
               Text(
                 "$productprice EGP",
-                style: AppStyles.style20SemiBold.copyWith(
-                  color: AppColors.blackColor,
-                ),
+                style: AppStyles.style20SemiBold,
+                // .copyWith(
+                //   color: AppColors.blackColor,
+                // ),
               ),
             ],
           ),
@@ -71,7 +72,7 @@ class Detailscontainer extends StatelessWidget {
               Text(
                 "4.8 (124 REVIEWS)",
                 style: AppStyles.style12Medium.copyWith(
-                  color: AppColors.color7A6E6B,
+                  // color: AppColors.color7A6E6B,
                 ),
               ),
             ],
@@ -82,7 +83,7 @@ class Detailscontainer extends StatelessWidget {
           Text(
             "Description",
             style: AppStyles.style16Bold.copyWith(
-              color: AppColors.primaryColor,
+              // color: AppColors.primaryColor,
             ),
           ),
           SizedBox(height: 6),
@@ -96,7 +97,7 @@ class Detailscontainer extends StatelessWidget {
                 TextSpan(
                   text: "Read more",
                   style: AppStyles.style16Medium.copyWith(
-                    color: AppColors.primaryColor,
+                    // color: AppColors.primaryColor,
                   ),
                 ),
               ],
@@ -109,7 +110,7 @@ class Detailscontainer extends StatelessWidget {
           Text(
             "Reviews",
             style: AppStyles.style16Bold.copyWith(
-              color: AppColors.primaryColor,
+              // color: AppColors.primaryColor,
             ),
           ),
           const SizedBox(height: 6),
@@ -133,9 +134,10 @@ class Detailscontainer extends StatelessWidget {
                       children: [
                         Text(
                           "4.8",
-                          style: AppStyles.style24Bold.copyWith(
-                            color: AppColors.blackColor,
-                          ),
+                          style: AppStyles.style24Bold,
+                          // .copyWith(
+                          //   color: AppColors.blackColor,
+                          // ),
                         ),
                         const SizedBox(width: 6),
                         Row(
@@ -149,7 +151,7 @@ class Detailscontainer extends StatelessWidget {
                         Text(
                           ('${state.reviews.length.toString()} Reviews'),
                           style: AppStyles.style12Medium.copyWith(
-                            color: AppColors.color7A6E6B,
+                            // color: AppColors.color7A6E6B,
                           ),
                         ),
                       ],
@@ -186,8 +188,8 @@ class Detailscontainer extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.whiteColor,
-                side: BorderSide(color: AppColors.primaryColor, width: 1.5),
+                // backgroundColor: AppColors.whiteColor,
+                // side: BorderSide(color: AppColors.primaryColor, width: 1.5),
               ),
               onPressed: () {
                 showDialog(
@@ -202,9 +204,10 @@ class Detailscontainer extends StatelessWidget {
               },
               child: Text(
                 "Add your review",
-                style: AppStyles.style16SemiBold.copyWith(
-                  color: AppColors.primaryColor,
-                ),
+                style: AppStyles.style16SemiBold,
+                // .copyWith(
+                //   color: AppColors.primaryColor,
+                // ),
               ),
             ),
           ),

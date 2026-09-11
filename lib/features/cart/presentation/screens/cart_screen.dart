@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
- 
+
 import 'package:nti_final_project/features/cart/presentation/cubits/cart_cubit.dart';
 import 'package:nti_final_project/features/cart/presentation/cubits/cart_states.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
@@ -30,10 +30,9 @@ class _CartscreenState extends State<Cartscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      backgroundColor: AppColors.backGroundColor,
+      // backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.backGroundColor,
+        // backgroundColor: AppColors.backGroundColor,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: SvgPicture.asset(
@@ -98,10 +97,9 @@ class _CartscreenState extends State<Cartscreen> {
 
                 //Summary section
                 Card(
-                  color: AppColors.whiteColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(color: AppColors.colorEADFD8),
+                    // side: BorderSide(color: AppColors.colorEADFD8),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -130,14 +128,14 @@ class _CartscreenState extends State<Cartscreen> {
                             Text(
                               'Total',
                               style: AppStyles.style20Bold.copyWith(
-                                color: AppColors.blackColor,
+                                // color: AppColors.blackColor,
                               ),
                             ),
                             Spacer(),
                             Text(
                               '420 EGP',
                               style: AppStyles.style20Bold.copyWith(
-                                color: AppColors.blackColor,
+                                // color: AppColors.blackColor,
                               ),
                             ),
                           ],
@@ -156,7 +154,7 @@ class _CartscreenState extends State<Cartscreen> {
                   onpressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  MainScreen()),
+                      MaterialPageRoute(builder: (context) => MainScreen()),
                     );
                   },
                 ),
