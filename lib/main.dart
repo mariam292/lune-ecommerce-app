@@ -14,7 +14,6 @@ class LuneApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return BlocProvider(
       create: (context) => AppThemeCubit(),
       child: BlocBuilder<AppThemeCubit, ThemeMode>(
@@ -28,14 +27,6 @@ class LuneApp extends StatelessWidget {
           );
         },
       ),
-=======
-    return MaterialApp(
-      theme: AppThemeData.lightTheme,
-      darkTheme: AppThemeData.darkTheme,
-      themeMode: ThemeMode.light,
-      debugShowCheckedModeBanner: false,
-      home: Splash(),
->>>>>>> origin/raghad_features
     );
   }
 }
