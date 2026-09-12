@@ -1,22 +1,23 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 abstract class CategoryState {}
-class  CategoryInitialState extends CategoryState{}
 
-class  CategoryLoadingState extends  CategoryState{}
+class CategoryInitialState extends CategoryState {}
 
-class  CategorySuccessState extends  CategoryState{
+class CategoryLoadingState extends CategoryState {}
 
- CategorySuccessState( this.category);
+class CategorySuccessState extends CategoryState {
+  final List<Map<String, dynamic>> category;
 
-final  List<dynamic> category;
-
-
-
+  CategorySuccessState({
+    required this.category,
+  });
 }
 
-class  CategoryFailureState extends  CategoryState{
+class CategoryFailureState extends CategoryState {
+  final String error;
 
- CategoryFailureState(this.error );
-
- final String error;
-
+  CategoryFailureState({
+    required this.error,
+  });
 }

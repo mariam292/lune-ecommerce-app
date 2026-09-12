@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/features/category/presentation/widgets/category_item.dart';
 import 'package:nti_final_project/features/category/presentation/widgets/category_top_bar.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/category_states.dart';
-import '../../../../core/app_colors.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -18,7 +19,7 @@ class CategoryScreen extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              CategoryTopBar(),
+              const CategoryTopBar(),
 
               Expanded(
                 child: BlocBuilder<CategoryCubit, CategoryState>(
@@ -31,30 +32,48 @@ class CategoryScreen extends StatelessWidget {
 
                     if (state is CategoryFailureState) {
                       return Center(
-                        child: Text(state.error),
+                        child: Text(
+                          state.error,
+                          textAlign: TextAlign.center,
+                        ),
                       );
                     }
 
                     if (state is CategorySuccessState) {
                       final categories = state.category;
 
-                      return GridView.builder(
-                        itemCount: categories.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio: 167 / 155,
-                        ),
-                        itemBuilder: (context, index) {
-                          final category = categories[index];
+                      if (categories.isEmpty) {
+                        return const Center(
+                          child: Text('No Categories Found'),
+                        );
+                      }
 
-                          return CategoryItem(
-                            pictureUrl: category['coverPictureUrl'],
-                            categoryName: category['name'],
-                          );
-                        },
+                      return Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: GridView.builder(
+                          itemCount: categories.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                            childAspectRatio: 167 / 155,
+                          ),
+                          itemBuilder: (context, index) {
+                            final category = categories[index];
+
+                            final String name =
+                                category['name']?.toString() ?? 'Category';
+
+                            final String pictureUrl =
+                                category['coverPictureUrl']?.toString() ?? '';
+
+                            return CategoryItem(
+                              pictureUrl: pictureUrl,
+                              categoryName: name,
+                            );
+                          },
+                        ),
                       );
                     }
 
