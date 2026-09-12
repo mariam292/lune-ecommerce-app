@@ -39,9 +39,10 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(width: 16),
                   Text(
                     'My Profile',
-                    style: AppStyles.style28Regular.copyWith(
-                      color: AppColors.color5A3036,
-                    ),
+                    style: AppStyles.style28Regular,
+                    // .copyWith(
+                    //   color: AppColors.color5A3036,
+                    // ),
                   ),
                 ],
               ),

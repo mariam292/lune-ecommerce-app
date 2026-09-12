@@ -59,7 +59,7 @@ class _ReviewDialogState extends State<ReviewDialog> {
               Text(
                 "Add Your Review",
                 style: AppStyles.style24Regular.copyWith(
-                  color: AppColors.primaryColor,
+                  // color: AppColors.primaryColor,
                 ),
               ),
               SizedBox(height: 12),

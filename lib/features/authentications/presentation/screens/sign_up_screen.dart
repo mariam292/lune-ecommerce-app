@@ -7,6 +7,7 @@ import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dar
 
 import 'package:nti_final_project/features/authentications/presentation/cubit/signup_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/cubit/signup_state.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/otp_register_screen.dart';
 
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field_forgot_reset_pass.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/navigation_elevated_button.dart';
@@ -49,7 +50,7 @@ class _SignupState extends State<Signup> {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    OtpVerification(email: emailController.text.trim()),
+                    OtpRegisterScreen(email: emailController.text.trim()),
               ),
             );
           }

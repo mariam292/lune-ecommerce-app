@@ -28,7 +28,7 @@ class CategoryTopBar extends StatelessWidget {
               child: const Icon(
                 Icons.arrow_back_ios_new,
                 size: 16,
-                color: AppColors.color5A3036,
+                // color: AppColors.color5A3036,
               ),
             ),
           ),
@@ -38,7 +38,7 @@ class CategoryTopBar extends StatelessWidget {
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: AppColors.color5A3036,
+              // color: AppColors.color5A3036,
             ),
           ),
         ],

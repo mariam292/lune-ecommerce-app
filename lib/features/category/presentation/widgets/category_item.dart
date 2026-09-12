@@ -35,7 +35,7 @@ class CategoryItem extends StatelessWidget {
                           child: Icon(
                             Icons.category_outlined,
                             size: 55,
-                            color: AppColors.color5A3036,
+                            // color: AppColors.color5A3036,
                           ),
                         ),
                       );

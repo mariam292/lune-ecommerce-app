@@ -4,6 +4,7 @@ import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/vaildators.dart';
 import 'package:nti_final_project/features/authentications/data/data_source/authentication_remotedata_source.dart';
 import 'package:nti_final_project/features/authentications/presentation/cubit/Log_In_state.dart';
+import 'package:nti_final_project/features/authentications/presentation/cubit/forgot_pass_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/cubit/login_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/forgot_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/sign_up_screen.dart';
@@ -139,7 +140,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ForgotPassword(),
+                            builder: (context) => BlocProvider(
+                              create: (context) => ForgotPassCubit(),
+                              child: const ForgotPassword(),
+                            ),
                           ),
                         );
                       },

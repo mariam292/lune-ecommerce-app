@@ -40,9 +40,10 @@ class _CartscreenState extends State<Cartscreen> {
         ),
         title: Text(
           "My Cart",
-          style: AppStyles.style24SemiBold.copyWith(
-            color: AppColors.primaryColor,
-          ),
+          style: AppStyles.style24SemiBold,
+          // .copyWith(
+          //   color: AppColors.primaryColor,
+          // ),
         ),
         actions: [
           IconButton(

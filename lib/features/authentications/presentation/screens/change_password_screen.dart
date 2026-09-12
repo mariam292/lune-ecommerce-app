@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nti_final_project/features/authentications/data/data_source/authentication_remotedata_source.dart';
 import '../widgets/custom_text_field.dart';
 import '../../../../core/app_colors.dart';
- 
+
 import 'forgot_password_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -115,7 +115,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.primaryColor,
+                        // color: AppColors.primaryColor,
                       ),
                     ),
                   ],
