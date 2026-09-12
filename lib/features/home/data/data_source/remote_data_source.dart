@@ -31,12 +31,7 @@ class HomeRemoteData {
       final Response response = await dio.post(
         'https://accessories-eshop.runasp.net/api/cart/items',
         data: {"productId": praductid, "quantity": 1},
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer ${Token.value}',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer ${Token.value}'}),
       );
       log("${response.data.toString()}");
       return response.data;
@@ -51,12 +46,7 @@ class HomeRemoteData {
     try {
       final Response response = await dio.get(
         "https://accessories-eshop.runasp.net/api/categories",
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer ${Token.value}',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer ${Token.value}'}),
       );
       log(response.data.toString());
       log("after res");

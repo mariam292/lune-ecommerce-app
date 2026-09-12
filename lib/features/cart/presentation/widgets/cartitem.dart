@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/cart/presentation/cubits/quantity_cubit.dart';
 
 class CartItem extends StatefulWidget {
   final String imagePath;
@@ -107,7 +109,9 @@ class _CartItemState extends State<CartItem> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                context.read<QuantityCubit>().decrement();
+                              },
                               child: Icon(
                                 Icons.remove,
                                 size: 18,
@@ -115,10 +119,19 @@ class _CartItemState extends State<CartItem> {
                               ),
                             ),
                             const SizedBox(width: 10),
-                            Text('1', style: AppStyles.style12SemiBold),
+                            BlocBuilder<QuantityCubit, int>(
+                              builder: (context, state) {
+                                return Text(
+                                  '$state',
+                                  style: AppStyles.style12SemiBold,
+                                );
+                              },
+                            ),
                             const SizedBox(width: 10),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                context.read<QuantityCubit>().increment();
+                              },
                               child: Icon(
                                 Icons.add,
                                 size: 18,

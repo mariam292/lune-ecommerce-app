@@ -7,6 +7,7 @@ import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/cart/presentation/cubits/cart_cubit.dart';
 import 'package:nti_final_project/features/cart/presentation/cubits/cart_states.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
+import 'package:nti_final_project/features/cart/presentation/cubits/quantity_cubit.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/cartitem.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/customsummaryitem.dart';
 import 'package:nti_final_project/features/cart/presentation/widgets/promocode.dart';
@@ -111,11 +112,15 @@ class _CartscreenState extends State<Cartscreen> {
                             shrinkWrap: true,
                             itemCount: mycart.length,
                             itemBuilder: (context, index) {
-                              return CartItem(
-                                imagePath: mycart[index]["productCoverUrl"],
-                                productName: mycart[index]["productName"],
-                                productPrice: mycart[index]["finalPricePerUnit"]
-                                    .toString(),
+                              return BlocProvider(
+                                create: (context) => QuantityCubit(),
+                                child: CartItem(
+                                  imagePath: mycart[index]["productCoverUrl"],
+                                  productName: mycart[index]["productName"],
+                                  productPrice:
+                                      mycart[index]["finalPricePerUnit"]
+                                          .toString(),
+                                ),
                               );
                             },
                           ),

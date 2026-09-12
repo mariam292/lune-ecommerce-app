@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/theme/app_theme_data.dart';
 import 'package:nti_final_project/features/profile/presentation/cubit/app_theme_cubit.dart';
-import 'package:nti_final_project/features/profile/presentation/screens/profile_screen.dart';
 import 'package:nti_final_project/features/spalsh/spalsh_screen.dart';
 
 void main() {

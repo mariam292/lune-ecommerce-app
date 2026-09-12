@@ -10,12 +10,7 @@ class CartRemoteDataSource {
       List mycart = [];
       final Response response = await dio.get(
         "https://accessories-eshop.runasp.net/api/cart",
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer ${Token.value}',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer ${Token.value}'}),
       );
       log("Rsponse:$response");
       mycart = response.data["cartItems"];
@@ -24,5 +19,15 @@ class CartRemoteDataSource {
       log(e.response?.data.toString() ?? 'Error');
       throw Exception(e.response?.data);
     }
+  }
+
+  Future<void> postQuantity({
+    required String productId,
+    required int quantity,
+  }) async {
+    await dio.post(
+      'https://accessories-eshop.runasp.net/api/cart/items',
+      data: {'productId': productId, 'quantity': quantity},
+    );
   }
 }
