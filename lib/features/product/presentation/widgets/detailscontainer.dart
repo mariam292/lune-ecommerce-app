@@ -69,12 +69,12 @@ class Detailscontainer extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8),
-              Text(
-                " (124 REVIEWS)",
-                style: AppStyles.style12Medium.copyWith(
-                  // color: AppColors.color7A6E6B,
-                ),
-              ),
+              // Text(
+              //   " (124 REVIEWS)",
+              //   style: AppStyles.style12Medium.copyWith(
+              //     // color: AppColors.color7A6E6B,
+              //   ),
+              // ),
             ],
           ),
           Divider(),
@@ -132,13 +132,13 @@ class Detailscontainer extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "4.8",
-                          style: AppStyles.style24Bold,
-                          // .copyWith(
-                          //   color: AppColors.blackColor,
-                          // ),
-                        ),
+                        // Text(
+                        //   "4.8",
+                        //   style: AppStyles.style24Bold,
+                        //   // .copyWith(
+                        //   //   color: AppColors.blackColor,
+                        //   // ),
+                        // ),
                         const SizedBox(width: 6),
                         Row(
                           children: List.generate(

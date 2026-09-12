@@ -21,11 +21,9 @@ class CategoryTopBar extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: AppColors.whiteColor,
+                // color: AppColors.whiteColor,
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors.colorD1D5DB,
-                ),
+                border: Border.all(color: AppColors.colorD1D5DB),
               ),
               child: const Icon(
                 Icons.arrow_back_ios_new,
