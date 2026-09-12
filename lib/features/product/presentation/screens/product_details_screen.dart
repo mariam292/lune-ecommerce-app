@@ -27,7 +27,6 @@ class _ProductdetailsscreenState extends State<Productdetailsscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
       body: SafeArea(
         top: false,
         child: Column(
@@ -42,7 +41,6 @@ class _ProductdetailsscreenState extends State<Productdetailsscreen> {
                         Container(
                           height: 400,
                           width: double.infinity,
-                          color: AppColors.whiteColor,
                           child: Image.network(
                             widget.product.image,
                             fit: BoxFit.cover,

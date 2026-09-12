@@ -70,7 +70,7 @@ class Detailscontainer extends StatelessWidget {
               ),
               SizedBox(width: 8),
               Text(
-                "4.8 (124 REVIEWS)",
+                " (124 REVIEWS)",
                 style: AppStyles.style12Medium.copyWith(
                   // color: AppColors.color7A6E6B,
                 ),
@@ -94,12 +94,12 @@ class Detailscontainer extends StatelessWidget {
               ),
               children: [
                 TextSpan(text: productdescription),
-                TextSpan(
-                  text: "Read more",
-                  style: AppStyles.style16Medium.copyWith(
-                    // color: AppColors.primaryColor,
-                  ),
-                ),
+                // TextSpan(
+                //   text: "Read more",
+                //   style: AppStyles.style16Medium.copyWith(
+                //     // color: AppColors.primaryColor,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -157,7 +157,7 @@ class Detailscontainer extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    ListView.builder(
+                    ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: state.reviews.length,
@@ -168,6 +168,9 @@ class Detailscontainer extends StatelessWidget {
                           date: review.createdAt.toString(),
                           comment: review.comment,
                         );
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return SizedBox(height: 20);
                       },
                     ),
                   ],
@@ -191,8 +194,8 @@ class Detailscontainer extends StatelessWidget {
                 // backgroundColor: AppColors.whiteColor,
                 // side: BorderSide(color: AppColors.primaryColor, width: 1.5),
               ),
-              onPressed: () {
-                showDialog(
+              onPressed: () async {
+                final result = await showDialog(
                   context: context,
                   builder: (context) {
                     return BlocProvider(
@@ -201,6 +204,9 @@ class Detailscontainer extends StatelessWidget {
                     );
                   },
                 );
+                if (result == true) {
+                  context.read<ReviewsCubit>().getReviews(productId: productId);
+                }
               },
               child: Text(
                 "Add your review",
