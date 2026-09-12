@@ -21,16 +21,14 @@ class CategoryTopBar extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: AppColors.whiteColor,
+                // color: AppColors.whiteColor,
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppColors.colorD1D5DB,
-                ),
+                border: Border.all(color: AppColors.colorD1D5DB),
               ),
               child: const Icon(
                 Icons.arrow_back_ios_new,
                 size: 16,
-                color: AppColors.color5A3036,
+                // color: AppColors.color5A3036,
               ),
             ),
           ),
@@ -40,7 +38,7 @@ class CategoryTopBar extends StatelessWidget {
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: AppColors.color5A3036,
+              // color: AppColors.color5A3036,
             ),
           ),
         ],

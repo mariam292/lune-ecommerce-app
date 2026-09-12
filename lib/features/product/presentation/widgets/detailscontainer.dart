@@ -28,7 +28,7 @@ class Detailscontainer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(35),
           topRight: Radius.circular(35),
@@ -45,15 +45,16 @@ class Detailscontainer extends StatelessWidget {
                 child: Text(
                   productname,
                   style: AppStyles.style24Medium.copyWith(
-                    color: AppColors.primaryColor,
+                    // color: AppColors.primaryColor,
                   ),
                 ),
               ),
               Text(
                 "$productprice EGP",
-                style: AppStyles.style20SemiBold.copyWith(
-                  color: AppColors.blackColor,
-                ),
+                style: AppStyles.style20SemiBold,
+                // .copyWith(
+                //   color: AppColors.blackColor,
+                // ),
               ),
             ],
           ),
@@ -68,12 +69,12 @@ class Detailscontainer extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8),
-              Text(
-                "4.8 (124 REVIEWS)",
-                style: AppStyles.style12Medium.copyWith(
-                  color: AppColors.color7A6E6B,
-                ),
-              ),
+              // Text(
+              //   " (124 REVIEWS)",
+              //   style: AppStyles.style12Medium.copyWith(
+              //     // color: AppColors.color7A6E6B,
+              //   ),
+              // ),
             ],
           ),
           Divider(),
@@ -82,7 +83,7 @@ class Detailscontainer extends StatelessWidget {
           Text(
             "Description",
             style: AppStyles.style16Bold.copyWith(
-              color: AppColors.primaryColor,
+              // color: AppColors.primaryColor,
             ),
           ),
           SizedBox(height: 6),
@@ -93,12 +94,12 @@ class Detailscontainer extends StatelessWidget {
               ),
               children: [
                 TextSpan(text: productdescription),
-                TextSpan(
-                  text: "Read more",
-                  style: AppStyles.style16Medium.copyWith(
-                    color: AppColors.primaryColor,
-                  ),
-                ),
+                // TextSpan(
+                //   text: "Read more",
+                //   style: AppStyles.style16Medium.copyWith(
+                //     // color: AppColors.primaryColor,
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -109,7 +110,7 @@ class Detailscontainer extends StatelessWidget {
           Text(
             "Reviews",
             style: AppStyles.style16Bold.copyWith(
-              color: AppColors.primaryColor,
+              // color: AppColors.primaryColor,
             ),
           ),
           const SizedBox(height: 6),
@@ -131,12 +132,13 @@ class Detailscontainer extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          "4.8",
-                          style: AppStyles.style24Bold.copyWith(
-                            color: AppColors.blackColor,
-                          ),
-                        ),
+                        // Text(
+                        //   "4.8",
+                        //   style: AppStyles.style24Bold,
+                        //   // .copyWith(
+                        //   //   color: AppColors.blackColor,
+                        //   // ),
+                        // ),
                         const SizedBox(width: 6),
                         Row(
                           children: List.generate(
@@ -149,13 +151,13 @@ class Detailscontainer extends StatelessWidget {
                         Text(
                           ('${state.reviews.length.toString()} Reviews'),
                           style: AppStyles.style12Medium.copyWith(
-                            color: AppColors.color7A6E6B,
+                            // color: AppColors.color7A6E6B,
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 12),
-                    ListView.builder(
+                    ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: state.reviews.length,
@@ -166,6 +168,9 @@ class Detailscontainer extends StatelessWidget {
                           date: review.createdAt.toString(),
                           comment: review.comment,
                         );
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return SizedBox(height: 20);
                       },
                     ),
                   ],
@@ -186,11 +191,11 @@ class Detailscontainer extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.whiteColor,
-                side: BorderSide(color: AppColors.primaryColor, width: 1.5),
+                // backgroundColor: AppColors.whiteColor,
+                // side: BorderSide(color: AppColors.primaryColor, width: 1.5),
               ),
-              onPressed: () {
-                showDialog(
+              onPressed: () async {
+                final result = await showDialog(
                   context: context,
                   builder: (context) {
                     return BlocProvider(
@@ -199,12 +204,16 @@ class Detailscontainer extends StatelessWidget {
                     );
                   },
                 );
+                if (result == true) {
+                  context.read<ReviewsCubit>().getReviews(productId: productId);
+                }
               },
               child: Text(
                 "Add your review",
-                style: AppStyles.style16SemiBold.copyWith(
-                  color: AppColors.primaryColor,
-                ),
+                style: AppStyles.style16SemiBold,
+                // .copyWith(
+                //   color: AppColors.primaryColor,
+                // ),
               ),
             ),
           ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
+import 'package:nti_final_project/features/cart/presentation/cubits/quantity_cubit.dart';
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:nti_final_project/features/product/presentation/cubits/delete_product_cubit.dart';
 import 'package:nti_final_project/features/product/presentation/widgets/showdelete.dart';
@@ -15,10 +17,7 @@ class Addtocartsection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
           IconButton(
@@ -89,7 +88,7 @@ class Addtocartsection extends StatelessWidget {
               buttoncolor: AppColors.primaryColor,
               onpressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Cartscreen()),
+                MaterialPageRoute(builder: (context) => MainScreen(index: 2)),
               ),
             ),
           ),

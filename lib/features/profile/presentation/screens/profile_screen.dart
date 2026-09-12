@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dart';
+import 'package:nti_final_project/core/theme/switch_theme_mode.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/about_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/contact_screen.dart';
 import 'package:nti_final_project/features/app_info/presentation/screens/privacy_screen.dart';
@@ -21,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
+      // backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -38,9 +39,10 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(width: 16),
                   Text(
                     'My Profile',
-                    style: AppStyles.style28Regular.copyWith(
-                      color: AppColors.color5A3036,
-                    ),
+                    style: AppStyles.style28Regular,
+                    // .copyWith(
+                    //   color: AppColors.color5A3036,
+                    // ),
                   ),
                 ],
               ),
@@ -55,20 +57,48 @@ class ProfileScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
+                        // color: AppColors.whiteColor,
                         borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: AppColors.colorD1D5DB),
+                        // border: Border.all(color: AppColors.colorD1D5DB),
                       ),
                       clipBehavior: Clip.antiAlias,
                       child: Column(
                         children: [
-                          ProfileMenuItem(
-                            icon: 'assets/icons/dark_mode.svg',
-                            title: 'Dark Mode',
-                            suffixiconpath:
-                                'assets/icons/Toggle Switch_margin.svg',
-                            ontap: () {},
+                          Row(
+                            children: [
+                              SizedBox(width: 20),
+                              // Menu icon
+                              SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: SvgPicture.asset(
+                                  'assets/icons/dark_mode.svg',
+                                  width: 24,
+                                  height: 24,
+                                ),
+                              ),
+
+                              const SizedBox(width: 16),
+
+                              // Menu title
+                              Text(
+                                'Dark Mode',
+                                style: AppStyles.style16Regular,
+                                // .copyWith(
+                                //   color: AppColors.blackColor,
+                                // ),
+                              ),
+                              Spacer(),
+                              SwitchThemeMode(),
+                            ],
                           ),
+                          // ProfileMenuItem(
+                          //   icon: 'assets/icons/dark_mode.svg',
+                          //   title: 'Dark Mode',
+                          //   suffixiconpath:
+                          //       'assets/icons/Toggle Switch_margin.svg',
+                          //   ontap: () {},
+                          // ),
                           const Divider(),
                           ProfileMenuItem(
                             icon: 'assets/icons/change_password.svg',

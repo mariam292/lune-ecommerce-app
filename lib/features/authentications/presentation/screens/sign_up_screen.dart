@@ -7,6 +7,7 @@ import 'package:nti_final_project/core/common_widgets/custom_elevated_button.dar
 
 import 'package:nti_final_project/features/authentications/presentation/cubit/signup_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/cubit/signup_state.dart';
+import 'package:nti_final_project/features/authentications/presentation/screens/otp_register_screen.dart';
 
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_text_field_forgot_reset_pass.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/navigation_elevated_button.dart';
@@ -48,9 +49,8 @@ class _SignupState extends State<Signup> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => OtpVerification(
-                  email: emailController.text.trim(),
-                ),
+                builder: (context) =>
+                    OtpRegisterScreen(email: emailController.text.trim()),
               ),
             );
           }
@@ -65,7 +65,6 @@ class _SignupState extends State<Signup> {
           }
         },
         child: Scaffold(
-          backgroundColor: AppColors.backGroundColor,
           body: SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -113,9 +112,7 @@ class _SignupState extends State<Signup> {
                         buttontext: isLoading
                             ? 'Creating Account...'
                             : 'Create Account',
-                        btntextstyle: const TextStyle(
-                          color: Colors.white,
-                        ),
+                        btntextstyle: const TextStyle(color: Colors.white),
                         buttoncolor: AppColors.primaryColor,
                         onpressed: () {
                           if (isLoading) {
@@ -123,13 +120,12 @@ class _SignupState extends State<Signup> {
                           }
 
                           context.read<SignupCubit>().register(
-                                firstName: firstNameController.text.trim(),
-                                lastName: lastNameController.text.trim(),
-                                email: emailController.text.trim(),
-                                password: passwordController.text,
-                                confirmPassword:
-                                    confirmPasswordController.text,
-                              );
+                            firstName: firstNameController.text.trim(),
+                            lastName: lastNameController.text.trim(),
+                            email: emailController.text.trim(),
+                            password: passwordController.text,
+                            confirmPassword: confirmPasswordController.text,
+                          );
                         },
                       );
                     },

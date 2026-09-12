@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
+import 'package:nti_final_project/features/cart/presentation/cubits/quantity_cubit.dart';
 
-
-
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   final String imagePath;
   final String productName;
   final String productPrice;
@@ -17,9 +17,20 @@ class CartItem extends StatelessWidget {
   });
 
   @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+  bool isVisible = true;
+
+  @override
   Widget build(BuildContext context) {
+    if (!isVisible) {
+      return const SizedBox.shrink();
+    }
+
     return Card(
-      color: AppColors.whiteColor,
+      // color: AppColors.whiteColor,
       margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -33,13 +44,13 @@ class CartItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.network(
-                imagePath,
+                widget.imagePath,
                 width: 80,
                 height: 80,
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: 14),
+            const SizedBox(width: 14),
 
             Expanded(
               child: Column(
@@ -50,15 +61,19 @@ class CartItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          productName,
+                          widget.productName,
                           style: AppStyles.style16SemiBold.copyWith(
-                            color: AppColors.blackColor,
+                            // color: AppColors.blackColor,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            isVisible = false;
+                          });
+                        },
                         child: Icon(
                           Icons.cancel_outlined,
                           color: AppColors.color7A6E6B,
@@ -67,7 +82,7 @@ class CartItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
+
                   const SizedBox(height: 10),
 
                   Row(
@@ -75,9 +90,9 @@ class CartItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "${productPrice.toString()} EGP",
+                        "${widget.productPrice.toString()} EGP",
                         style: AppStyles.style16SemiBold.copyWith(
-                          color: AppColors.primaryColor,
+                          // color: AppColors.primaryColor,
                         ),
                       ),
 
@@ -94,18 +109,29 @@ class CartItem extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                context.read<QuantityCubit>().decrement();
+                              },
                               child: Icon(
                                 Icons.remove,
                                 size: 18,
                                 color: AppColors.color7A6E6B,
                               ),
                             ),
-                            SizedBox(width: 10),
-                            Text('1', style: AppStyles.style12SemiBold),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
+                            BlocBuilder<QuantityCubit, int>(
+                              builder: (context, state) {
+                                return Text(
+                                  '$state',
+                                  style: AppStyles.style12SemiBold,
+                                );
+                              },
+                            ),
+                            const SizedBox(width: 10),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                context.read<QuantityCubit>().increment();
+                              },
                               child: Icon(
                                 Icons.add,
                                 size: 18,

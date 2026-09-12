@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:nti_final_project/core/token.dart';
 
 class CartRemoteDataSource {
   final Dio dio = Dio();
@@ -9,12 +10,7 @@ class CartRemoteDataSource {
       List mycart = [];
       final Response response = await dio.get(
         "https://accessories-eshop.runasp.net/api/cart",
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODEwMDc4Mi1mMTAxLTRjNzYtMzVkOS0wOGRmMGRhYTRmOTMiLCJqdGkiOiIwODY2M2E4Yy1kNzExLTRiYWEtYWViYi1kYTM3ZGNlODM5MmUiLCJlbWFpbCI6Im1hcmlhbWFidW11c2FsbG01NUBnbWFpbC5jb20iLCJuYW1lIjoibWFyaWFtIGVtYWQiLCJyb2xlcyI6IiIsInBpY3R1cmUiOiIiLCJleHAiOjE3ODkxOTQyNzUsImlzcyI6ImVzaG9wLm5ldCIsImF1ZCI6ImVzaG9wLm5ldCJ9._3rDOhQ7i8yUsH_2KA7V4XO5t6Ciz7JQhZQwCmsuiqI',
-          },
-        ),
+        options: Options(headers: {'Authorization': 'Bearer ${Token.value}'}),
       );
       log("Rsponse:$response");
       mycart = response.data["cartItems"];
@@ -23,5 +19,15 @@ class CartRemoteDataSource {
       log(e.response?.data.toString() ?? 'Error');
       throw Exception(e.response?.data);
     }
+  }
+
+  Future<void> postQuantity({
+    required String productId,
+    required int quantity,
+  }) async {
+    await dio.post(
+      'https://accessories-eshop.runasp.net/api/cart/items',
+      data: {'productId': productId, 'quantity': quantity},
+    );
   }
 }

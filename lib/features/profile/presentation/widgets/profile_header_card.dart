@@ -12,8 +12,8 @@ class ProfileHeaderCard extends StatelessWidget {
       width: 342,
       height: 280,
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        border: Border.all(color: AppColors.colorD1D5DB),
+        // color: AppColors.whiteColor,
+        // border: Border.all(color: AppColors.colorD1D5DB),
         borderRadius: BorderRadius.circular(24),
       ),
       child: Stack(
@@ -26,7 +26,7 @@ class ProfileHeaderCard extends StatelessWidget {
               height: 96,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.whiteColor, width: 2),
+                // border: Border.all(color: AppColors.whiteColor, width: 2),
               ),
               child: ClipOval(
                 child: Image.asset(
@@ -48,9 +48,10 @@ class ProfileHeaderCard extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Sarah Johnson',
-                  style: AppStyles.style24Regular.copyWith(
-                    color: AppColors.color5A3036,
-                  ),
+                  style: AppStyles.style24Regular,
+                  // .copyWith(
+                  //   color: AppColors.color5A3036,
+                  // ),
                 ),
               ),
             ),
@@ -87,7 +88,7 @@ class ProfileHeaderCard extends StatelessWidget {
                     vertical: 4,
                   ),
                   side: const BorderSide(
-                    color: AppColors.color5A3036,
+                    // color: AppColors.color5A3036,
                     width: 1,
                   ),
                   shape: RoundedRectangleBorder(
@@ -97,7 +98,7 @@ class ProfileHeaderCard extends StatelessWidget {
                 child: Text(
                   'Edit Profile',
                   style: AppStyles.style14Regular.copyWith(
-                    color: AppColors.color5A3036,
+                    // color: AppColors.color5A3036,
                   ),
                 ),
               ),

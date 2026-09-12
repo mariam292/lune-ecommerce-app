@@ -1,4 +1,4 @@
-class PostReviewState {}
+abstract class PostReviewState {}
 
 class PostReviewInitialState extends PostReviewState {}
 

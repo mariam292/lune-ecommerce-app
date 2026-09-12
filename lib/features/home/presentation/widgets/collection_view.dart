@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/category/presentation/screens/category_screen.dart';
@@ -16,7 +17,7 @@ class CollectionView extends StatelessWidget {
         InkWell(
           onTap: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CategoryScreen()),
+            MaterialPageRoute(builder: (context) => MainScreen(index: 1,)),
           ),
           child: CircleAvatar(
             child: ClipOval(

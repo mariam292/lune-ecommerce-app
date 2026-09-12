@@ -28,8 +28,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
-
+      // backgroundColor: AppColors.backGroundColor,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -42,7 +41,7 @@ class _SplashState extends State<Splash> {
               Text(
                 'CURATED ELEGANCE',
                 style: AppStyles.style16Regular.copyWith(
-                  color: AppColors.color7A6E6B,
+                  // color: AppColors.color7A6E6B,
                 ),
               ),
             ],

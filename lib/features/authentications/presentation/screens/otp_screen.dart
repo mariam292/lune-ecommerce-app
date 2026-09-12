@@ -7,16 +7,14 @@ import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
 import 'package:nti_final_project/features/authentications/presentation/cubit/otp_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/cubit/otp_state.dart';
+import 'package:nti_final_project/features/authentications/presentation/cubit/reset_pass_cubit.dart';
 import 'package:nti_final_project/features/authentications/presentation/screens/reset_password_screen.dart';
 import 'package:nti_final_project/features/authentications/presentation/widgets/custom_button.dart';
 
 class OtpVerification extends StatefulWidget {
   final String email;
 
-  const OtpVerification({
-    super.key,
-    required this.email,
-  });
+  const OtpVerification({super.key, required this.email});
 
   @override
   State<OtpVerification> createState() {
@@ -50,18 +48,15 @@ class _OtpVerificationState extends State<OtpVerification> {
       seconds = 59;
     });
 
-    timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        if (seconds > 0) {
-          setState(() {
-            seconds--;
-          });
-        } else {
-          timer.cancel();
-        }
-      },
-    );
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (seconds > 0) {
+        setState(() {
+          seconds--;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
   }
 
   @override
@@ -85,7 +80,10 @@ class _OtpVerificationState extends State<OtpVerification> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ResetPassword(),
+                builder: (context) => BlocProvider(
+                  create: (context) => ResetPassCubit(),
+                  child: ResetPassword(email: widget.email, otp: otp),
+                ),
               ),
             );
           }
@@ -109,13 +107,9 @@ class _OtpVerificationState extends State<OtpVerification> {
           }
         },
         child: Scaffold(
-          backgroundColor: AppColors.backGroundColor,
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -137,54 +131,51 @@ class _OtpVerificationState extends State<OtpVerification> {
                   const SizedBox(height: 36),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: List.generate(
-                      6,
-                      (index) {
-                        return SizedBox(
-                          width: 45,
-                          height: 55,
-                          child: TextField(
-                            controller: controllers[index],
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.number,
-                            maxLength: 1,
-                            style: AppStyles.style20Bold,
-                            decoration: InputDecoration(
-                              counterText: '',
-                              filled: true,
-                              fillColor: AppColors.whiteColor,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                borderSide: const BorderSide(
-                                  color: AppColors.colorEADFD8,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                borderSide: const BorderSide(
-                                  color: AppColors.colorEADFD8,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                borderSide: const BorderSide(
-                                  color: AppColors.color5A3036,
-                                ),
+                    children: List.generate(6, (index) {
+                      return SizedBox(
+                        width: 45,
+                        height: 55,
+                        child: TextField(
+                          controller: controllers[index],
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          maxLength: 1,
+                          style: AppStyles.style20Bold,
+                          decoration: InputDecoration(
+                            counterText: '',
+                            filled: true,
+                            fillColor: AppColors.whiteColor,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: const BorderSide(
+                                color: AppColors.colorEADFD8,
                               ),
                             ),
-                            onChanged: (value) {
-                              if (value.isNotEmpty && index < 5) {
-                                FocusScope.of(context).nextFocus();
-                              } else if (value.isEmpty && index > 0) {
-                                FocusScope.of(context).previousFocus();
-                              }
-
-                              setState(() {});
-                            },
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: const BorderSide(
+                                color: AppColors.colorEADFD8,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: const BorderSide(
+                                color: AppColors.color5A3036,
+                              ),
+                            ),
                           ),
-                        );
-                      },
-                    ),
+                          onChanged: (value) {
+                            if (value.isNotEmpty && index < 5) {
+                              FocusScope.of(context).nextFocus();
+                            } else if (value.isEmpty && index > 0) {
+                              FocusScope.of(context).previousFocus();
+                            }
+
+                            setState(() {});
+                          },
+                        ),
+                      );
+                    }),
                   ),
                   const SizedBox(height: 36),
                   BlocBuilder<OtpCubit, OtpState>(
@@ -201,18 +192,16 @@ class _OtpVerificationState extends State<OtpVerification> {
                           if (otp.length != 6) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content: Text(
-                                  'Please enter the 6-digit OTP',
-                                ),
+                                content: Text('Please enter the 6-digit OTP'),
                               ),
                             );
                             return;
                           }
 
                           context.read<OtpCubit>().validateOtp(
-                                email: widget.email,
-                                otp: otp,
-                              );
+                            email: widget.email,
+                            otp: otp,
+                          );
                         },
                       );
                     },
@@ -231,8 +220,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                         onTap: seconds == 0
                             ? () {
                                 context.read<OtpCubit>().resendOtp(
-                                      email: widget.email,
-                                    );
+                                  email: widget.email,
+                                );
                                 startTimer();
                               }
                             : null,

@@ -14,41 +14,45 @@ class Reviewsection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Row(
-        //   children: List.generate(
-        //     5,
-        //     (index) => SvgPicture.asset("assets/icons/staricon.svg"),
-        //   ),
-        // ),
-        const SizedBox(height: 2),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Row(
+            //   children: List.generate(
+            //     5,
+            //     (index) => SvgPicture.asset("assets/icons/staricon.svg"),
+            //   ),
+            // ),
+            const SizedBox(height: 2),
             Text(
               name,
               style: AppStyles.style16Regular.copyWith(
-                color: AppColors.blackColor,
+                // color: AppColors.blackColor,
               ),
             ),
+            const SizedBox(height: 5),
             Text(
-              date,
-              style: AppStyles.style16Regular.copyWith(
-                color: AppColors.blackColor,
+              comment,
+              style: AppStyles.style14Regular.copyWith(
+                // color: AppColors.color7A6E6B,
+              ),
+            ),
+
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                date,
+                style: AppStyles.style16Regular.copyWith(
+                  // color: AppColors.blackColor,
+                ),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 5),
-        Text(
-          comment,
-          style: AppStyles.style14Regular.copyWith(
-            color: AppColors.color7A6E6B,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

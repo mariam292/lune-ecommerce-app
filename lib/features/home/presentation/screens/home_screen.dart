@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nti_final_project/Main_Screen.dart';
 import 'package:nti_final_project/core/app_colors.dart';
 import 'package:nti_final_project/core/app_text_style.dart';
-import 'package:nti_final_project/core/common_widgets/bottom_nav_bar.dart';
+
 import 'package:nti_final_project/features/cart/presentation/screens/cart_screen.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/category_cubit.dart';
 import 'package:nti_final_project/features/home/presentation/cubits/products_cubit.dart';
@@ -30,8 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(),
-      backgroundColor: AppColors.backGroundColor,
+      // backgroundColor: AppColors.darkModeblackColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       "LUNÉ",
                       style: AppStyles.style28Regular.copyWith(
-                        color: AppColors.primaryColor,
+                        // color: AppColors.primaryColor,
                       ),
                     ),
                     Spacer(),
@@ -57,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     IconButton(
                       onPressed: () => Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Cartscreen()),
+                        MaterialPageRoute(
+                          builder: (context) => MainScreen(index: 2),
+                        ),
                       ),
                       icon: SvgPicture.asset("assets/icons/cart_bag.svg"),
                       style: IconButton.styleFrom(padding: EdgeInsets.all(0)),
